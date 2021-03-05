@@ -241,7 +241,7 @@ poc:点击下载
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/03/05/HTB-Can-you-encrypt-fast-enough/"></a>
+        <a href="/2021/03/05/HTB-Can-you-encrypt-fast-enough/">HTB Can you encrypt fast enough?</a>
       </h1>
 
       <p class="index-excerpt">
@@ -250,8 +250,17 @@ poc:点击下载
           
             
           
-          select ‘‘ into outfile ‘D:/phpstudy_pro/WWW/123.php’;
+          打开界面后如下图：尝试MD5加密后填进输入框后提示 “Too slow!”查看源码后推测，应该是用程序发包，构造如下Python代码：
+import requests
+import hashlib
+import re
 
+url=&quot;http://139.59.176.149:30207/&quot;
+
+r=requests.session()
+out=r.get(url)
+
+rr = re
         </a>
       </p>
 
@@ -264,6 +273,13 @@ poc:点击下载
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/web/">web</a>
+            
+          </div>
         
         
       </div>

