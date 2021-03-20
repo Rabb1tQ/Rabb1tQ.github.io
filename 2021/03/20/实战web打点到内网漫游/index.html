@@ -243,7 +243,7 @@
             <div class="markdown-body">
               <p>首先扫描主机：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/01.png" srcset="/img/loading.gif"></p>
 <p>开启的端口有2001和22，22先扔那，没有办法再日他，访问2001地址，是一个web：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/02.png" srcset="/img/loading.gif"></p>
-<p>发现.acition后缀，第一反应struct2，掏出我的小学生工具：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/02.png" srcset="/img/loading.gif"></p>
+<p>发现.acition后缀，第一反应struct2，掏出我的小学生工具：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/03.png" srcset="/img/loading.gif"></p>
 <p>嗯。。。有洞，上传我的冰蝎马：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/04.png" srcset="/img/loading.gif"></p>
 <p>连接后发现根目录下的.dockerenv文件<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/05.png" srcset="/img/loading.gif"></p>
 <p>哎嘿，小老弟，在docker里面，常规的docker逃逸我就知道那几个，脏牛，cve-2019-5736，磁盘挂载，那个cve-2019-5736动静有点大而且要求比较多，还是掏出我得小学生工具cdk，尝试磁盘挂载，执行命令：./cdk run mount-disk，成功<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/06.png" srcset="/img/loading.gif"></p>
