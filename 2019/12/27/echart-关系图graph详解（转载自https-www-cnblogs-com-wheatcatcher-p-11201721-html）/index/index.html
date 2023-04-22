@@ -1,0 +1,1051 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html） - qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）">
+              
+                echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-12-27 08:00" pubdate>
+        2019年12月27日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      112
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）</h1>
+            
+            <div class="markdown-body">
+              <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">VueEcharts</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;options&quot;</span> <span class="hljs-attr">auto-resize</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+  data () &#123;
+<span class="javascript">    <span class="hljs-keyword">const</span> title = &#123;</span>
+<span class="javascript">      <span class="hljs-comment">// show: true,                                 //是否显示</span></span>
+<span class="javascript">      text: <span class="hljs-string">&quot;画布关系图&quot;</span>,                             <span class="hljs-comment">//大标题</span></span>
+<span class="javascript">      subtext: <span class="hljs-string">&quot;图形可拖动、缩放&quot;</span>,                          <span class="hljs-comment">//小标题</span></span>
+<span class="javascript">      <span class="hljs-comment">// sublink: &quot;http://www.baidu.com&quot;,          //小标题链接</span></span>
+<span class="javascript">      <span class="hljs-comment">// target: &quot;blank&quot;,                            //&#x27;self&#x27; 当前窗口打开，&#x27;blank&#x27; 新窗口打开</span></span>
+<span class="javascript">      <span class="hljs-comment">// subtarget: &quot;blank&quot;,                        //小标题打开链接的窗口</span></span>
+<span class="javascript">      <span class="hljs-comment">// textAlign: &quot;center&quot;,                       //文本水平对齐</span></span>
+<span class="javascript">      <span class="hljs-comment">// textBaseline: &quot;top&quot;,                       //文本垂直对齐</span></span>
+<span class="javascript">      <span class="hljs-comment">// textStyle: mytextStyle,                     //标题样式</span></span>
+<span class="javascript">      <span class="hljs-comment">// subtextStyle: mytextStyle,                 //小标题样式</span></span>
+<span class="javascript">      <span class="hljs-comment">// padding: 5,                                  //标题内边距 5  [5, 10]  [5,10,5,10]</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemGap: 10,                                 //大小标题间距</span></span>
+<span class="javascript">      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span></span>
+<span class="javascript">      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span></span>
+<span class="javascript">      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// right: &quot;auto&quot;,                               //组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                         //边框颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderWidth: 0,                               //边框线宽</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowColor: &quot;red&quot;,                          //阴影颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowOffsetX: 0,                            //阴影水平方向上的偏移距离</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowOffsetY: 0,                            //阴影垂直方向上的偏移距离</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowBlur: 10,                               //阴影的模糊大小</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> tooltip = &#123;                             <span class="hljs-comment">//提示框组件</span></span>
+<span class="javascript">      trigger: <span class="hljs-string">&#x27;item&#x27;</span>,                            <span class="hljs-comment">//触发类型,&#x27;item&#x27;数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 &#x27;axis&#x27;坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。</span></span>
+<span class="javascript">      <span class="hljs-comment">// triggerOn: &quot;mousemove&quot;,                      //提示框触发的条件,&#x27;mousemove&#x27;鼠标移动时触发。&#x27;click&#x27;鼠标点击时触发。&#x27;mousemove|click&#x27;同时鼠标移动和点击时触发。&#x27;none&#x27;不在 &#x27;mousemove&#x27; 或 &#x27;click&#x27; 时触发</span></span>
+<span class="javascript">      <span class="hljs-comment">// showContent: true,                           //是否显示提示框浮层</span></span>
+<span class="javascript">      <span class="hljs-comment">// alwaysShowContent: true,                     //是否永远显示提示框内容</span></span>
+<span class="javascript">      <span class="hljs-comment">// showDelay: 0,                                  //浮层显示的延迟，单位为 ms</span></span>
+<span class="javascript">      <span class="hljs-comment">// hideDelay: 100,                                //浮层隐藏的延迟，单位为 ms</span></span>
+<span class="javascript">      <span class="hljs-comment">// enterable: false,                             //鼠标是否可进入提示框浮层中</span></span>
+<span class="javascript">      <span class="hljs-comment">// confine: false,                               //是否将 tooltip 框限制在图表的区域内</span></span>
+<span class="javascript">      <span class="hljs-comment">// transitionDuration: 0.4,                      //提示框浮层的移动动画过渡时间，单位是 s,设置为 0 的时候会紧跟着鼠标移动</span></span>
+<span class="javascript">      <span class="hljs-comment">// position: [&#x27;50%&#x27;, &#x27;50%&#x27;],                    //提示框浮层的位置，默认不设置时位置会跟随鼠标的位置,[10, 10],回掉函数，inside鼠标所在图形的内部中心位置，top、left、bottom、right鼠标所在图形上侧，左侧，下侧，右侧，</span></span>
+<span class="javascript">      formatter: <span class="hljs-string">&quot;&#123;b&#125;&quot;</span>,                          <span class="hljs-comment">//提示框浮层内容格式器，支持字符串模板和回调函数两种形式,模板变量有 &#123;a&#125;, &#123;b&#125;，&#123;c&#125;，&#123;d&#125;，&#123;e&#125;，分别表示系列名，数据名，数据值等&lt;br /&gt;&#123;b1&#125;: &#123;c1&#125;</span></span>
+<span class="javascript">      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                        //边框颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderWidth: 0,                              //边框线宽</span></span>
+<span class="javascript">      <span class="hljs-comment">// padding: 5,                                  //图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span></span>
+<span class="javascript">      <span class="hljs-comment">// textStyle: mytextStyle,                     //文本样式</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> toolbox = &#123;</span>
+<span class="javascript">      <span class="hljs-comment">// show: true,                                 //是否显示工具栏组件</span></span>
+<span class="javascript">      orient: <span class="hljs-string">&quot;horizontal&quot;</span>,                        <span class="hljs-comment">//工具栏 icon 的布局朝向&#x27;horizontal&#x27; &#x27;vertical&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemSize: 15,                                 //工具栏 icon 的大小</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemGap: 10,                                  //工具栏 icon 每项之间的间隔</span></span>
+<span class="javascript">      <span class="hljs-comment">// showTitle: true,                             //是否在鼠标 hover 的时候显示每个工具 icon 的标题</span></span>
+      feature: &#123;
+<span class="javascript">        mark: &#123;                                 <span class="hljs-comment">// &#x27;辅助线开关&#x27;</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span></span>
+        &#125;,
+<span class="javascript">        dataView: &#123;                            <span class="hljs-comment">//数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span></span>
+<span class="javascript">          title: <span class="hljs-string">&quot;数据视图&quot;</span>,</span>
+<span class="javascript">          readOnly: <span class="hljs-literal">false</span>,                    <span class="hljs-comment">//是否不可编辑（只读）</span></span>
+<span class="javascript">          lang: [<span class="hljs-string">&#x27;数据视图&#x27;</span>, <span class="hljs-string">&#x27;关闭&#x27;</span>, <span class="hljs-string">&#x27;刷新&#x27;</span>],  <span class="hljs-comment">//数据视图上有三个话术，默认是[&#x27;数据视图&#x27;, &#x27;关闭&#x27;, &#x27;刷新&#x27;]</span></span>
+<span class="javascript">          backgroundColor: <span class="hljs-string">&quot;#fff&quot;</span>,             <span class="hljs-comment">//数据视图浮层背景色。</span></span>
+<span class="javascript">          textareaColor: <span class="hljs-string">&quot;#fff&quot;</span>,               <span class="hljs-comment">//数据视图浮层文本输入区背景色</span></span>
+<span class="javascript">          textareaBorderColor: <span class="hljs-string">&quot;#333&quot;</span>,         <span class="hljs-comment">//数据视图浮层文本输入区边框颜色</span></span>
+<span class="javascript">          textColor: <span class="hljs-string">&quot;#000&quot;</span>,                    <span class="hljs-comment">//文本颜色。</span></span>
+<span class="javascript">          buttonColor: <span class="hljs-string">&quot;#c23531&quot;</span>,              <span class="hljs-comment">//按钮颜色。</span></span>
+<span class="javascript">          buttonTextColor: <span class="hljs-string">&quot;#fff&quot;</span>,             <span class="hljs-comment">//按钮文本颜色。</span></span>
+        &#125;,
+<span class="javascript">        magicType: &#123;                            <span class="hljs-comment">//动态类型切换</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span>,</span>
+<span class="javascript">          title: <span class="hljs-string">&quot;切换&quot;</span>,                       <span class="hljs-comment">//各个类型的标题文本，可以分别配置。</span></span>
+<span class="javascript">          type: [<span class="hljs-string">&#x27;line&#x27;</span>, <span class="hljs-string">&#x27;bar&#x27;</span>],              <span class="hljs-comment">//启用的动态类型，包括&#x27;line&#x27;（切换为折线图）, &#x27;bar&#x27;（切换为柱状图）, &#x27;stack&#x27;（切换为堆叠模式）, &#x27;tiled&#x27;（切换为平铺模式）</span></span>
+        &#125;,
+<span class="javascript">        restore: &#123;                             <span class="hljs-comment">//配置项还原。</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span></span>
+<span class="javascript">          title: <span class="hljs-string">&quot;还原&quot;</span>,</span>
+        &#125;,
+<span class="javascript">        saveAsImage: &#123;                         <span class="hljs-comment">//保存为图片。</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span></span>
+<span class="javascript">          type: <span class="hljs-string">&quot;png&quot;</span>,                         <span class="hljs-comment">//保存的图片格式。支持 &#x27;png&#x27; 和 &#x27;jpeg&#x27;。</span></span>
+<span class="javascript">          name: <span class="hljs-string">&quot;pic1&quot;</span>,                        <span class="hljs-comment">//保存的文件名称，默认使用 title.text 作为名称</span></span>
+<span class="javascript">          backgroundColor: <span class="hljs-string">&quot;#ffffff&quot;</span>,        <span class="hljs-comment">//保存的图片背景色，默认使用 backgroundColor，如果backgroundColor不存在的话会取白色</span></span>
+<span class="javascript">          title: <span class="hljs-string">&quot;保存为图片&quot;</span>,</span>
+<span class="javascript">          pixelRatio: <span class="hljs-number">1</span>                        <span class="hljs-comment">//保存图片的分辨率比例，默认跟容器相同大小，如果需要保存更高分辨率的，可以设置为大于 1 的值，例如 2</span></span>
+        &#125;,
+<span class="javascript">        dataZoom: &#123;                             <span class="hljs-comment">//数据区域缩放。目前只支持直角坐标系的缩放</span></span>
+<span class="javascript">          show: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span></span>
+<span class="javascript">          title: <span class="hljs-string">&quot;缩放&quot;</span>,                       <span class="hljs-comment">//缩放和还原的标题文本</span></span>
+<span class="javascript">          xAxisIndex: <span class="hljs-number">0</span>,                       <span class="hljs-comment">//指定哪些 xAxis 被控制。如果缺省则控制所有的x轴。如果设置为 false 则不控制任何x轴。如果设置成 3 则控制 axisIndex 为 3 的x轴。如果设置为 [0, 3] 则控制 axisIndex 为 0 和 3 的x轴</span></span>
+<span class="javascript">          yAxisIndex: <span class="hljs-literal">false</span>,                   <span class="hljs-comment">//指定哪些 yAxis 被控制。如果缺省则控制所有的y轴。如果设置为 false 则不控制任何y轴。如果设置成 3 则控制 axisIndex 为 3 的y轴。如果设置为 [0, 3] 则控制 axisIndex 为 0 和 3 的y轴</span></span>
+        &#125;,
+      &#125;,
+<span class="javascript">      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span></span>
+<span class="javascript">      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span></span>
+<span class="javascript">      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      right: <span class="hljs-string">&quot;2%&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// width: &quot;auto&quot;,                               //图例宽度</span></span>
+<span class="javascript">      <span class="hljs-comment">// height: &quot;auto&quot;,                              //图例高度</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> legend = &#123;</span>
+<span class="javascript">      <span class="hljs-comment">// show: true,                                  //是否显示</span></span>
+<span class="javascript">      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span></span>
+<span class="javascript">      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span></span>
+<span class="javascript">      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// right: &quot;auto&quot;,                               //组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">      <span class="hljs-comment">// width: &quot;auto&quot;,                               //图例宽度</span></span>
+<span class="javascript">      <span class="hljs-comment">// height: &quot;auto&quot;,                              //图例高度</span></span>
+<span class="javascript">      <span class="hljs-comment">// orient: &quot;horizontal&quot;,                        //图例排列方向</span></span>
+<span class="javascript">      <span class="hljs-comment">// align: &quot;auto&quot;,                               //图例标记和文本的对齐,left,right</span></span>
+<span class="javascript">      <span class="hljs-comment">// padding: 5,                                   //图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemGap: 10,                                  //图例每项之间的间隔</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemWidth: 25,                               //图例标记的图形宽度</span></span>
+<span class="javascript">      <span class="hljs-comment">// itemHeight: 14,                              //图例标记的图形高度</span></span>
+<span class="javascript">      <span class="hljs-comment">// formatter: function (name) &#123;                 //用来格式化图例文本，支持字符串模板和回调函数两种形式。模板变量为图例名称 &#123;name&#125;</span></span>
+<span class="javascript">      <span class="hljs-comment">//   return &#x27;Legend &#x27; + name;</span></span>
+<span class="javascript">      <span class="hljs-comment">// &#125;,</span></span>
+<span class="javascript">      <span class="hljs-comment">// selectedMode: &quot;single&quot;,                    //图例选择的模式,true开启,false关闭,single单选,multiple多选</span></span>
+<span class="javascript">      <span class="hljs-comment">// inactiveColor: &quot;#ccc&quot;,                     //图例关闭时的颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// textStyle: mytextStyle,                    //文本样式</span></span>
+<span class="javascript">      data: [<span class="hljs-string">&#x27;当前特征&#x27;</span>, <span class="hljs-string">&#x27;个人特征&#x27;</span>, <span class="hljs-string">&#x27;公共特征&#x27;</span>, <span class="hljs-string">&#x27;特征画布&#x27;</span>],          <span class="hljs-comment">//series中根据名称区分</span></span>
+<span class="javascript">      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                         //边框颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// borderWidth: 0,                               //边框线宽</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowColor: &quot;red&quot;,                          //阴影颜色</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowOffsetX: 0,                            //阴影水平方向上的偏移距离</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowOffsetY: 0,                            //阴影垂直方向上的偏移距离</span></span>
+<span class="javascript">      <span class="hljs-comment">// shadowBlur: 10,                               //阴影的模糊大小</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> dataZoom = [                                      <span class="hljs-comment">//区域缩放</span></span>
+      &#123;
+<span class="javascript">        id: <span class="hljs-string">&#x27;dataZoomX&#x27;</span>,</span>
+<span class="javascript">        show: <span class="hljs-literal">true</span>,                              <span class="hljs-comment">//是否显示 组件。如果设置为 false，不会显示，但是数据过滤的功能还存在。</span></span>
+<span class="javascript">        backgroundColor: <span class="hljs-string">&quot;rgba(47,69,84,0)&quot;</span>,  <span class="hljs-comment">//组件的背景颜色</span></span>
+<span class="javascript">        type: <span class="hljs-string">&#x27;slider&#x27;</span>,                         <span class="hljs-comment">//slider表示有滑动块的，inside表示内置的</span></span>
+<span class="javascript">        dataBackground: &#123;                        <span class="hljs-comment">//数据阴影的样式。</span></span>
+<span class="javascript">          lineStyle: mylineStyle,              <span class="hljs-comment">//阴影的线条样式</span></span>
+<span class="javascript">          areaStyle: myareaStyle,              <span class="hljs-comment">//阴影的填充样式</span></span>
+        &#125;,
+<span class="javascript">        fillerColor: <span class="hljs-string">&quot;rgba(167,183,204,0.4)&quot;</span>,  <span class="hljs-comment">//选中范围的填充颜色。</span></span>
+<span class="javascript">        borderColor: <span class="hljs-string">&quot;#ddd&quot;</span>,                     <span class="hljs-comment">//边框颜色。</span></span>
+<span class="javascript">        filterMode: <span class="hljs-string">&#x27;filter&#x27;</span>,                   <span class="hljs-comment">//&#x27;filter&#x27;：当前数据窗口外的数据，被 过滤掉。即 会 影响其他轴的数据范围。每个数据项，只要有一个维度在数据窗口外，整个数据项就会被过滤掉。</span></span>
+<span class="javascript">        <span class="hljs-comment">//&#x27;weakFilter&#x27;：当前数据窗口外的数据，被 过滤掉。即 会 影响其他轴的数据范围。每个数据项，只有当全部维度都在数据窗口同侧外部，整个数据项才会被过滤掉。</span></span>
+<span class="javascript">        <span class="hljs-comment">//&#x27;empty&#x27;：当前数据窗口外的数据，被 设置为空。即 不会 影响其他轴的数据范围。</span></span>
+<span class="javascript">        <span class="hljs-comment">//&#x27;none&#x27;: 不过滤数据，只改变数轴范围。</span></span>
+<span class="javascript">        xAxisIndex: <span class="hljs-number">0</span>,                            <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 x轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        yAxisIndex: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                        <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 y轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        radiusAxisIndex: <span class="hljs-number">3</span>,                       <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 radius 轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        angleAxisIndex: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                    <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 angle 轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        start: <span class="hljs-number">30</span>,                                <span class="hljs-comment">//数据窗口范围的起始百分比,表示30%</span></span>
+<span class="javascript">        end: <span class="hljs-number">70</span>,                                  <span class="hljs-comment">//数据窗口范围的结束百分比,表示70%</span></span>
+<span class="javascript">        startValue: <span class="hljs-number">10</span>,                           <span class="hljs-comment">//数据窗口范围的起始数值</span></span>
+<span class="javascript">        endValue: <span class="hljs-number">100</span>,                            <span class="hljs-comment">//数据窗口范围的结束数值。</span></span>
+<span class="javascript">        orient: <span class="hljs-string">&quot;horizontal&quot;</span>,                    <span class="hljs-comment">//布局方式是横还是竖。不仅是布局方式，对于直角坐标系而言，也决定了，缺省情况控制横向数轴还是纵向数轴。&#x27;horizontal&#x27;：水平。&#x27;vertical&#x27;：竖直。</span></span>
+<span class="javascript">        zoomLock: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否锁定选择区域（或叫做数据窗口）的大小。如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。</span></span>
+<span class="javascript">        throttle: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//设置触发视图刷新的频率。单位为毫秒（ms）。</span></span>
+<span class="javascript">        zoomOnMouseWheel: <span class="hljs-literal">true</span>,                  <span class="hljs-comment">//如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。&#x27;shift&#x27;：表示按住 shift 和鼠标滚轮能触发缩放。&#x27;ctrl&#x27;：表示按住 ctrl 和鼠标滚轮能触发缩放。&#x27;alt&#x27;：表示按住 alt 和鼠标滚轮能触发缩放。</span></span>
+<span class="javascript">        moveOnMouseMove: <span class="hljs-literal">true</span>,                   <span class="hljs-comment">//如何触发数据窗口平移。true：表示不按任何功能键，鼠标移动能触发数据窗口平移。false：表示鼠标滚轮不能触发缩放。&#x27;shift&#x27;：表示按住 shift 和鼠标移动能触发数据窗口平移。&#x27;ctrl&#x27;：表示按住 ctrl 和鼠标移动能触发数据窗口平移。&#x27;alt&#x27;：表示按住 alt 和鼠标移动能触发数据窗口平移。</span></span>
+<span class="javascript">        left: <span class="hljs-string">&quot;center&quot;</span>,                           <span class="hljs-comment">//组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        top: <span class="hljs-string">&quot;top&quot;</span>,                                <span class="hljs-comment">//组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        right: <span class="hljs-string">&quot;auto&quot;</span>,                             <span class="hljs-comment">//组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">        bottom: <span class="hljs-string">&quot;auto&quot;</span>,                            <span class="hljs-comment">//组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+      &#125;,
+      &#123;
+<span class="javascript">        id: <span class="hljs-string">&#x27;dataZoomY&#x27;</span>,</span>
+<span class="javascript">        type: <span class="hljs-string">&#x27;inside&#x27;</span>,</span>
+<span class="javascript">        filterMode: <span class="hljs-string">&#x27;empty&#x27;</span>,</span>
+<span class="javascript">        disabled: <span class="hljs-literal">false</span>,                         <span class="hljs-comment">//是否停止组件的功能。</span></span>
+<span class="javascript">        xAxisIndex: <span class="hljs-number">0</span>,                           <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 x轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        yAxisIndex: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                       <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 y轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        radiusAxisIndex: <span class="hljs-number">3</span>,                      <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 radius 轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        angleAxisIndex: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                   <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 angle 轴,可以用数组表示多个轴</span></span>
+<span class="javascript">        start: <span class="hljs-number">30</span>,                               <span class="hljs-comment">//数据窗口范围的起始百分比,表示30%</span></span>
+<span class="javascript">        end: <span class="hljs-number">70</span>,                                  <span class="hljs-comment">//数据窗口范围的结束百分比,表示70%</span></span>
+<span class="javascript">        startValue: <span class="hljs-number">10</span>,                           <span class="hljs-comment">//数据窗口范围的起始数值</span></span>
+<span class="javascript">        endValue: <span class="hljs-number">100</span>,                            <span class="hljs-comment">//数据窗口范围的结束数值。</span></span>
+<span class="javascript">        orient: <span class="hljs-string">&quot;horizontal&quot;</span>,                    <span class="hljs-comment">//布局方式是横还是竖。不仅是布局方式，对于直角坐标系而言，也决定了，缺省情况控制横向数轴还是纵向数轴。&#x27;horizontal&#x27;：水平。&#x27;vertical&#x27;：竖直。</span></span>
+<span class="javascript">        zoomLock: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否锁定选择区域（或叫做数据窗口）的大小。如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。</span></span>
+<span class="javascript">        throttle: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//设置触发视图刷新的频率。单位为毫秒（ms）。</span></span>
+<span class="javascript">        zoomOnMouseWheel: <span class="hljs-literal">true</span>,                   <span class="hljs-comment">//如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。&#x27;shift&#x27;：表示按住 shift 和鼠标滚轮能触发缩放。&#x27;ctrl&#x27;：表示按住 ctrl 和鼠标滚轮能触发缩放。&#x27;alt&#x27;：表示按住 alt 和鼠标滚轮能触发缩放。</span></span>
+<span class="javascript">        moveOnMouseMove: <span class="hljs-literal">true</span>,                    <span class="hljs-comment">//如何触发数据窗口平移。true：表示不按任何功能键，鼠标移动能触发数据窗口平移。false：表示鼠标滚轮不能触发缩放。&#x27;shift&#x27;：表示按住 shift 和鼠标移动能触发数据窗口平移。&#x27;ctrl&#x27;：表示按住 ctrl 和鼠标移动能触发数据窗口平移。&#x27;alt&#x27;：表示按住 alt 和鼠标移动能触发数据窗口平移。</span></span>
+      &#125;
+    ];
+<span class="javascript">    <span class="hljs-keyword">const</span> visualMap = [                                     <span class="hljs-comment">//视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素。视觉元素可以是：symbol: 图元的图形类别。symbolSize: 图元的大小。color: 图元的颜色。</span></span>
+<span class="javascript">      <span class="hljs-comment">// colorAlpha: 图元的颜色的透明度。opacity: 图元以及其附属物（如文字标签）的透明度。colorLightness: 颜色的明暗度。colorSaturation: 颜色的饱和度。colorHue: 颜色的色调。</span></span>
+      &#123;
+<span class="javascript">        show: <span class="hljs-literal">true</span>,                              <span class="hljs-comment">//是否显示 visualMap-continuous 组件。如果设置为 false，不会显示，但是数据映射的功能还存在</span></span>
+<span class="javascript">        type: <span class="hljs-string">&#x27;continuous&#x27;</span>,                     <span class="hljs-comment">// 定义为连续型 viusalMap</span></span>
+<span class="javascript">        min: <span class="hljs-number">10</span>,                                  <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最小值</span></span>
+<span class="javascript">        max: <span class="hljs-number">100</span>,                                 <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最大值</span></span>
+<span class="javascript">        range: [<span class="hljs-number">15</span>, <span class="hljs-number">40</span>],                          <span class="hljs-comment">//指定手柄对应数值的位置。range 应在 min max 范围内</span></span>
+<span class="javascript">        calculable: <span class="hljs-literal">true</span>,                        <span class="hljs-comment">//是否显示拖拽用的手柄（手柄能拖拽调整选中范围）</span></span>
+<span class="javascript">        realtime: <span class="hljs-literal">true</span>,                          <span class="hljs-comment">//拖拽时，是否实时更新</span></span>
+<span class="javascript">        inverse: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否反转 visualMap 组件</span></span>
+<span class="javascript">        precision: <span class="hljs-number">0</span>,                            <span class="hljs-comment">//数据展示的小数精度，默认为0，无小数点</span></span>
+<span class="javascript">        itemWidth: <span class="hljs-number">20</span>,                           <span class="hljs-comment">//图形的宽度，即长条的宽度。</span></span>
+<span class="javascript">        itemHeight: <span class="hljs-number">140</span>,                         <span class="hljs-comment">//图形的高度，即长条的高度。</span></span>
+<span class="javascript">        align: <span class="hljs-string">&quot;auto&quot;</span>,                           <span class="hljs-comment">//指定组件中手柄和文字的摆放位置.可选值为：&#x27;auto&#x27; 自动决定。&#x27;left&#x27; 手柄和label在右。&#x27;right&#x27; 手柄和label在左。&#x27;top&#x27; 手柄和label在下。&#x27;bottom&#x27; 手柄和label在上。</span></span>
+<span class="javascript">        text: [<span class="hljs-string">&#x27;High&#x27;</span>, <span class="hljs-string">&#x27;Low&#x27;</span>],                   <span class="hljs-comment">//两端的文本</span></span>
+<span class="javascript">        textGap: <span class="hljs-number">10</span>,                              <span class="hljs-comment">//两端文字主体之间的距离，单位为px</span></span>
+<span class="javascript">        dimension: <span class="hljs-number">2</span>,                            <span class="hljs-comment">//指定用数据的『哪个维度』，映射到视觉元素上。『数据』即 series.data。 可以把 series.data 理解成一个二维数组,其中每个列是一个维度,默认取 data 中最后一个维度</span></span>
+<span class="javascript">        seriesIndex: <span class="hljs-number">1</span>,                          <span class="hljs-comment">//指定取哪个系列的数据，即哪个系列的 series.data,默认取所有系列</span></span>
+<span class="javascript">        hoverLink: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//鼠标悬浮到 visualMap 组件上时，鼠标位置对应的数值 在 图表中对应的图形元素，会高亮</span></span>
+<span class="javascript">        inRange: &#123;                               <span class="hljs-comment">//定义 在选中范围中 的视觉元素</span></span>
+<span class="javascript">          color: [<span class="hljs-string">&#x27;#121122&#x27;</span>, <span class="hljs-string">&#x27;rgba(3,4,5,0.4)&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>],</span>
+          symbolSize: [30, 100]
+        &#125;,
+<span class="javascript">        outOfRange: &#123;  <span class="hljs-comment">//定义 在选中范围外 的视觉元素。</span></span>
+<span class="javascript">          color: [<span class="hljs-string">&#x27;#121122&#x27;</span>, <span class="hljs-string">&#x27;rgba(3,4,5,0.4)&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>],</span>
+          symbolSize: [30, 100]
+        &#125;,
+<span class="javascript">        zlevel: <span class="hljs-number">0</span>,                                   <span class="hljs-comment">//所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span></span>
+<span class="javascript">        z: <span class="hljs-number">2</span>,                                         <span class="hljs-comment">//所属组件的z分层，z值小的图形会被z值大的图形覆盖</span></span>
+<span class="javascript">        left: <span class="hljs-string">&quot;center&quot;</span>,                              <span class="hljs-comment">//组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        top: <span class="hljs-string">&quot;top&quot;</span>,                                   <span class="hljs-comment">//组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        right: <span class="hljs-string">&quot;auto&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">        bottom: <span class="hljs-string">&quot;auto&quot;</span>,                              <span class="hljs-comment">//组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">        orient: <span class="hljs-string">&quot;vertical&quot;</span>,                         <span class="hljs-comment">//图例排列方向</span></span>
+<span class="javascript">        padding: <span class="hljs-number">5</span>,                                   <span class="hljs-comment">//图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span></span>
+<span class="javascript">        backgroundColor: <span class="hljs-string">&quot;transparent&quot;</span>,            <span class="hljs-comment">//标题背景色</span></span>
+<span class="javascript">        borderColor: <span class="hljs-string">&quot;#ccc&quot;</span>,                         <span class="hljs-comment">//边框颜色</span></span>
+<span class="javascript">        borderWidth: <span class="hljs-number">0</span>,                               <span class="hljs-comment">//边框线宽</span></span>
+<span class="javascript">        textStyle: mytextStyle,                      <span class="hljs-comment">//文本样式</span></span>
+<span class="javascript">        formatter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>&#123;                 <span class="hljs-comment">//标签的格式化工具。</span></span>
+<span class="javascript">          <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;aaaa&#x27;</span> + value;                    <span class="hljs-comment">// 范围标签显示内容。</span></span>
+        &#125;
+      &#125;,
+      &#123;
+<span class="javascript">        show: <span class="hljs-literal">true</span>,                          <span class="hljs-comment">//是否显示 visualMap-continuous 组件。如果设置为 false，不会显示，但是数据映射的功能还存在</span></span>
+<span class="javascript">        type: <span class="hljs-string">&#x27;piecewise&#x27;</span>,                  <span class="hljs-comment">// 定义为分段型 visualMap</span></span>
+<span class="javascript">        splitNumber: <span class="hljs-number">5</span>,                      <span class="hljs-comment">//对于连续型数据，自动平均切分成几段。默认为5段</span></span>
+<span class="javascript">        pieces: [                           <span class="hljs-comment">//自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式</span></span>
+<span class="javascript">          &#123; <span class="hljs-attr">min</span>: <span class="hljs-number">1500</span> &#125;,                     <span class="hljs-comment">// 不指定 max，表示 max 为无限大（Infinity）。</span></span>
+          &#123; min: 900, max: 1500 &#125;,
+          &#123; min: 310, max: 1000 &#125;,
+          &#123; min: 200, max: 300 &#125;,
+<span class="javascript">          &#123; <span class="hljs-attr">min</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;10 到 200（自定义label）&#x27;</span> &#125;,</span>
+<span class="javascript">          &#123; <span class="hljs-attr">value</span>: <span class="hljs-number">123</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;123（自定义特殊颜色）&#x27;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;grey&#x27;</span> &#125;, <span class="hljs-comment">// 表示 value 等于 123 的情况。</span></span>
+<span class="javascript">          &#123; <span class="hljs-attr">max</span>: <span class="hljs-number">5</span> &#125;                        <span class="hljs-comment">// 不指定 min，表示 min 为无限大（-Infinity）。</span></span>
+        ],
+<span class="javascript">        categories: [<span class="hljs-string">&#x27;严重污染&#x27;</span>, <span class="hljs-string">&#x27;重度污染&#x27;</span>, <span class="hljs-string">&#x27;中度污染&#x27;</span>, <span class="hljs-string">&#x27;轻度污染&#x27;</span>, <span class="hljs-string">&#x27;良&#x27;</span>, <span class="hljs-string">&#x27;优&#x27;</span>],  <span class="hljs-comment">//用于表示离散型数据（或可以称为类别型数据、枚举型数据）的全集</span></span>
+<span class="javascript">        min: <span class="hljs-number">10</span>,                             <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最小值</span></span>
+<span class="javascript">        max: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最大值</span></span>
+<span class="javascript">        minOpen: <span class="hljs-literal">true</span>,                       <span class="hljs-comment">//界面上会额外多出一个『&lt; min』的选块</span></span>
+<span class="javascript">        maxOpen: <span class="hljs-literal">true</span>,                       <span class="hljs-comment">//界面上会额外多出一个『&gt; max』的选块。</span></span>
+<span class="javascript">        selectedMode: <span class="hljs-string">&quot;multiple&quot;</span>,           <span class="hljs-comment">//选择模式，可以是：&#x27;multiple&#x27;（多选）。&#x27;single&#x27;（单选）。</span></span>
+<span class="javascript">        inverse: <span class="hljs-literal">false</span>,                      <span class="hljs-comment">//是否反转 visualMap 组件</span></span>
+<span class="javascript">        precision: <span class="hljs-number">0</span>,                        <span class="hljs-comment">//数据展示的小数精度，默认为0，无小数点</span></span>
+<span class="javascript">        itemWidth: <span class="hljs-number">20</span>,                       <span class="hljs-comment">//图形的宽度，即长条的宽度。</span></span>
+<span class="javascript">        itemHeight: <span class="hljs-number">140</span>,                     <span class="hljs-comment">//图形的高度，即长条的高度。</span></span>
+<span class="javascript">        align: <span class="hljs-string">&quot;auto&quot;</span>,                       <span class="hljs-comment">//指定组件中手柄和文字的摆放位置.可选值为：&#x27;auto&#x27; 自动决定。&#x27;left&#x27; 手柄和label在右。&#x27;right&#x27; 手柄和label在左。&#x27;top&#x27; 手柄和label在下。&#x27;bottom&#x27; 手柄和label在上。</span></span>
+<span class="javascript">        text: [<span class="hljs-string">&#x27;High&#x27;</span>, <span class="hljs-string">&#x27;Low&#x27;</span>],               <span class="hljs-comment">//两端的文本</span></span>
+<span class="javascript">        textGap: <span class="hljs-number">10</span>,                          <span class="hljs-comment">//两端文字主体之间的距离，单位为px</span></span>
+<span class="javascript">        showLabel: <span class="hljs-literal">true</span>,                     <span class="hljs-comment">//是否显示每项的文本标签</span></span>
+<span class="javascript">        itemGap: <span class="hljs-number">10</span>,                          <span class="hljs-comment">//每两个图元之间的间隔距离，单位为px</span></span>
+<span class="javascript">        itemSymbol: <span class="hljs-string">&quot;roundRect&quot;</span>,             <span class="hljs-comment">//默认的图形。可选值为： &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">        dimension: <span class="hljs-number">2</span>,                          <span class="hljs-comment">//指定用数据的『哪个维度』，映射到视觉元素上。『数据』即 series.data。 可以把 series.data 理解成一个二维数组,其中每个列是一个维度,默认取 data 中最后一个维度</span></span>
+<span class="javascript">        seriesIndex: <span class="hljs-number">1</span>,                        <span class="hljs-comment">//指定取哪个系列的数据，即哪个系列的 series.data,默认取所有系列</span></span>
+<span class="javascript">        hoverLink: <span class="hljs-literal">true</span>,                      <span class="hljs-comment">//鼠标悬浮到 visualMap 组件上时，鼠标位置对应的数值 在 图表中对应的图形元素，会高亮</span></span>
+<span class="javascript">        inRange: &#123;                             <span class="hljs-comment">//定义 在选中范围中 的视觉元素</span></span>
+<span class="javascript">          color: [<span class="hljs-string">&#x27;#121122&#x27;</span>, <span class="hljs-string">&#x27;rgba(3,4,5,0.4)&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>],</span>
+          symbolSize: [30, 100]
+        &#125;,
+<span class="javascript">        outOfRange: &#123;                            <span class="hljs-comment">//定义 在选中范围外 的视觉元素。</span></span>
+<span class="javascript">          color: [<span class="hljs-string">&#x27;#121122&#x27;</span>, <span class="hljs-string">&#x27;rgba(3,4,5,0.4)&#x27;</span>, <span class="hljs-string">&#x27;red&#x27;</span>],</span>
+          symbolSize: [30, 100]
+        &#125;,
+<span class="javascript">        zlevel: <span class="hljs-number">0</span>,                                   <span class="hljs-comment">//所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span></span>
+<span class="javascript">        z: <span class="hljs-number">2</span>,                                         <span class="hljs-comment">//所属组件的z分层，z值小的图形会被z值大的图形覆盖</span></span>
+<span class="javascript">        left: <span class="hljs-string">&quot;center&quot;</span>,                              <span class="hljs-comment">//组件离容器左侧的距离,&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        top: <span class="hljs-string">&quot;top&quot;</span>,                                   <span class="hljs-comment">//组件离容器上侧的距离,&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;,&#x27;20%&#x27;</span></span>
+<span class="javascript">        right: <span class="hljs-string">&quot;auto&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">        bottom: <span class="hljs-string">&quot;auto&quot;</span>,                              <span class="hljs-comment">//组件离容器下侧的距离,&#x27;20%&#x27;</span></span>
+<span class="javascript">        orient: <span class="hljs-string">&quot;vertical&quot;</span>,                        <span class="hljs-comment">//图例排列方向</span></span>
+<span class="javascript">        padding: <span class="hljs-number">5</span>,                                   <span class="hljs-comment">//图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span></span>
+<span class="javascript">        backgroundColor: <span class="hljs-string">&quot;transparent&quot;</span>,            <span class="hljs-comment">//标题背景色</span></span>
+<span class="javascript">        borderColor: <span class="hljs-string">&quot;#ccc&quot;</span>,                         <span class="hljs-comment">//边框颜色</span></span>
+<span class="javascript">        borderWidth: <span class="hljs-number">0</span>,                               <span class="hljs-comment">//边框线宽</span></span>
+<span class="javascript">        textStyle: mytextStyle,                      <span class="hljs-comment">//文本样式</span></span>
+<span class="javascript">        formatter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>&#123;                <span class="hljs-comment">//标签的格式化工具。</span></span>
+<span class="javascript">          <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;aaaa&#x27;</span> + value;                   <span class="hljs-comment">// 范围标签显示内容。</span></span>
+        &#125;
+      &#125;
+    ];
+<span class="javascript">    <span class="hljs-keyword">const</span> mytextStyle = &#123;</span>
+<span class="javascript">      color: <span class="hljs-string">&quot;#333&quot;</span>,               <span class="hljs-comment">//文字颜色</span></span>
+<span class="javascript">      fontStyle: <span class="hljs-string">&quot;normal&quot;</span>,         <span class="hljs-comment">//italic斜体  oblique倾斜</span></span>
+<span class="javascript">      fontWeight: <span class="hljs-string">&quot;normal&quot;</span>,        <span class="hljs-comment">//文字粗细bold   bolder   lighter  100 | 200 | 300 | 400...</span></span>
+<span class="javascript">      fontFamily: <span class="hljs-string">&quot;sans-serif&quot;</span>,    <span class="hljs-comment">//字体系列</span></span>
+<span class="javascript">      fontSize: <span class="hljs-number">18</span>,                  <span class="hljs-comment">//字体大小</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> mylineStyle = &#123;</span>
+<span class="javascript">      color: <span class="hljs-string">&quot;#333&quot;</span>,               <span class="hljs-comment">//颜色，&#x27;rgb(128, 128, 128)&#x27;，&#x27;rgba(128, 128, 128, 0.5)&#x27;，支持线性渐变，径向渐变，纹理填充</span></span>
+<span class="javascript">      shadowColor: <span class="hljs-string">&quot;red&quot;</span>,          <span class="hljs-comment">//阴影颜色</span></span>
+<span class="javascript">      shadowOffsetX: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span></span>
+<span class="javascript">      shadowOffsetY: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离</span></span>
+<span class="javascript">      shadowBlur: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span></span>
+<span class="javascript">      type: <span class="hljs-string">&quot;solid&quot;</span>,               <span class="hljs-comment">//坐标轴线线的类型，solid，dashed，dotted</span></span>
+<span class="javascript">      width: <span class="hljs-number">1</span>,                    <span class="hljs-comment">//坐标轴线线宽</span></span>
+<span class="javascript">      opacity: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> myareaStyle = &#123;</span>
+<span class="javascript">      color: [<span class="hljs-string">&#x27;rgba(250,250,250,0.3)&#x27;</span>, <span class="hljs-string">&#x27;rgba(200,200,200,0.3)&#x27;</span>],<span class="hljs-comment">//分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。</span></span>
+<span class="javascript">      shadowColor: <span class="hljs-string">&quot;red&quot;</span>,          <span class="hljs-comment">//阴影颜色</span></span>
+<span class="javascript">      shadowOffsetX: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span></span>
+<span class="javascript">      shadowOffsetY: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离</span></span>
+<span class="javascript">      shadowBlur: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span></span>
+<span class="javascript">      opacity: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> myitemStyle = &#123;</span>
+<span class="javascript">      color: <span class="hljs-string">&quot;blue&quot;</span>,                 <span class="hljs-comment">//颜色</span></span>
+<span class="javascript">      borderColor: <span class="hljs-string">&quot;#000&quot;</span>,         <span class="hljs-comment">//边框颜色</span></span>
+<span class="javascript">      borderWidth: <span class="hljs-number">0</span>,              <span class="hljs-comment">//柱条的描边宽度，默认不描边。</span></span>
+<span class="javascript">      borderType: <span class="hljs-string">&quot;solid&quot;</span>,         <span class="hljs-comment">//柱条的描边类型，默认为实线，支持 &#x27;dashed&#x27;, &#x27;dotted&#x27;。</span></span>
+<span class="javascript">      barBorderRadius: <span class="hljs-number">0</span>,          <span class="hljs-comment">//柱形边框圆角半径，单位px，支持传入数组分别指定柱形4个圆角半径。</span></span>
+<span class="javascript">      shadowBlur: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span></span>
+<span class="javascript">      shadowColor: <span class="hljs-string">&quot;#000&quot;</span>,         <span class="hljs-comment">//阴影颜色</span></span>
+<span class="javascript">      shadowOffsetX: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span></span>
+<span class="javascript">      shadowOffsetY: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离。</span></span>
+<span class="javascript">      opacity: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。</span></span>
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> mylabel = &#123;</span>
+<span class="javascript">      show: <span class="hljs-literal">false</span>,                  <span class="hljs-comment">//是否显示标签。</span></span>
+<span class="javascript">      position: <span class="hljs-string">&quot;inside&quot;</span>,          <span class="hljs-comment">//标签的位置。// 绝对的像素值[10, 10],// 相对的百分比[&#x27;50%&#x27;, &#x27;50%&#x27;].&#x27;top&#x27;,&#x27;left&#x27;,&#x27;right&#x27;,&#x27;bottom&#x27;,&#x27;inside&#x27;,&#x27;insideLeft&#x27;,&#x27;insideRight&#x27;,&#x27;insideTop&#x27;,&#x27;insideBottom&#x27;,&#x27;insideTopLeft&#x27;,&#x27;insideBottomLeft&#x27;,&#x27;insideTopRight&#x27;,&#x27;insideBottomRight&#x27;</span></span>
+<span class="javascript">      offset: [<span class="hljs-number">30</span>, <span class="hljs-number">40</span>],             <span class="hljs-comment">//是否对文字进行偏移。默认不偏移。例如：[30, 40] 表示文字在横向上偏移 30，纵向上偏移 40。</span></span>
+<span class="javascript">      formatter: <span class="hljs-string">&#x27;&#123;b&#125;: &#123;c&#125;&#x27;</span>,       <span class="hljs-comment">//标签内容格式器。模板变量有 &#123;a&#125;、&#123;b&#125;、&#123;c&#125;，分别表示系列名，数据名，数据值。</span></span>
+      textStyle: mytextStyle
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> mypoint = &#123;</span>
+<span class="javascript">      symbol: <span class="hljs-string">&quot;pin&quot;</span>,               <span class="hljs-comment">//图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">      symbolSize: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">      symbolRotate: <span class="hljs-number">0</span>,             <span class="hljs-comment">//标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">      symbolOffset: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],         <span class="hljs-comment">//标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">      silent: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span></span>
+      label: &#123;
+        normal: mylabel,
+        emphasis: mylabel
+      &#125;,
+      itemStyle: &#123;
+        normal: myitemStyle,
+        emphasis: myitemStyle
+      &#125;
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> myline = &#123;</span>
+<span class="javascript">      symbol: [<span class="hljs-string">&quot;pin&quot;</span>, <span class="hljs-string">&quot;circle&quot;</span>],    <span class="hljs-comment">//图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">      symbolSize: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">      precision: <span class="hljs-number">2</span>,                <span class="hljs-comment">//标线数值的精度，在显示平均值线的时候有用。</span></span>
+<span class="javascript">      silent: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span></span>
+      label: &#123;
+        normal: mylabel,
+        emphasis: mylabel
+      &#125;,
+      lineStyle: &#123;
+        normal: mylineStyle,
+        emphasis: mylineStyle
+      &#125;
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">const</span> myarea = &#123;</span>
+<span class="javascript">      silent: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span></span>
+      label: &#123;
+        normal: mylabel,
+        emphasis: mylabel
+      &#125;,
+      itemStyle: &#123;
+        normal: myitemStyle,
+        emphasis: myitemStyle
+      &#125;
+    &#125;;
+<span class="javascript">    <span class="hljs-keyword">return</span> &#123;</span>
+      options: &#123;
+<span class="javascript">        title: title,<span class="hljs-comment">// 标题设置</span></span>
+<span class="javascript">        tooltip: tooltip,<span class="hljs-comment">// 节点悬浮提示</span></span>
+<span class="javascript">        <span class="hljs-comment">// toolbox: toolbox,// 切换下载</span></span>
+<span class="javascript">        legend: legend,<span class="hljs-comment">// 分组筛选提示</span></span>
+<span class="javascript">        <span class="hljs-comment">// dataZoom: dataZoom,// 可缩放</span></span>
+<span class="javascript">        <span class="hljs-comment">// visualMap: visualMap,// 地图映射</span></span>
+<span class="javascript">        animationDurationUpdate: <span class="hljs-number">1500</span>, <span class="hljs-comment">// 动画的时长。</span></span>
+<span class="javascript">        animationEasingUpdate: <span class="hljs-string">&#x27;quinticInOut&#x27;</span>, <span class="hljs-comment">// 动画的加载效果</span></span>
+<span class="javascript">        <span class="hljs-comment">// hasChanged: false,</span></span>
+<span class="javascript">        <span class="hljs-comment">// flag: false,</span></span>
+        series: [
+          &#123;
+<span class="javascript">            type: <span class="hljs-string">&quot;graph&quot;</span>,               <span class="hljs-comment">//关系图</span></span>
+<span class="javascript">            <span class="hljs-comment">// zlevel: 0,                   //柱状图所有图形的 zlevel 值。</span></span>
+<span class="javascript">            <span class="hljs-comment">// z: 2,                         //柱状图组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。</span></span>
+<span class="javascript">            <span class="hljs-comment">// left: &quot;10%&quot;,                 //组件离容器左侧的距离,百分比字符串或整型数字</span></span>
+<span class="javascript">            top: <span class="hljs-string">&#x27;15%&#x27;</span>,                      <span class="hljs-comment">//组件离容器上侧的距离，百分比字符串或整型数字</span></span>
+<span class="javascript">            <span class="hljs-comment">// right: &quot;auto&quot;,               //组件离容器右侧的距离,百分比字符串或整型数字</span></span>
+<span class="javascript">            bottom: <span class="hljs-string">&quot;15%&quot;</span>,              <span class="hljs-comment">//组件离容器下侧的距离,百分比字符串或整型数字</span></span>
+<span class="javascript">            <span class="hljs-comment">// width: &quot;auto&quot;,               //图例宽度</span></span>
+<span class="javascript">            <span class="hljs-comment">// height: &quot;auto&quot;,              //图例高度</span></span>
+<span class="javascript">            <span class="hljs-comment">// silent: false,               //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span></span>
+<span class="javascript">            <span class="hljs-comment">// name: &quot;公共特征&quot;,            //系列名称，用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。</span></span>
+<span class="javascript">            <span class="hljs-comment">// legendHoverLink: true,       //是否启用图例 hover 时的联动高亮。</span></span>
+<span class="javascript">            <span class="hljs-comment">// hoverAnimation: true,        //是否开启鼠标 hover 节点的提示动画效果。</span></span>
+<span class="javascript">            <span class="hljs-comment">// coordinateSystem: null,      //null无坐标系，&#x27;cartesia个人特征d&#x27;使用二维的直角坐标系。&#x27;geo&#x27;使用地理坐标系，&#x27;polar&#x27;使用极坐标系</span></span>
+<span class="javascript">            <span class="hljs-comment">// xAxisIndex: 0,                //使用的 x 轴的 index，在单个图表实例中存在多个 x 轴的时候有用。</span></span>
+<span class="javascript">            <span class="hljs-comment">// yAxisIndex: 0,                //使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用。</span></span>
+<span class="javascript">            <span class="hljs-comment">// polarIndex: 0,                //使用的极坐标系的 index，在单个图表实例中存在多个极坐标系的时候有用。</span></span>
+<span class="javascript">            <span class="hljs-comment">// geoIndex: 0,                  //使用的地理坐标系的 index，在单个图表实例中存在多个地理坐标系的时候有用。</span></span>
+<span class="javascript">            <span class="hljs-comment">// calendarIndex: 0,            //使用的日历坐标系的 index，在单个图表实例中存在多个日历坐标系的时候有用。</span></span>
+<span class="javascript">            layout: <span class="hljs-string">&#x27;circular&#x27;</span>,              <span class="hljs-comment">//&#x27;none&#x27; 不采用任何布局，使用节点中提供的 x， y 作为节点的位置.&#x27;circular&#x27; 采用环形布局，&#x27;force&#x27; 采用力引导布局。</span></span>
+<span class="javascript">            <span class="hljs-comment">//circular:&#123;&#125;,               //环形布局相关配置</span></span>
+<span class="javascript">            <span class="hljs-comment">//force:&#123;&#125;,                  //力引导布局相关的配置项</span></span>
+<span class="javascript">            roam: <span class="hljs-literal">true</span>,                 <span class="hljs-comment">//是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 &#x27;scale&#x27; 或者 &#x27;move&#x27;。设置成 true 为都开启</span></span>
+<span class="javascript">            nodeScaleRatio: <span class="hljs-number">0.6</span>,         <span class="hljs-comment">//鼠标漫游缩放时节点的相应缩放比例，当设为0时节点不随着鼠标的缩放而缩放</span></span>
+<span class="javascript">            <span class="hljs-comment">// draggable: true,            //节点是否可拖拽，只在使用力引导布局的时候有用。</span></span>
+<span class="javascript">            <span class="hljs-comment">// focusNodeAdjacency: true,   //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。放大</span></span>
+<span class="javascript">            symbol: <span class="hljs-string">&quot;circle&quot;</span>,               <span class="hljs-comment">//图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">            symbolSize: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">            <span class="hljs-comment">// symbolRotate: 0,             //标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">            <span class="hljs-comment">// symbolOffset: [0, 0],         //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">            edgeSymbol: [<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;arrow&#x27;</span>],<span class="hljs-comment">//边两端的标记类型，可以是一个数组分别指定两端，也可以是单个统一指定。默认不显示标记，常见的可以设置为箭头</span></span>
+<span class="javascript">            <span class="hljs-comment">// edgeSymbolSize: [5, 2],       //边两端的标记大小，可以是一个数组分别指定两端，也可以是单个统一指定。</span></span>
+<span class="javascript">            cursor: <span class="hljs-string">&quot;pointer&quot;</span>,           <span class="hljs-comment">//鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。</span></span>
+<span class="javascript">            label: &#123;                      <span class="hljs-comment">//图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span></span>
+<span class="javascript">              <span class="hljs-comment">// normal: mylabel,</span></span>
+<span class="javascript">              <span class="hljs-comment">// emphasis: mylabel</span></span>
+            &#125;,
+<span class="javascript">            edgeLabel: &#123; <span class="hljs-comment">// 显示线中间的标签</span></span>
+<span class="javascript">              <span class="hljs-comment">// show: true,</span></span>
+<span class="javascript">              <span class="hljs-comment">// normal: mylabel,</span></span>
+<span class="javascript">              <span class="hljs-comment">// emphasis: mylabel</span></span>
+            &#125;,
+<span class="javascript">            emphasis: &#123; <span class="hljs-comment">// 悬浮出现的高亮的图形样式。</span></span>
+<span class="javascript">              <span class="hljs-comment">// lineStyle: mylineStyle,</span></span>
+<span class="javascript">              <span class="hljs-comment">// itemStyle: myitemStyle,</span></span>
+<span class="javascript">              <span class="hljs-comment">// label: mylineStyle,</span></span>
+<span class="javascript">              <span class="hljs-comment">// edgeLabel: mylineStyle,</span></span>
+            &#125;,
+<span class="javascript">            itemStyle: &#123;                 <span class="hljs-comment">//图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">              <span class="hljs-comment">// normal: myitemStyle,</span></span>
+<span class="javascript">              <span class="hljs-comment">// emphasis: myitemStyle,</span></span>
+            &#125;,
+<span class="javascript">            lineStyle: &#123;                 <span class="hljs-comment">//图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">              <span class="hljs-comment">// normal: mylineStyle,</span></span>
+<span class="javascript">              <span class="hljs-comment">// emphasis: mylineStyle,</span></span>
+            &#125;,
+<span class="javascript">            categories: [                <span class="hljs-comment">//节点分类的类目，可选。</span></span>
+              &#123;
+<span class="javascript">                name: <span class="hljs-string">&quot;当前特征&quot;</span>,    <span class="hljs-comment">//类目名称</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbol: &quot;circle&quot;,       //图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">                <span class="hljs-comment">// label: &#123;              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: mylabel,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: mylabel</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+<span class="javascript">                <span class="hljs-comment">// itemStyle: &#123;         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+              &#125;,
+              &#123;
+<span class="javascript">                name: <span class="hljs-string">&quot;个人特征&quot;</span>,    <span class="hljs-comment">//类目名称</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbol: &quot;rect&quot;,       //图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">                <span class="hljs-comment">// label: &#123;              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: mylabel,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: mylabel</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+<span class="javascript">                <span class="hljs-comment">// itemStyle: &#123;         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+              &#125;,
+              &#123;
+<span class="javascript">                name: <span class="hljs-string">&quot;公共特征&quot;</span>,    <span class="hljs-comment">//类目名称</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbol: &quot;roundRect&quot;,       //图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">                <span class="hljs-comment">// label: &#123;              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: mylabel,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: mylabel</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+<span class="javascript">                <span class="hljs-comment">// itemStyle: &#123;         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+              &#125;,
+              &#123;
+<span class="javascript">                name: <span class="hljs-string">&quot;特征画布&quot;</span>,    <span class="hljs-comment">//类目名称</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbol: &quot;pin&quot;,       //图形 &#x27;circle&#x27;, &#x27;rect&#x27;, &#x27;roundRect&#x27;, &#x27;triangle&#x27;, &#x27;diamond&#x27;, &#x27;pin&#x27;, &#x27;arrow&#x27;</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &#x27;arrow&#x27; 时会忽略 symbolRotate 强制设置为切线的角度。</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span></span>
+<span class="javascript">                <span class="hljs-comment">// label: &#123;              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: mylabel,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: mylabel</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+<span class="javascript">                <span class="hljs-comment">// itemStyle: &#123;         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span></span>
+<span class="javascript">                <span class="hljs-comment">//   normal: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">//   emphasis: myitemStyle,</span></span>
+<span class="javascript">                <span class="hljs-comment">// &#125;,</span></span>
+              &#125;,
+            ],
+<span class="javascript">            data: [                     <span class="hljs-comment">//data就是node</span></span>
+              &#123;
+<span class="javascript">                name: <span class="hljs-string">&#x27;当前特征&#x27;</span>,</span>
+<span class="javascript">                <span class="hljs-comment">// x: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// y: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// value: 20,</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 20,</span></span>
+                itemStyle: &#123;
+                  normal: &#123;
+<span class="javascript">                    color: <span class="hljs-string">&#x27;blank&#x27;</span></span>
+                  &#125;
+                &#125;
+              &#125;, &#123;
+<span class="javascript">                name: <span class="hljs-string">&#x27;个人特征&#x27;</span>,</span>
+<span class="javascript">                <span class="hljs-comment">// x: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// y: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// value: 20,</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 20,</span></span>
+                itemStyle: &#123;
+                  normal: &#123;
+<span class="javascript">                    color: <span class="hljs-string">&#x27;#15a4fa&#x27;</span></span>
+                  &#125;
+                &#125;
+              &#125;, &#123;
+<span class="javascript">                name: <span class="hljs-string">&#x27;公共特征&#x27;</span>,</span>
+<span class="javascript">                <span class="hljs-comment">// x: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// y: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// value: 20,</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 20,</span></span>
+                itemStyle: &#123;
+<span class="javascript">                  color: <span class="hljs-string">&#x27;blue&#x27;</span></span>
+                &#125;
+              &#125;, &#123;
+<span class="javascript">                name: <span class="hljs-string">&#x27;特征画布&#x27;</span>,</span>
+<span class="javascript">                <span class="hljs-comment">// x: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// y: 100,</span></span>
+<span class="javascript">                <span class="hljs-comment">// value: 20,</span></span>
+<span class="javascript">                <span class="hljs-comment">// symbolSize: 100,</span></span>
+                itemStyle: &#123;
+<span class="javascript">                  color: <span class="hljs-string">&#x27;red&#x27;</span></span>
+                &#125;
+              &#125;
+            ],
+<span class="javascript">            links: [                 <span class="hljs-comment">//links就是edges</span></span>
+              &#123;
+<span class="javascript">                source: <span class="hljs-string">&#x27;当前特征&#x27;</span>,</span>
+<span class="javascript">                target: <span class="hljs-string">&#x27;个人特征&#x27;</span></span>
+              &#125;, &#123;
+<span class="javascript">                source: <span class="hljs-string">&#x27;当前特征&#x27;</span>,</span>
+<span class="javascript">                target: <span class="hljs-string">&#x27;公共特征&#x27;</span></span>
+              &#125;, &#123;
+<span class="javascript">                source: <span class="hljs-string">&#x27;当前特征&#x27;</span>,</span>
+<span class="javascript">                target: <span class="hljs-string">&#x27;特征画布&#x27;</span></span>
+              &#125;
+            ],
+<span class="javascript">            <span class="hljs-comment">//markPoint:同bar</span></span>
+<span class="javascript">            <span class="hljs-comment">//markLine:同bar</span></span>
+<span class="javascript">            <span class="hljs-comment">//markArea:同bar</span></span>
+<span class="javascript">            <span class="hljs-comment">// tooltip: tooltip</span></span>
+          &#125;,
+        ]
+      &#125;
+    &#125;;
+  &#125;,
+  mounted () &#123; &#125;
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/08/xctf-%E5%B0%8F%E5%AE%81%E5%86%99%E4%BA%86%E4%B8%AAping%E5%8A%9F%E8%83%BD%E4%BD%86%E6%B2%A1%E6%9C%89%E5%86%99wafx%E8%80%81%E5%B8%88%E5%91%8A%E8%AF%89%E5%A5%B9%E8%BF%99%E6%98%AF%E9%9D%9E%E5%B8%B8/index/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">xctf 小宁写了个ping功能,但没有写WAF,X老师告诉她这是非常危险的</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/12/27/echart-graph%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE/index/">
+                        <span class="hidden-mobile">echart graph动态添加数据</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+            
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JWQTA/JWQTA.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'duplicate');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

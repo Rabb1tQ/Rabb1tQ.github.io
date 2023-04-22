@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+                
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/06/02/cant-connect-to-mysql-server-on-localhost-10061%EF%BC%88%E4%B8%80%E4%B8%AA%E8%A0%A2%E5%88%B0%E7%88%86%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%89/index/">Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)（一个蠢到爆的问题）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/02/cant-connect-to-mysql-server-on-localhost-10061%EF%BC%88%E4%B8%80%E4%B8%AA%E8%A0%A2%E5%88%B0%E7%88%86%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%89/index/">
+          
+          
+            
+          
+          今天在搭建SiteServer CMS时突然连不上mysql数据库，提示信息：Can’t connect to MySQL server on ‘localhost’ (10061)。。。没动过怎么会出问题呢，Google是个好东西，原来是MySQL服务没开。。。这么简单的问题，真的是脑子瓦特了。
+解决办法：打开cmd-&gt;net start mysql 回车，搞定。
+完美！
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-02 08:00" pubdate>
+              2019-06-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/06/02/iis-http-%E9%94%99%E8%AF%AF-403-14/index/">IIS  HTTP 错误 403（来自一个被沙雕回答支配一个多小时的可怜孩子的总结）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/02/iis-http-%E9%94%99%E8%AF%AF-403-14/index/">
+          
+          
+            
+          
+          使用 IIS 管理器启用目录浏览打开 IIS 管理器，在“功能”视图中，双击“目录浏览”，在“目录浏览”页上，在“操作”窗格中单击“启用”。
+没错，网上的沙雕们就是这么说的，那你在浏览器里打开了之后是不是就是一个目录呢？？然后良心一点的沙雕就又说了：“在IIS中的站点属性的“文档”选项中启用默认文档，将您的主页文档加入其中。”，那你要是好几个同名字的文件呢，iis自己猜？？？
+真正良心的回答来了，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-02 08:00" pubdate>
+              2019-06-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/06/02/sitesever%EF%BC%88-net-cms%EF%BC%89%E5%AE%89%E8%A3%85/index/">SiteSever（.NET CMS）安装</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/02/sitesever%EF%BC%88-net-cms%EF%BC%89%E5%AE%89%E8%A3%85/index/">
+          
+          
+            
+          
+          SiteSever介绍：.NET平台的CMS系统，也是一款拥有十年历史与广泛知名度的CMS系统，2017年5月初迈出了自成立以来的最具跨越性的一步，宣布开源并推出全新5.0版本.
+安装过程：
+1、下载SiteServer CMS系统安装包
+    官网:https://www.siteserver.cn 下载后解压到一个自己想要安装的位置
+注意：后面IIS配置站点时，需要把网站物理路径指向这里
+2
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-02 08:00" pubdate>
+              2019-06-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/30/iis%E6%90%AD%E5%BB%BA/index/">IIS搭建</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/30/iis%E6%90%AD%E5%BB%BA/index/">
+          
+          
+            
+          
+          Windows桌面版搭建：
+1.进入Windows的“控制面板
+2.进入“程序”，然后点“启用或关闭Windows功能”
+3.Internet Information Services 勾选
+4.建议按照把“应用程序开发功能”中的内容全部勾选，要不IIS搭好以后只能挂HTML这种静态网页。勾选完成后，如还需要其他方面的功能，如ODBC日志、动态内容压缩、HTTP重定向等功能，也可以再次勾选，当然现
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-30 08:00" pubdate>
+              2019-05-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/30/iis%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/index/">IIS配置教程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/30/iis%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/index/">
+          
+          
+            
+          
+          1.设置网站路径和端口
+首先，假设我们的网站已经在VS中完全开发完成
+有两种方式整理网站需要的文件，第一是自己手动去复制，第二是用VS自动打包。
+把这些文件复制到你需要挂网站的地方，如果是服务器系统，只要不是系统目录，你可以任意放，如果是桌面版系统，别放在桌面上、系统目录就行，推荐放在以下几种路径：
+第一，IIS默认路径，C:\inetpub\wwwroot\
+第二，非C盘的其他路径，如D:\xx
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-30 08:00" pubdate>
+              2019-05-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/29/sqlmap-%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/index/">SQLMAP 命令详解</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/29/sqlmap-%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/index/">
+          
+          
+            
+          
+          Options（选项）： –version 显示程序的版本号并退出 -h, –help 显示此帮助消息并退出 -v VERBOSE 详细级别：0-6（默认为 1） Target（目标）： 以下至少需要设置其中一个选项，设置目标 URL。 -d DIRECT 直接连接到数据库。 -u URL, –url=URL 目标 URL。 -l LIST 从 Burp 或 WebScarab 代理的日志中解析目
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-29 08:00" pubdate>
+              2019-05-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/20/%E4%B8%89%E8%A1%8C%E6%83%85%E4%B9%A6/index/">三行情书</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/20/%E4%B8%89%E8%A1%8C%E6%83%85%E4%B9%A6/index/">
+          
+          
+            
+          
+          if(you.hand==cold&amp;&weather;=winter)
+//如果冬天里你的手是冰冷的
+giveyoulove(myhand.temp,yourhand.temp);
+//将我手上的温度全部给予你
+return you.happyface;
+//换取你幸福的脸庞
+ 
+if(you.Love(&amp;me)||!you.love(&amp;me)){
+//你爱或者不爱我
+me
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-20 08:00" pubdate>
+              2019-05-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E5%8C%BA/">杂七杂八区</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/20/%E8%A1%A8%E7%99%BD%E7%BD%91%E9%A1%B5/index/">表白网页</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/20/%E8%A1%A8%E7%99%BD%E7%BD%91%E9%A1%B5/index/">
+          
+          
+            
+          
+          表白1 表白2
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-20 08:00" pubdate>
+              2019-05-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E5%8C%BA/">杂七杂八区</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/19/%E5%85%B3%E4%BA%8E/index/">关于</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/19/%E5%85%B3%E4%BA%8E/index/">
+          
+          
+            
+          
+          自动播放的背景音乐在这↑（懒得做兼容了，好使得就自动播放，不好使的自己点吧），可以自己关
+         简单地说，来自于内蒙古的一个程序猿???关于这个站以及我请点这里，
+再简单的做个自我介绍吧：
+        游戏只玩俩，球球大作战超神，穿越火线差一颗星到枪王，能弹吉他，会跳舞（n久不跳了基本上不会了），可高冷可卖萌，会打篮球，踢足球那种运动不适合我，太危险了。en。。。母胎solo，期望
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-19 08:00" pubdate>
+              2019-05-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E5%8C%BA/">杂七杂八区</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/05/17/qt%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index/">QT的第一篇博客</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/17/qt%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index/">
+          
+          
+            
+          
+          关于我一个学渣？？？应该不算吧，毕竟我也是我们村的第一个考上二本的大学生呢（haha）。嗯。。。这么形容吧，一个偶尔臭美偶尔扯淡的、正在努力的、特想发财的普通二本大学生（haha）。也可看这
+写博客的原因其实，之前一直有写博客的冲动，在博客园和csdn上也写过几篇，但是反响平平（？？文笔不好嘛，还是太小白了，亦或是布局不好么，不知道）。上了大学开始学习计算机之后基本都是用电脑百度着百度那，查到看完
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-17 08:00" pubdate>
+              2019-05-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E5%8C%BA/">杂七杂八区</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+    <script>
+        //声明一个数组，内容为你想显示的话
+        var words = [
+            "做个俗人，承蒙厚爱，感谢相遇。",
+            "不要丧啦，说不定你也是别人心中偷偷藏起来的光。",
+            "俄罗斯方块教会了我们: 如果你合群就会消失。",
+            "人的一生中关键的就那么几步，特别是在年轻的时候。",
+            "你不懂那种看你一眼就会笑的人是有多么的喜欢你。",
+            "花开有时，花落有时。无需留恋，该走的终须会走；无需苛求，该来的迟早会来。",
+            "心软的时候，什么都可以原谅；心硬的时候，老子就是全世界。",
+            "希望以后能活得更开心更随性一些，只和舒服的人交往不和傻子较劲。",
+            "雨后的风，清爽而忧郁，能吹走大地的污浊，却吹不走本身寂寞的心情。",
+            "生活总会给你答案，但不会马上把一切都告诉你。",
+            "这世界上唯一扛得住岁月摧残的就是才华。",
+            "很多东西如果不是怕别人捡去，我们一定会扔掉。",
+            "光活着就很难了，为什么还要我快乐。",
+            "心里只有自己时，总嫌别人做得不够；心里只有别人时，总嫌自己做得不够。",
+            "人生很多事，就像智齿。最佳的解决方式，是拔掉。而不是忍受。",
+            "你就记着，只要你不怕疼，不怕死，不要脸，就没有你拿不下的东西。",
+            "别不好意思拒绝，那些好意思为难你的人，反正也都不是什么好人。",
+            "我还记得，我跟别人炫耀过你。",
+            "像失望和委屈这种东西是没必要解释的，越解释越乱。",
+            "我想出去走一走，看看这个大世界，还有太多的梦想等我去冒险。",
+            "人生有很多道理，本来就要等到你透不过气来时，你才会懂得的。",
+            "做一个特别简单的人，好相处就处，不好相处就不处。不必对每个人好，他们又不给你打钱。",
+            "一个人的快乐，不是因为他拥有的多，而是因为他计较的少。",
+            "不必过于在意人与人之间表面的情绪；挚交之人不需要，泛交之人用不着。",
+            "要么没有，要么全部，要么现在，要么永不。从现在起，我将不再期待，只珍惜我所拥有的。",
+            "人一旦堕落，哪怕是短暂的几年，上帝就会以最快的速度，收走你的天赋和力量。",
+            "所谓的诗和远方，不过是，要把眼前的苟且熬过了才有。",
+            "愿你遇良人，予你欢喜城",
+            "你是我千种诗意万种想象",
+            "想做一个很酷的人扭头就走 比你酷比你狠",
+            "对不起，也许我将要打扰你，打扰你一生，而不是一下"
+        ];
+
+        //使用自调用方式声明函数，
+        window.onload=function(){
+			var rand = parseInt(Math.random() * words.length);
+            document.getElementById("subtitle").innerHTML = words[rand];
+		}
+    </script>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/11/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

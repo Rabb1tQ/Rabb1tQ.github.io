@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>数据库基础 - qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据库基础">
+              
+                数据库基础
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-08-17 08:00" pubdate>
+        2019年8月17日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据库基础</h1>
+            
+            <div class="markdown-body">
+              <p>为什么要使用数据库</p>
+<p> </p>
+<p>因为使用io流文件存储数据有很多弊端：</p>
+<p> </p>
+<p>1、文件存储数据存储效率低；</p>
+<p> </p>
+<p>2、不管存还取操作比较麻烦</p>
+<p> </p>
+<p>3、一般只能保存小量字符串数据等。</p>
+<p> </p>
+<p>为了解决这些弊端，才有数据库的出现，使用数据库存储数据就可以很好的解决这些弊端。</p>
+<p> </p>
+<p> </p>
+<p>4.数据库管理系统（Batabase Management System，DBMS）：用来管理数据库的计算机系统。</p>
+<p> </p>
+<p>5关系型数据库（Relational Database，RDB）：目前应用最广泛的数据库。</p>
+<p> </p>
+<p>6结构化查询语言（Structured Query Language，SQL）：专门用于操作 RDB。</p>
+<p> </p>
+<p>7.常见的 5 种关系型数据库管理系统（Relational Database Management System，RDBMS）：</p>
+<p> </p>
+<p>①Oracle Database：甲骨文公司</p>
+<p> </p>
+<p>②SQL Server：微软公司</p>
+<p> </p>
+<p>③DB2：IBM 公司</p>
+<p> </p>
+<p>④PostgreSQL：开源</p>
+<p> </p>
+<p>⑤MySQL：开源</p>
+<p> </p>
+<p>一、数据库结构</p>
+<p> </p>
+<p>1.服务器：用于接收并处理其它程序发出的请求的程序（软件），或者是安装此类程序的设备（计算机）。</p>
+<p> </p>
+<p>2.客户端：向服务器发出请求的程序（软件），或者是安装此类程序的设备（计算机）。</p>
+<p> </p>
+<p> </p>
+<p>3.表（table）：类似 Excel，由行和列组成的二维表。</p>
+<p> </p>
+<p>4.字段：表的列（垂直方向）。</p>
+<p> </p>
+<p>5.记录：表的行（水平方向）。【注意】关系数据库必须以行为单位进行数据读写。</p>
+<p> </p>
+<p>6.单元格：行列交汇处。【注意】与 Excel 不同，一个单元格只能输入一个数据。</p>
+<p> </p>
+<p>二、SQL 概要</p>
+<p> </p>
+<p>1.SQL 语句：用关键字、表名和列名等组合而成的一条语句。</p>
+<p> </p>
+<p>2.3 种 SQL 语句种类：</p>
+<p> </p>
+<p>（1）DDL（Data Definition Language，数据定义语言）：创建、删除或修改数据库以及数据库中的表等对象。</p>
+<p> </p>
+<p>①CREATE：创建数据库和表等对象</p>
+<p> </p>
+<p>②DROP：删除数据库和表等对象</p>
+<p> </p>
+<p>③ALTER：修改数据库和表等对象</p>
+<p> </p>
+<p>（2）DML（Data Manipulation Language，数据操作语言）：查询或修改表中的记录。</p>
+<p> </p>
+<p>①SELECT：查询表中的数据</p>
+<p> </p>
+<p>②INSERT：向表中插入数据</p>
+<p> </p>
+<p>③UPDATE：修改表中的数据</p>
+<p> </p>
+<p>④DELETE：删除表中的数据</p>
+<p> </p>
+<p>（3）DCL（Data Control Language，数据控制语言）：确认或取消对数据库中的数据变更的执行操作，以及对用户的操作数据库中的对象权限进行设定。</p>
+<p> </p>
+<p>①COMMIT：确认对数据库中的数据进行的变更</p>
+<p> </p>
+<p>②ROLLBACK：取消对数据库中的数据进行的变更</p>
+<p> </p>
+<p>③GRANT：赋予用户的操作权限</p>
+<p> </p>
+<p>④REVOKE：取消用户的操作权限</p>
+<p> </p>
+<p>【备注】DML 使用最频繁。</p>
+<p> </p>
+<p>3.SQL 语句书写规范：</p>
+<p> </p>
+<p>①以分号（；）结尾；</p>
+<p> </p>
+<p>②大小写不敏感，不区分关键字的大小写；【注意】插入到表中的数据是区分大小写的，如“HI”、“Hi”和“hi”都不同。</p>
+<p> </p>
+<p>③该系列随笔将采用“关键字大写，表名和列名的首字母大写”的格式。</p>
+<p> </p>
+<p>④单词使用半角空格或换行符隔开</p>
+<p> </p>
+<p>4.常数的书写方式：</p>
+<p> </p>
+<p>字符串、日期：用单引号括起来（’），如’Hello’，’2016-09-24’。</p>
+<p> </p>
+<p>数字：直接书写，不用加单引号，如：5。</p>
+<p> </p>
+<p>三、创建数据库与表</p>
+<p> </p>
+<p>1.数据库创建：</p>
+<p> </p>
+<p>-- 语法：CREATE DATABASE &lt;数据库名称&gt;</p>
+<p>CREATE DATABASE Shop – 创建名为 Shop 的数据库</p>
+<p> </p>
+<p>2.表的创建</p>
+<p> </p>
+<p>-- 语法：</p>
+<p>-- CREATE TABLE &lt;表名&gt;</p>
+<p>-- (</p>
+<p>-- &lt;列名1&gt; &lt;数据类型&gt; &lt;约束&gt;,</p>
+<p>-- &lt;列名1&gt; &lt;数据类型&gt; &lt;约束&gt;,</p>
+<p>-- …</p>
+<p>-- &lt;表约束1&gt;,</p>
+<p>-- &lt;表约束2&gt;,</p>
+<p>-- …</p>
+<p>-- )</p>
+<p>-- 创建名为 Shohin 的表</p>
+<p>CREATE TABLE Shohin</p>
+<p>(</p>
+<p>shohin_id CHAR(4) NOT NULL,</p>
+<p>shohin_mei VARCHAR(100) NOT NULL,</p>
+<p>shohin_bunrui VARCHAR(32) NOT NULL,</p>
+<p>hanbai_tanka INTEGER ,</p>
+<p>shiire_tanka INTEGER ,</p>
+<p>torokubi DATE ,</p>
+<p>PRIMARY KEY (shohin_id)</p>
+<p>);</p>
+<p> </p>
+<p>3.命名规则：</p>
+<p> </p>
+<p>①只能使用半角英文字母、数字、下划线（_）作为数据库、表和列的名称；</p>
+<p> </p>
+<p>②规范要求命名以半角英文字符开头；</p>
+<p> </p>
+<p>③名称不能重复。</p>
+<p> </p>
+<p>4.数据类型的指定：声明该列的数据类型，是一种约束。</p>
+<p> </p>
+<p>5.数据类型介绍：</p>
+<p> </p>
+<p>①INTEGER：整型，意味不能存储小数；</p>
+<p> </p>
+<p>②CHAR：字符串型，如 CHAR（10）和 CHAR（100）中的括号表名该列可以存储的字符串的最大长度。它是“定长字符串”，如 CHAR(8) 表示在列中插入 ‘abc’ 时会自动保存成 ‘abc ‘（后面5个半角空格）的形式；</p>
+<p> </p>
+<p>③VARCHAR：字符串型，类似 CHAR，不同的是它是 “可变长字符串”，如 VARCHAR(8) 在插入 ‘abc’，保存的就是字符串 ‘abc’；</p>
+<p> </p>
+<p>④DATE：日期类型；</p>
+<p> </p>
+<p>… …</p>
+<p> </p>
+<p>6.约束：</p>
+<p> </p>
+<p>①非空约束：NULL 是空白（无记录）的意思的关键字，NOT NULL 表示必须输入的约束。</p>
+<p> </p>
+<p>②主键约束：主键是可以确定一行数据的列，一般通过它取特定行的数据，它是唯一的，不允许重复。</p>
+<p> </p>
+<p>… …</p>
+<p> </p>
+<p> </p>
+<p>五、更新和删除表</p>
+<p> </p>
+<p>1.删除表</p>
+<p> </p>
+<p>-- 语法：DROP TABLE &lt;表名&gt;</p>
+<p>DROP TABLE Shohin; – 删除名为 Shohin 的表</p>
+<p>【注意】被删的表，无法恢复。</p>
+<p> </p>
+<p>2.更新表</p>
+<p> </p>
+<p>（1）添加列</p>
+<p> </p>
+<p>-- 语法：ALTER TABLE &lt;表名&gt; ADD &lt;列名&gt; &lt;类型&gt;;</p>
+<p>ALTER TABLE Shohin ADD Shohin_mei_Kana VARCHAR(100); – 在 Shohin 中添加名为 Shohin_mei_Kana 类型为 VARCHAR(100) 的列</p>
+<p>（2）删除列</p>
+<p> </p>
+<p>-- 语法：ALTER TABLE &lt;表名&gt; DROP COLUMN &lt;列名&gt;;</p>
+<p>ALTER TABLE Shohin DROP COLUMN Shohin_mei_Kana; – 删除 Shohin 表中名为 Shohin_mei_Kana 的列</p>
+<p>【注意】表定义变更后无法恢复。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/19/rdp%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">rdp漏洞复现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/06/2-%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/index/">
+                        <span class="hidden-mobile">2.树和二叉树</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+            
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JWQTA/JWQTA.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'duplicate');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

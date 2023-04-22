@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>JDBC - qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JDBC">
+              
+                JDBC
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-19 08:00" pubdate>
+        2020年4月19日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JDBC</h1>
+            
+            <div class="markdown-body">
+              <h2 id="JDBC："><a href="#JDBC：" class="headerlink" title="JDBC："></a>JDBC：</h2><ol>
+<li>概念：Java DataBase Connectivity Java 数据库连接， Java语言操作数据库<ul>
+<li>JDBC本质：其实是官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去实现这套接口，提供数据库驱动jar包。我们可以使用这套接口（JDBC）编程，真正执行的代码是驱动jar包中的实现类。</li>
+</ul>
+</li>
+<li>快速入门：<ul>
+<li>步骤：<ol>
+<li>导入驱动jar包 mysql-connector-java-5.1.37-bin.jar 1.复制mysql-connector-java-5.1.37-bin.jar到项目的libs目录下 2.右键–&gt;Add As Library</li>
+<li>注册驱动</li>
+<li>获取数据库连接对象 Connection</li>
+<li>定义sql</li>
+<li>获取执行sql语句的对象 Statement</li>
+<li>执行sql，接受返回结果</li>
+<li>处理结果</li>
+<li>释放资源</li>
+</ol>
+</li>
+<li>代码实现： //1. 导入驱动jar包 //2.注册驱动 Class.forName(“com.mysql.jdbc.Driver”); //3.获取数据库连接对象 Connection conn = DriverManager.getConnection(“jdbc:mysql://localhost:3306/db3”, “root”, “root”); //4.定义sql语句 String sql = “update account set balance = 500 where id = 1”; //5.获取执行sql的对象 Statement Statement stmt = conn.createStatement(); //6.执行sql int count = stmt.executeUpdate(sql); //7.处理结果 System.out.println(count); //8.释放资源 stmt.close(); conn.close();</li>
+</ul>
+</li>
+<li>详解各个对象：<ol>
+<li>DriverManager：驱动管理对象<ul>
+<li>功能：<ol>
+<li>注册驱动：告诉程序该使用哪一个数据库驱动jar static void registerDriver(Driver driver) :注册与给定的驱动程序 DriverManager 。 写代码使用： Class.forName(“com.mysql.jdbc.Driver”); 通过查看源码发现：在com.mysql.jdbc.Driver类中存在静态代码块 static { try { java.sql.DriverManager.registerDriver(new Driver()); } catch (SQLException E) { throw new RuntimeException(“Can’t register driver!”); } } 注意：mysql5之后的驱动jar包可以省略注册驱动的步骤。</li>
+<li>获取数据库连接：<ul>
+<li>方法：static Connection getConnection(String url, String user, String password)</li>
+<li>参数：<ul>
+<li>url：指定连接的路径</li>
+<li>语法：jdbc:mysql://ip地址(域名):端口号/数据库名称</li>
+<li>例子：jdbc:mysql://localhost:3306/db3</li>
+<li>细节：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称</li>
+<li>user：用户名</li>
+<li>password：密码</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Connection：数据库连接对象<ol>
+<li>功能：<ol>
+<li>获取执行sql 的对象<ul>
+<li>Statement createStatement()</li>
+<li>PreparedStatement prepareStatement(String sql)</li>
+</ul>
+</li>
+<li>管理事务：<ul>
+<li>开启事务：setAutoCommit(boolean autoCommit) ：调用该方法设置参数为false，即开启事务</li>
+<li>提交事务：commit()</li>
+<li>回滚事务：rollback()</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Statement：执行sql的对象<ol>
+<li>执行sql<ol>
+<li>boolean execute(String sql) ：可以执行任意的sql 了解</li>
+<li>int executeUpdate(String sql) ：执行DML（insert、update、delete）语句、DDL(create，alter、drop)语句<ul>
+<li>返回值：影响的行数，可以通过这个影响的行数判断DML语句是否执行成功 返回值&gt;0的则执行成功，反之，则失败。</li>
+</ul>
+</li>
+<li>ResultSet executeQuery(String sql) ：执行DQL（select)语句</li>
+</ol>
+</li>
+<li>练习：<ol>
+<li><p>account表 添加一条记录</p>
+</li>
+<li><p>account表 修改记录</p>
+</li>
+<li><p>account表 删除一条记录</p>
+<p>代码： Statement stmt = null; Connection conn = null; try { //1. 注册驱动 Class.forName(“com.mysql.jdbc.Driver”); //2. 定义sql String sql = “insert into account values(null,’王五’,3000)”; //3.获取Connection对象 conn = DriverManager.getConnection(“jdbc:mysql:///db3”, “root”, “root”); //4.获取执行sql的对象 Statement stmt = conn.createStatement(); //5.执行sql int count = stmt.executeUpdate(sql);//影响的行数 //6.处理结果 System.out.println(count); if(count &gt; 0){ System.out.println(“添加成功！”); }else{ System.out.println(“添加失败！”); }</p>
+<pre><code class="hljs less">&#125; <span class="hljs-selector-tag">catch</span> (ClassNotFoundException e) &#123;
+    <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+&#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+    <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+&#125;<span class="hljs-selector-tag">finally</span> &#123;
+    <span class="hljs-comment">//stmt.close();</span>
+    <span class="hljs-comment">//7. 释放资源</span>
+    <span class="hljs-comment">//避免空指针异常</span>
+    <span class="hljs-selector-tag">if</span>(stmt != null)&#123;
+        <span class="hljs-selector-tag">try</span> &#123;
+            <span class="hljs-selector-tag">stmt</span><span class="hljs-selector-class">.close</span>();
+        &#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+            <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+        &#125;
+    &#125;
+            
+    <span class="hljs-selector-tag">if</span>(conn != null)&#123;
+        <span class="hljs-selector-tag">try</span> &#123;
+            <span class="hljs-selector-tag">conn</span><span class="hljs-selector-class">.close</span>();
+        &#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+            <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+        &#125;
+    &#125;
+&#125;</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>ResultSet：结果集对象,封装查询结果<ul>
+<li>boolean next(): 游标向下移动一行，判断当前行是否是最后一行末尾(是否有数据)，如果是，则返回false，如果不是则返回true</li>
+<li>getXxx(参数):获取数据<ul>
+<li>Xxx：代表数据类型 如： int getInt() , String getString()</li>
+<li>参数：<ol>
+<li>int：代表列的编号,从1开始 如： getString(1)</li>
+<li>String：代表列名称。 如： getDouble(“balance”)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>使用步骤：<ol>
+<li>游标向下移动一行</li>
+<li>判断是否有数据</li>
+<li>获取数据 //循环判断游标是否是最后一行末尾。 while(rs.next()){ //获取数据 //6.2 获取数据 int id = rs.getInt(1); String name = rs.getString(“name”); double balance = rs.getDouble(3); <pre><code class="hljs pgsql"><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(id + &quot;---&quot; + <span class="hljs-type">name</span> + &quot;---&quot; + balance);</code></pre>
+ }</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>练习：<ul>
+<li>定义一个方法，查询emp表的数据将其封装为对象，然后装载集合，返回。<ol>
+<li>定义Emp类</li>
+<li>定义方法 public List findAll(){}</li>
+<li>实现方法 select * from emp;</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PreparedStatement：执行sql的对象<ol>
+<li>SQL注入问题：在拼接sql时，有一些sql的特殊关键字参与字符串的拼接。会造成安全性问题<ol>
+<li>输入用户随便，输入密码：a’ or ‘a’ = ‘a</li>
+<li>sql：select * from user where username = ‘fhdsjkf’ and password = ‘a’ or ‘a’ = ‘a’</li>
+</ol>
+</li>
+<li>解决sql注入问题：使用PreparedStatement对象来解决</li>
+<li>预编译的SQL：参数使用?作为占位符</li>
+<li>步骤：<ol>
+<li>导入驱动jar包 mysql-connector-java-5.1.37-bin.jar</li>
+<li>注册驱动</li>
+<li>获取数据库连接对象 Connection</li>
+<li>定义sql<ul>
+<li>注意：sql的参数使用？作为占位符。 如：select * from user where username = ? and password = ?;</li>
+</ul>
+</li>
+<li>获取执行sql语句的对象 PreparedStatement Connection.prepareStatement(String sql)</li>
+<li>给？赋值：<ul>
+<li>方法： setXxx(参数1,参数2)<ul>
+<li>参数1：？的位置编号 从1 开始</li>
+<li>参数2：？的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>执行sql，接受返回结果，不需要传递sql语句</li>
+<li>处理结果</li>
+<li>释放资源</li>
+</ol>
+</li>
+<li>注意：后期都会使用PreparedStatement来完成增删改查的所有操作<ol>
+<li>可以防止SQL注入</li>
+<li>效率更高</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="抽取JDBC工具类-：-JDBCUtils"><a href="#抽取JDBC工具类-：-JDBCUtils" class="headerlink" title="抽取JDBC工具类 ： JDBCUtils"></a>抽取JDBC工具类 ： JDBCUtils</h2><ul>
+<li>目的：简化书写</li>
+<li>分析：<ol>
+<li>注册驱动也抽取</li>
+<li>抽取一个方法获取连接对象<ul>
+<li>需求：不想传递参数（麻烦），还得保证工具类的通用性。</li>
+<li>解决：配置文件 jdbc.properties url= user= password=</li>
+</ul>
+</li>
+<li>抽取一个方法释放资源</li>
+</ol>
+</li>
+<li>代码实现： public class JDBCUtils { private static String url; private static String user; private static String password; private static String driver; /**<ul>
+<li><p>文件的读取，只需要读取一次即可拿到这些值。使用静态代码块 */ static{ //读取资源文件，获取值。</p>
+  <pre><code class="hljs reasonml"><span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-comment">//1. 创建Properties集合类。</span>
+    Properties pro = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Properties()</span>;
+
+    <span class="hljs-comment">//获取src路径下的文件的方式---&gt;ClassLoader 类加载器</span>
+    ClassLoader classLoader = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JDBCUtils</span>.</span></span><span class="hljs-keyword">class</span>.get<span class="hljs-constructor">ClassLoader()</span>;
+    URL res  = classLoader.get<span class="hljs-constructor">Resource(<span class="hljs-string">&quot;jdbc.properties&quot;</span>)</span>;
+    String path = res.get<span class="hljs-constructor">Path()</span>;
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(path);<span class="hljs-comment">///D:/IdeaProjects/itcast/out/production/day04_jdbc/jdbc.properties</span>
+    <span class="hljs-comment">//2. 加载文件</span>
+   <span class="hljs-comment">// pro.load(new FileReader(&quot;D:\\IdeaProjects\\itcast\\day04_jdbc\\src\\jdbc.properties&quot;));</span>
+    pro.load(<span class="hljs-keyword">new</span> <span class="hljs-constructor">FileReader(<span class="hljs-params">path</span>)</span>);
+
+    <span class="hljs-comment">//3. 获取数据，赋值</span>
+    url = pro.get<span class="hljs-constructor">Property(<span class="hljs-string">&quot;url&quot;</span>)</span>;
+    user = pro.get<span class="hljs-constructor">Property(<span class="hljs-string">&quot;user&quot;</span>)</span>;
+    password = pro.get<span class="hljs-constructor">Property(<span class="hljs-string">&quot;password&quot;</span>)</span>;
+    driver = pro.get<span class="hljs-constructor">Property(<span class="hljs-string">&quot;driver&quot;</span>)</span>;
+    <span class="hljs-comment">//4. 注册驱动</span>
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Class</span>.</span></span><span class="hljs-keyword">for</span><span class="hljs-constructor">Name(<span class="hljs-params">driver</span>)</span>;
+&#125; catch (IOException e) &#123;
+    e.print<span class="hljs-constructor">StackTrace()</span>;
+&#125; catch (ClassNotFoundException e) &#123;
+    e.print<span class="hljs-constructor">StackTrace()</span>;
+&#125;</code></pre>
+<p>  }</p>
+<p>  /**</p>
+</li>
+<li><p>获取连接</p>
+</li>
+<li><p>@return 连接对象 */ public static Connection getConnection() throws SQLException {</p>
+  <pre><code class="hljs reasonml">return <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">DriverManager</span>.</span></span>get<span class="hljs-constructor">Connection(<span class="hljs-params">url</span>, <span class="hljs-params">user</span>, <span class="hljs-params">password</span>)</span>;</code></pre>
+<p>  }</p>
+<p>  /**</p>
+</li>
+<li><p>释放资源</p>
+</li>
+<li><p>@param stmt</p>
+</li>
+<li><p>@param conn */ public static void close(Statement stmt,Connection conn){ if( stmt != null){ try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); } }</p>
+  <pre><code class="hljs less"><span class="hljs-selector-tag">if</span>( conn != null)&#123;
+    <span class="hljs-selector-tag">try</span> &#123;
+        <span class="hljs-selector-tag">conn</span><span class="hljs-selector-class">.close</span>();
+    &#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+        <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+    &#125;
+&#125;</code></pre>
+<p>  }</p>
+<p>  /**</p>
+</li>
+<li><p>释放资源</p>
+</li>
+<li><p>@param stmt</p>
+</li>
+<li><p>@param conn */ public static void close(ResultSet rs,Statement stmt, Connection conn){ if( rs != null){ try { rs.close(); } catch (SQLException e) { e.printStackTrace(); } }</p>
+  <pre><code class="hljs less"><span class="hljs-selector-tag">if</span>( stmt != null)&#123;
+    <span class="hljs-selector-tag">try</span> &#123;
+        <span class="hljs-selector-tag">stmt</span><span class="hljs-selector-class">.close</span>();
+    &#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+        <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+    &#125;
+&#125;
+
+<span class="hljs-selector-tag">if</span>( conn != null)&#123;
+    <span class="hljs-selector-tag">try</span> &#123;
+        <span class="hljs-selector-tag">conn</span><span class="hljs-selector-class">.close</span>();
+    &#125; <span class="hljs-selector-tag">catch</span> (SQLException e) &#123;
+        <span class="hljs-selector-tag">e</span><span class="hljs-selector-class">.printStackTrace</span>();
+    &#125;
+&#125;</code></pre>
+<p>  }</p>
+<p>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JDBC控制事务："><a href="#JDBC控制事务：" class="headerlink" title="JDBC控制事务："></a>JDBC控制事务：</h2><ol>
+<li>事务：一个包含多个步骤的业务操作。如果这个业务操作被事务管理，则这多个步骤要么同时成功，要么同时失败。</li>
+<li>操作：<ol>
+<li>开启事务</li>
+<li>提交事务</li>
+<li>回滚事务</li>
+</ol>
+</li>
+<li>使用Connection对象来管理事务<ul>
+<li>开启事务：setAutoCommit(boolean autoCommit) ：调用该方法设置参数为false，即开启事务<ul>
+<li>在执行sql之前开启事务</li>
+</ul>
+</li>
+<li>提交事务：commit()<ul>
+<li>当所有sql都执行完提交事务</li>
+</ul>
+</li>
+<li>回滚事务：rollback()<ul>
+<li>在catch中回滚事务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代码： public class JDBCDemo10 { <pre><code class="hljs reasonml">    public static void main(String<span class="hljs-literal">[]</span> args) &#123;
+        Connection conn = null;
+        PreparedStatement pstmt1 = null;
+        PreparedStatement pstmt2 = null;
+
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-comment">//1.获取连接</span>
+            conn = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JDBCUtils</span>.</span></span>get<span class="hljs-constructor">Connection()</span>;
+            <span class="hljs-comment">//开启事务</span>
+            conn.set<span class="hljs-constructor">AutoCommit(<span class="hljs-params">false</span>)</span>;
+
+            <span class="hljs-comment">//2.定义sql</span>
+            <span class="hljs-comment">//2.1 张三 - 500</span>
+            String sql1 = <span class="hljs-string">&quot;update account set balance = balance - ? where id = ?&quot;</span>;
+            <span class="hljs-comment">//2.2 李四 + 500</span>
+            String sql2 = <span class="hljs-string">&quot;update account set balance = balance + ? where id = ?&quot;</span>;
+            <span class="hljs-comment">//3.获取执行sql对象</span>
+            pstmt1 = conn.prepare<span class="hljs-constructor">Statement(<span class="hljs-params">sql1</span>)</span>;
+            pstmt2 = conn.prepare<span class="hljs-constructor">Statement(<span class="hljs-params">sql2</span>)</span>;
+            <span class="hljs-comment">//4. 设置参数</span>
+            pstmt1.set<span class="hljs-constructor">Double(1,500)</span>;
+            pstmt1.set<span class="hljs-constructor">Int(2,1)</span>;
+
+            pstmt2.set<span class="hljs-constructor">Double(1,500)</span>;
+            pstmt2.set<span class="hljs-constructor">Int(2,2)</span>;
+            <span class="hljs-comment">//5.执行sql</span>
+            pstmt1.execute<span class="hljs-constructor">Update()</span>;
+            <span class="hljs-comment">// 手动制造异常</span>
+            <span class="hljs-built_in">int</span> i = <span class="hljs-number">3</span>/<span class="hljs-number">0</span>;
+
+            pstmt2.execute<span class="hljs-constructor">Update()</span>;
+            <span class="hljs-comment">//提交事务</span>
+            conn.commit<span class="hljs-literal">()</span>;
+        &#125; catch (Exception e) &#123;
+            <span class="hljs-comment">//事务回滚</span>
+            <span class="hljs-keyword">try</span> &#123;
+                <span class="hljs-keyword">if</span>(conn != null) &#123;
+                    conn.rollback<span class="hljs-literal">()</span>;
+                &#125;
+            &#125; catch (SQLException e1) &#123;
+                e1.print<span class="hljs-constructor">StackTrace()</span>;
+            &#125;
+            e.print<span class="hljs-constructor">StackTrace()</span>;
+        &#125;finally &#123;
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JDBCUtils</span>.</span></span>close(pstmt1,conn);
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JDBCUtils</span>.</span></span>close(pstmt2,null);
+        &#125;
+
+    &#125;
+
+&#125;</code></pre>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E5%8C%BA/">杂七杂八区</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0c3p0-2/index/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据库连接池C3P0</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/14/%E6%B3%A8%E8%A7%A3/index/">
+                        <span class="hidden-mobile">注解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+            
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JWQTA/JWQTA.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'duplicate');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

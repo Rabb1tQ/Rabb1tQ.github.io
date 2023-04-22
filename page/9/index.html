@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+                
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/27/kali%E5%AE%89%E8%A3%85%E8%B0%B7%E6%AD%8C%E6%8B%BC%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95/index/">kali安装谷歌拼音输入法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/27/kali%E5%AE%89%E8%A3%85%E8%B0%B7%E6%AD%8C%E6%8B%BC%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95/index/">
+          
+          
+            
+          
+          恩。。。之前写过简单版本的，今天写个全的。
+其实是因为我重装系统忘记备份了
+
+下面开始：
+先更新apt-get update &amp;&amp; apt-get upgrade         //同步源的索引，升级软件包
+使用命令 apt-get install fcitx 安装输入法框架
+apt-get install fcitx-googlepinyin  安装谷歌输入法
+reboot重启
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-27 08:00" pubdate>
+              2019-07-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/25/linux-%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index/">Linux 运维常用命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/25/linux-%E8%BF%90%E7%BB%B4%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index/">
+          
+          
+            
+          
+          1、ls [选项] [目录名 | 列出相关目录下的所有目录和文件 -a 列出包括.a开头的隐藏文件的所有文件 -A 通-a，但不列出”.”和”..” -l 列出文件的详细信息 -c 根据ctime排序显示 -t 根据文件修改时间排序 —color[=WHEN] 用色彩辨别文件类型 WHEN 可以是’never’、’always’或’auto’其中之一 白色：表示普通文件 蓝色：表示目录 绿色：表示
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-25 08:00" pubdate>
+              2019-07-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/24/%E5%86%85%E7%BD%91%E6%BC%AB%E6%AD%A5%E4%B9%8B%E5%A6%82%E4%BD%95%E8%B0%83%E6%88%8F%E5%A6%B9%E7%BA%B8/index/">内网漫步之如何调戏妹纸</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/24/%E5%86%85%E7%BD%91%E6%BC%AB%E6%AD%A5%E4%B9%8B%E5%A6%82%E4%BD%95%E8%B0%83%E6%88%8F%E5%A6%B9%E7%BA%B8/index/">
+          
+          
+            
+          
+          今天在一个大佬的博客发现了一个挺有意思的小东西，下载开始搬砖：
+环境说明：
+kali linux(192.168.0.114) 黑阔滴设备
+win7 (192.168.0.113) 妹纸的pc
+
+认识beefBEEF (The Browser Exploitation Framework)：一款浏览器攻击框架，用Ruby语言开发的，Kali中默认安装的一个模块，用于实现对XSS漏洞的攻击和利用。
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-24 08:00" pubdate>
+              2019-07-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/23/sql%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E5%8E%BB%E6%8E%89%E4%B8%80%E4%B8%AA%E6%9C%80%E9%AB%98%E5%88%86%E4%B8%80%E4%B8%AA%E6%9C%80%E4%BD%8E%E5%88%86/index/">sql自定义函数传参去掉一个最高分一个最低分</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/23/sql%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E5%8E%BB%E6%8E%89%E4%B8%80%E4%B8%AA%E6%9C%80%E9%AB%98%E5%88%86%E4%B8%80%E4%B8%AA%E6%9C%80%E4%BD%8E%E5%88%86/index/">
+          
+          
+            
+          
+          CREATE FUNCTION CalculateAverage(@参数1 bigint,@参数2 bigint) returns int – 设置返回值，记住是 returns 而不是 return AS BEGIN DECLARE @result varchar(50) DECLARE @Average int SET @result = (select count (分数) from 数据库
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-23 08:00" pubdate>
+              2019-07-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/22/kali-linux-%E5%AE%89%E8%A3%85google%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%8B%E5%90%8E%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98/index/">kali linux 安装google浏览器之后不能打开的问题</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/22/kali-linux-%E5%AE%89%E8%A3%85google%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%8B%E5%90%8E%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98/index/">
+          
+          
+            
+          
+          我又碰到了一堆傻子，zz复制粘贴了一些方法，踏马的，自己都不试验一下就瞎扯一通，就好比这个智障:
+ 
+
+哪有这傻子说的什么命令的东西，真的是，你最起码测测再发啊
+亲测下面这个好使：
+在终端上输入下面的语句：google-chrome-stable –no-sandbox
+系统弹出界面，点击确认之后就自动打开了，亲测好使
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-22 08:00" pubdate>
+              2019-07-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/19/%E4%BD%BF%E7%94%A8%E9%92%9F%E9%A6%97%E4%B9%8B%E7%9C%BC%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index/">使用钟馗之眼进行信息收集</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/19/%E4%BD%BF%E7%94%A8%E9%92%9F%E9%A6%97%E4%B9%8B%E7%9C%BC%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index/">
+          
+          
+            
+          
+          钟馗之眼搜索小技巧搜索指定的组建
+例如：搜索apache
+app:apache
+搜索指定的组建加版本
+例如：搜索apache 2.4
+app:apache var 2.4
+搜索指定的界面
+例如：搜索index.php
+直接index.php
+搜索指定的国家
+例如：搜索国家越南
+country:“VN”
+搜索指定城市
+例如：北京
+city:”beijing”
+搜索指定的端口
+例如：搜索21
+port
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-19 08:00" pubdate>
+              2019-07-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/16/%E5%8D%81%E5%A4%A7%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/index/">十大渗透测试工具</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/16/%E5%8D%81%E5%A4%A7%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/index/">
+          
+          
+            
+          
+          仅用于学习使用，禁止用于非法用途！！！
+作为一个半吊子的渗透测试工程师，怎么能没有工具呢，下面介绍十款渗透测试工具，注意：仅用于学习使用，禁止用于非法用途！！！
+1、NmapNmap（Network Mapper）是一款非常著名的、用来扫描端口和绘制网络的、开源免费的黑客工具，它是一个基于控制台的工具，另外方便使用，还有一个带有GUI的版本Zenmap。Nmap被世界各地的安全专业人员用于绘制网络
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-16 08:00" pubdate>
+              2019-07-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/14/%E5%85%8D%E8%B4%B9ddos%E6%94%BB%E5%87%BB%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/index/">免费DDOS攻击测试工具</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/14/%E5%85%8D%E8%B4%B9ddos%E6%94%BB%E5%87%BB%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/index/">
+          
+          
+            
+          
+          仅用于攻防演练及教学测试用途，禁止非法使用！！！！！！
+1、卢瓦(LOIC) (Low Orbit Ion Canon)
+LOTC是一个最受欢迎的DOS攻击工具。 这个工具被去年流行的黑客集团匿名者用于对许多大公司的网络攻击。
+它可以通过使用单个用户执行DOS攻击小型服务器，工具非常易于使用，即便你是一个初学者。 这个工具执行DOS攻击通过发送UDP,TCP或HTTP请求到受害者服务器。 你只需要
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-14 08:00" pubdate>
+              2019-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/12/echart%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index/">echart的简单使用</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/12/echart%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index/">
+          
+          
+            
+          
+          需要引入的js:
+ html只有一个div就可以：
+
+ 1.柱状图 // 基于准备好的dom，初始化echarts实例 var myChart = echarts.init(document.getElementById('main'));
+
+// 指定图表的配置项和数据 var option = { title: { text: ‘ECharts 入门示例’ }, tooltip: {}, //
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-12 08:00" pubdate>
+              2019-07-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/07/09/%E5%AE%9A%E4%BD%8D/index/">定位</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/07/09/%E5%AE%9A%E4%BD%8D/index/">
+          
+          
+            
+          
+          absolute生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。fixed生成固定定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。relative生成相对定位的元素，相对于其正常位置进
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-09 08:00" pubdate>
+              2019-07-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+    <script>
+        //声明一个数组，内容为你想显示的话
+        var words = [
+            "做个俗人，承蒙厚爱，感谢相遇。",
+            "不要丧啦，说不定你也是别人心中偷偷藏起来的光。",
+            "俄罗斯方块教会了我们: 如果你合群就会消失。",
+            "人的一生中关键的就那么几步，特别是在年轻的时候。",
+            "你不懂那种看你一眼就会笑的人是有多么的喜欢你。",
+            "花开有时，花落有时。无需留恋，该走的终须会走；无需苛求，该来的迟早会来。",
+            "心软的时候，什么都可以原谅；心硬的时候，老子就是全世界。",
+            "希望以后能活得更开心更随性一些，只和舒服的人交往不和傻子较劲。",
+            "雨后的风，清爽而忧郁，能吹走大地的污浊，却吹不走本身寂寞的心情。",
+            "生活总会给你答案，但不会马上把一切都告诉你。",
+            "这世界上唯一扛得住岁月摧残的就是才华。",
+            "很多东西如果不是怕别人捡去，我们一定会扔掉。",
+            "光活着就很难了，为什么还要我快乐。",
+            "心里只有自己时，总嫌别人做得不够；心里只有别人时，总嫌自己做得不够。",
+            "人生很多事，就像智齿。最佳的解决方式，是拔掉。而不是忍受。",
+            "你就记着，只要你不怕疼，不怕死，不要脸，就没有你拿不下的东西。",
+            "别不好意思拒绝，那些好意思为难你的人，反正也都不是什么好人。",
+            "我还记得，我跟别人炫耀过你。",
+            "像失望和委屈这种东西是没必要解释的，越解释越乱。",
+            "我想出去走一走，看看这个大世界，还有太多的梦想等我去冒险。",
+            "人生有很多道理，本来就要等到你透不过气来时，你才会懂得的。",
+            "做一个特别简单的人，好相处就处，不好相处就不处。不必对每个人好，他们又不给你打钱。",
+            "一个人的快乐，不是因为他拥有的多，而是因为他计较的少。",
+            "不必过于在意人与人之间表面的情绪；挚交之人不需要，泛交之人用不着。",
+            "要么没有，要么全部，要么现在，要么永不。从现在起，我将不再期待，只珍惜我所拥有的。",
+            "人一旦堕落，哪怕是短暂的几年，上帝就会以最快的速度，收走你的天赋和力量。",
+            "所谓的诗和远方，不过是，要把眼前的苟且熬过了才有。",
+            "愿你遇良人，予你欢喜城",
+            "你是我千种诗意万种想象",
+            "想做一个很酷的人扭头就走 比你酷比你狠",
+            "对不起，也许我将要打扰你，打扰你一生，而不是一下"
+        ];
+
+        //使用自调用方式声明函数，
+        window.onload=function(){
+			var rand = parseInt(Math.random() * words.length);
+            document.getElementById("subtitle").innerHTML = words[rand];
+		}
+    </script>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/8/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/10/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

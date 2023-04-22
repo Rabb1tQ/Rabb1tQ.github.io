@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="qt">
+  <meta name="keywords" content="">
+  <title>SQLMAP 命令详解 - qt安全博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qt安全博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SQLMAP 命令详解">
+              
+                SQLMAP 命令详解
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-05-29 08:00" pubdate>
+        2019年5月29日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SQLMAP 命令详解</h1>
+            
+            <div class="markdown-body">
+              <p>Options（选项）： –version 显示程序的版本号并退出 -h, –help 显示此帮助消息并退出 -v VERBOSE 详细级别：0-6（默认为 1） Target（目标）： 以下至少需要设置其中一个选项，设置目标 URL。 -d DIRECT 直接连接到数据库。 -u URL, –url=URL 目标 URL。 -l LIST 从 Burp 或 WebScarab 代理的日志中解析目标。 -r REQUESTFILE 从一个文件中载入 HTTP 请求。 -g GOOGLEDORK 处理 Google dork 的结果作为目标 URL。 -c CONFIGFILE 从 INI 配置文件中加载选项。 Request（请求）：: 这些选项可以用来指定如何连接到目标 URL。 –data=DATA 通过 POST 发送的数据字符串 –cookie=COOKIE HTTP Cookie 头 –cookie-urlencode URL 编码生成的 cookie 注入 –drop-set-cookie 忽略响应的 Set - Cookie 头信息</p>
+<p>--user-agent=AGENT 指定 HTTP User - Agent 头</p>
+<p>--random-agent 使用随机选定的 HTTP User - Agent 头 –referer=REFERER 指定 HTTP Referer 头 –headers=HEADERS 换行分开，加入其他的 HTTP 头 –auth-type=ATYPE HTTP 身份验证类型（基本，摘要或 NTLM）(Basic, Digest or NTLM) –auth-cred=ACRED HTTP 身份验证凭据（用户名:密码） –auth-cert=ACERT HTTP 认证证书（key_file，cert_file） –proxy=PROXY 使用 HTTP 代理连接到目标 URL –proxy-cred=PCRED HTTP 代理身份验证凭据（用户名：密码） –ignore-proxy 忽略系统默认的 HTTP 代理 –delay=DELAY 在每个 HTTP 请求之间的延迟时间，单位为秒 –timeout=TIMEOUT 等待连接超时的时间（默认为 30 秒） –retries=RETRIES 连接超时后重新连接的时间（默认 3） –scope=SCOPE 从所提供的代理日志中过滤器目标的正则表达式 –safe-url=SAFURL 在测试过程中经常访问的 url 地址 –safe-freq=SAFREQ 两次访问之间测试请求，给出安全的 URL Optimization（优化）： 这些选项可用于优化 SqlMap 的性能。 -o 开启所有优化开关 –predict-output 预测常见的查询输出 –keep-alive 使用持久的 HTTP（S）连接 –null-connection 从没有实际的 HTTP 响应体中检索页面长度 –threads=THREADS 最大的 HTTP（S）请求并发量（默认为 1） Injection（注入）： 这些选项可以用来指定测试哪些参数， 提供自定义的注入 payloads 和可选篡改脚本。 -p TESTPARAMETER 可测试的参数（S） –dbms=DBMS 强制后端的 DBMS 为此值 –os=OS 强制后端的 DBMS 操作系统为这个值 –prefix=PREFIX 注入 payload 字符串前缀 –suffix=SUFFIX 注入 payload 字符串后缀 –tamper=TAMPER 使用给定的脚本（S）篡改注入数据 Detection（检测）： 这些选项可以用来指定在 SQL 盲注时如何解析和比较 HTTP 响应页面的内容。 –level=LEVEL 执行测试的等级（1-5，默认为 1） –risk=RISK 执行测试的风险（0-3，默认为 1） –string=STRING 查询时有效时在页面匹配字符串 –regexp=REGEXP 查询时有效时在页面匹配正则表达式 –text-only 仅基于在文本内容比较网页 Techniques（技巧）： 这些选项可用于调整具体的 SQL 注入测试。 –technique=TECH SQL 注入技术测试（默认 BEUST） –time-sec=TIMESEC DBMS 响应的延迟时间（默认为 5 秒） –union-cols=UCOLS 定列范围用于测试 UNION 查询注入 –union-char=UCHAR 用于暴力猜解列数的字符 Fingerprint（指纹）： -f, –fingerprint 执行检查广泛的 DBMS 版本指纹 Enumeration（枚举）：</p>
+<p>这些选项可以用来列举后端数据库管理系统的信息、表中的结构和数据。此外，您还可以运行您自己 的 SQL 语句。 -b, –banner 检索数据库管理系统的标识 –current-user 检索数据库管理系统当前用户 –current-db 检索数据库管理系统当前数据库 –is-dba 检测 DBMS 当前用户是否 DBA –users 枚举数据库管理系统用户 –passwords 枚举数据库管理系统用户密码哈希 –privileges 枚举数据库管理系统用户的权限 –roles 枚举数据库管理系统用户的角色 –dbs 枚举数据库管理系统数据库 –tables 枚举的 DBMS 数据库中的表 –columns 枚举 DBMS 数据库表列 –dump 转储数据库管理系统的数据库中的表项 –dump-all 转储所有的 DBMS 数据库表中的条目 –search 搜索列（S），表（S）和/或数据库名称（S） -D DB 要进行枚举的数据库名 -T TBL 要进行枚举的数据库表 -C COL 要进行枚举的数据库列 -U USER 用来进行枚举的数据库用户 –exclude-sysdbs 枚举表时排除系统数据库 –start=LIMITSTART 第一个查询输出进入检索 –stop=LIMITSTOP 最后查询的输出进入检索 –first=FIRSTCHAR 第一个查询输出字的字符检索 –last=LASTCHAR 最后查询的输出字字符检索 –sql-query=QUERY 要执行的 SQL 语句 –sql-shell 提示交互式 SQL 的 shell Brute force（蛮力）： 这些选项可以被用来运行蛮力检查。 –common-tables 检查存在共同表 –common-columns 检查存在共同列 User-defined function injection（用户自定义函数注入）： 这些选项可以用来创建用户自定义函数。 –udf-inject 注入用户自定义函数 –shared-lib=SHLIB 共享库的本地路径 File system access（访问文件系统）： 这些选项可以被用来访问后端数据库管理系统的底层文件系统。 –file-read=RFILE 从后端的数据库管理系统文件系统读取文件 –file-write=WFILE 编辑后端的数据库管理系统文件系统上的本地文件 –file-dest=DFILE 后端的数据库管理系统写入文件的绝对路径 Operating system access（操作系统访问）： 这些选项可以用于访问后端数据库管理系统的底层操作系统。 –os-cmd=OSCMD 执行操作系统命令 –os-shell 交互式的操作系统的 shell –os-pwn 获取一个 OOB shell，meterpreter 或 VNC –os-smbrelay 一键获取一个 OOB shell，meterpreter 或 VNC –os-bof 存储过程缓冲区溢出利用 –priv-esc 数据库进程用户权限提升 –msf-path=MSFPATH Metasploit Framework 本地的安装路径 –tmp-path=TMPPATH 远程临时文件目录的绝对路径</p>
+<p>Windows 注册表访问： 这些选项可以被用来访问后端数据库管理系统 Windows 注册表。 –reg-read 读一个 Windows 注册表项值 –reg-add 写一个 Windows 注册表项值数据 –reg-del 删除 Windows 注册表键值 –reg-key=REGKEY Windows 注册表键 –reg-value=REGVAL Windows 注册表项值 –reg-data=REGDATA Windows 注册表键值数据 –reg-type=REGTYPE Windows 注册表项值类型 General（一般）：</p>
+<p>这些选项可以用来设置一些一般的工作参数。 -t TRAFFICFILE 记录所有 HTTP 流量到一个文本文件中 -s SESSIONFILE 保存和恢复检索会话文件的所有数据 –flush-session 刷新当前目标的会话文件 –fresh-queries 忽略在会话文件中存储的查询结果 –eta 显示每个输出的预计到达时间 –update 更新 SqlMap –save file 保存选项到 INI 配置文件 –batch 从不询问用户输入，使用所有默认配置。 Miscellaneous（杂项）： –beep 发现 SQL 注入时提醒 –check-payload IDS 对注入 payloads 的检测测试 –cleanup SqlMap 具体的 UDF 和表清理 DBMS –forms 对目标 URL 的解析和测试形式 –gpage=GOOGLEPAGE 从指定的页码使用谷歌 dork 结果 –page-rank Google dork 结果显示网页排名（PR） –parse-errors 从响应页面解析数据库管理系统的错误消息 –replicate 复制转储的数据到一个 sqlite3 数据库 –tor 使用默认的 Tor（Vidalia/ Privoxy/ Polipo）代理地址 –wizard 给初级用户的简单向导界面</p>
+<p>嗯。。。哪里不对的，请指正，谢谢</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/30/iis%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/index/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IIS配置教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/20/%E4%B8%89%E8%A1%8C%E6%83%85%E4%B9%A6/index/">
+                        <span class="hidden-mobile">三行情书</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+            
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'JWQTA/JWQTA.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'duplicate');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     ©qt <i class="iconfont icon-love"></i>
+
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
