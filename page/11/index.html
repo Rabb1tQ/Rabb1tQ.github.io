@@ -350,28 +350,35 @@ dir: ‘/res/layui/‘ //layui.js 所在路径（注意，如果是script单独�
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2019/06/13/layui%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E7%94%A8%E6%B3%95/index/">LayUI模块化的用法</a>
+        <a href="/2019/06/13/layui%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E7%94%A8%E6%B3%95/index/">LayUI非模块化用法</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2019/06/13/layui%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E7%94%A8%E6%B3%95/index/">
+        <a href="/2019/06/13/layui%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E7%94%A8%E6%B3%95/index/">
           
           
             
           
-          建立一个入口文件，并通过 layui.use() 方式来加载该入口文件：
+           layui.js 及所有模块单独打包合并成了一个完整的js文件，用的时候直接引入这一个文件即可，如：
 
 
-layui.config({
-base: ‘/res/js/modules/‘ //你存放新模块的目录，注意，不是layui的模块目录
-}).use(‘index’); //加载入口
+
+;!function(){
+
+//无需再执行layui.use()方法加载模块，直接使用即可
+
+var form = layui.form
+
+,layer = layui.layer;
+
+//…
+
+}();
 
 
-上述的 index 即为你 /res/js/modules/ 目录下的 index.js，它的内容应该如下：
 
-/**
 
-项目JS主入
+
         </a>
       </p>
 
@@ -403,35 +410,28 @@ base: ‘/res/js/modules/‘ //你存放新模块的目录，注意，不是layu
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2019/06/13/layui%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E7%94%A8%E6%B3%95/index/">LayUI非模块化用法</a>
+        <a href="/2019/06/13/layui%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E7%94%A8%E6%B3%95/index/">LayUI模块化的用法</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2019/06/13/layui%E9%9D%9E%E6%A8%A1%E5%9D%97%E5%8C%96%E7%94%A8%E6%B3%95/index/">
+        <a href="/2019/06/13/layui%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E7%94%A8%E6%B3%95/index/">
           
           
             
           
-           layui.js 及所有模块单独打包合并成了一个完整的js文件，用的时候直接引入这一个文件即可，如：
+          建立一个入口文件，并通过 layui.use() 方式来加载该入口文件：
 
 
-
-;!function(){
-
-//无需再执行layui.use()方法加载模块，直接使用即可
-
-var form = layui.form
-
-,layer = layui.layer;
-
-//…
-
-}();
+layui.config({
+base: ‘/res/js/modules/‘ //你存放新模块的目录，注意，不是layui的模块目录
+}).use(‘index’); //加载入口
 
 
+上述的 index 即为你 /res/js/modules/ 目录下的 index.js，它的内容应该如下：
 
+/**
 
-
+项目JS主入
         </a>
       </p>
 

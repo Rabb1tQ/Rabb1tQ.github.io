@@ -320,26 +320,20 @@ EasySQL,第一反应就是sql注入，别问为啥，问就是因为我流批直
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/12/htb-can-you-encrypt-fast-enough/index/">HTB Can you encrypt fast enough?</a>
+        <a href="/2021/11/12/htb-passage%E6%95%99%E7%A8%8B/index/">HTB Passage教程</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/12/htb-can-you-encrypt-fast-enough/index/">
+        <a href="/2021/11/12/htb-passage%E6%95%99%E7%A8%8B/index/">
           
           
             
           
-          打开界面后如下图：  尝试MD5加密后填进输入框后提示 “Too slow!”  查看源码后推测，应该是用程序发包，构造如下Python代码：
-import requests
-import hashlib
-import re
+          打开界面如图： 
+看了下最底部有CMS ：CuteNews 注册个用户： 
+最下方有版本号：2.1.2,直接百度CuteNews 2.1.2复现，查到有相关漏洞，直接下载poc（poc在最下方），放到MSF中，MSF加载脚本（不会的自己百度）： 
+设置相应参数，成功得到meterpreter会话： 
 
-url=&quot;http://你的地址&quot;
-
-r=requests.session()
-out=r.get(url)
-
-rr = re.compile(r&qu
         </a>
       </p>
 
@@ -371,20 +365,26 @@ rr = re.compile(r&qu
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/12/htb-passage%E6%95%99%E7%A8%8B/index/">HTB Passage教程</a>
+        <a href="/2021/11/12/htb-can-you-encrypt-fast-enough/index/">HTB Can you encrypt fast enough?</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/12/htb-passage%E6%95%99%E7%A8%8B/index/">
+        <a href="/2021/11/12/htb-can-you-encrypt-fast-enough/index/">
           
           
             
           
-          打开界面如图： 
-看了下最底部有CMS ：CuteNews 注册个用户： 
-最下方有版本号：2.1.2,直接百度CuteNews 2.1.2复现，查到有相关漏洞，直接下载poc（poc在最下方），放到MSF中，MSF加载脚本（不会的自己百度）： 
-设置相应参数，成功得到meterpreter会话： 
+          打开界面后如下图：  尝试MD5加密后填进输入框后提示 “Too slow!”  查看源码后推测，应该是用程序发包，构造如下Python代码：
+import requests
+import hashlib
+import re
 
+url=&quot;http://你的地址&quot;
+
+r=requests.session()
+out=r.get(url)
+
+rr = re.compile(r&qu
         </a>
       </p>
 
