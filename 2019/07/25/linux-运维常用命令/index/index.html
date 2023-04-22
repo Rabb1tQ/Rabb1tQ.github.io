@@ -15,9 +15,9 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="qt">
+  <meta name="author" content="RabbitQ">
   <meta name="keywords" content="">
-  <title>Linux 运维常用命令 - qt安全博客</title>
+  <title>Linux 运维常用命令 - RabbitQ blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -245,7 +245,7 @@
 <p>2、mv [选项] 源文件或目录 目录或多个源文件 | 移动或重命名文件</p>
 <p>-b 覆盖前做备份 -f 如存在不询问而强制覆盖 -i 如存在则询问是否覆盖 -u 较新才覆盖 -t 将多个源文件移动到统一目录下，目录参数在前，文件参数在后 eg: mv a /tmp/ 将文件a移动到 /tmp目录下 mv a b 将a命名为b mv /home/zenghao test1.txt test2.txt test</p>
 <p>3、cp [选项] 源文件或目录 目录或多个源文件 | 将源文件复制至目标文件，或将多个源文件复制至目标目录。 -r -R 递归复制该目录及其子目录内容 -p 连同档案属性一起复制过去 -f 不询问而强制复制 -s 生成快捷方式 -a 将档案的所有特性都一起复制</p>
-<p>4、scp [参数] [原路径] [目标路径] | 在Linux服务器之间复制文件和目录 -v 详细显示输出的具体情况 -r 递归复制整个目录 (1) 复制文件： 命令格式： scp local_file remote_username@remote_ip:remote_folder 或者 scp local_file remote_username@remote_ip:remote_file 或者 scp local_file remote_ip:remote_folder 或者 scp local_file remote_ip:remote_file 第1,2个指定了用户名，命令执行后需要输入用户密码，第1个仅指定了远程的目录，文件名字不变，第2个指定了文件名 第3,4个没有指定用户名，命令执行后需要输入用户名和密码，第3个仅指定了远程的目录，文件名字不变，第4个指定了文件名 (2) 复制目录： 命令格式： scp -r local_folder remote_username@remote_ip:remote_folder 或者 scp -r local_folder remote_ip:remote_folder 第1个指定了用户名，命令执行后需要输入用户密码； 第2个没有指定用户名，命令执行后需要输入用户名和密码； eg: 从 本地 复制到 远程 scp /home/daisy/full.tar.gz <a href="mailto:&#x72;&#111;&#x6f;&#116;&#64;&#49;&#x37;&#50;&#x2e;&#49;&#57;&#x2e;&#x32;&#46;&#55;&#x35;">&#x72;&#111;&#x6f;&#116;&#64;&#49;&#x37;&#50;&#x2e;&#49;&#57;&#x2e;&#x32;&#46;&#55;&#x35;</a>:/home/root 从 远程 复制到 本地 scp root@/172.19.2.75:/home/root/full.tar.gz /home/daisy/full.tar.gz</p>
+<p>4、scp [参数] [原路径] [目标路径] | 在Linux服务器之间复制文件和目录 -v 详细显示输出的具体情况 -r 递归复制整个目录 (1) 复制文件： 命令格式： scp local_file remote_username@remote_ip:remote_folder 或者 scp local_file remote_username@remote_ip:remote_file 或者 scp local_file remote_ip:remote_folder 或者 scp local_file remote_ip:remote_file 第1,2个指定了用户名，命令执行后需要输入用户密码，第1个仅指定了远程的目录，文件名字不变，第2个指定了文件名 第3,4个没有指定用户名，命令执行后需要输入用户名和密码，第3个仅指定了远程的目录，文件名字不变，第4个指定了文件名 (2) 复制目录： 命令格式： scp -r local_folder remote_username@remote_ip:remote_folder 或者 scp -r local_folder remote_ip:remote_folder 第1个指定了用户名，命令执行后需要输入用户密码； 第2个没有指定用户名，命令执行后需要输入用户名和密码； eg: 从 本地 复制到 远程 scp /home/daisy/full.tar.gz <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#55;&#x32;&#x2e;&#x31;&#57;&#x2e;&#x32;&#46;&#55;&#x35;">&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#55;&#x32;&#x2e;&#x31;&#57;&#x2e;&#x32;&#46;&#55;&#x35;</a>:/home/root 从 远程 复制到 本地 scp root@/172.19.2.75:/home/root/full.tar.gz /home/daisy/full.tar.gz</p>
 <p>5、rm [选项] 文件 | 删除文件 -r 删除文件夹 -f 删除不提示 -i 删除提示 -v 详细显示进行步骤</p>
 <p>6、touch [选项] 文件 | 创建空文件或更新文件时间 -a 只修改存取时间 -m 值修改变动时间 -r eg:touch -r a b ,使b的时间和a相同 -t 指定特定的时间 eg:touch -t 201211142234.50 log.log -t time [[CC]YY]MMDDhhmm[.SS],C:年前两位</p>
 <p>7、pwd 查看当前所在路径</p>
