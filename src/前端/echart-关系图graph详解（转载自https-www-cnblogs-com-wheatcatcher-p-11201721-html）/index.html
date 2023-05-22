@@ -1,0 +1,2815 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html） · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 4.0.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-hints/plugin-hints.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../echart-graph动态添加数据/" />
+    
+    
+    <link rel="prev" href="../easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    安全
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../安全/连接多层内网redis/">
+            
+                <a href="../../安全/连接多层内网redis/">
+            
+                    
+                    连接多层内网redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../安全/漏洞挖掘-渗透测试工具库/">
+            
+                <a href="../../安全/漏洞挖掘-渗透测试工具库/">
+            
+                    
+                    漏洞挖掘 | 渗透测试工具库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../安全/免费ddos攻击测试工具/">
+            
+                <a href="../../安全/免费ddos攻击测试工具/">
+            
+                    
+                    免费DDOS攻击测试工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../安全/内网漫步之如何调戏妹纸/">
+            
+                <a href="../../安全/内网漫步之如何调戏妹纸/">
+            
+                    
+                    内网漫步之如何调戏妹纸
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../安全/渗透测试笔记/">
+            
+                <a href="../../安全/渗透测试笔记/">
+            
+                    
+                    渗透测试笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../安全/渗透测试的一般步骤/">
+            
+                <a href="../../安全/渗透测试的一般步骤/">
+            
+                    
+                    渗透测试的一般步骤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../安全/十大渗透测试工具/">
+            
+                <a href="../../安全/十大渗透测试工具/">
+            
+                    
+                    十大渗透测试工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../安全/实战web打点到内网漫游/">
+            
+                <a href="../../安全/实战web打点到内网漫游/">
+            
+                    
+                    实战web打点到内网漫游
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../../安全/使用钟馗之眼进行信息收集/">
+            
+                <a href="../../安全/使用钟馗之眼进行信息收集/">
+            
+                    
+                    使用钟馗之眼进行信息收集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../../安全/apache-druid任意文件读取漏洞（cve-2021-36749）/">
+            
+                <a href="../../安全/apache-druid任意文件读取漏洞（cve-2021-36749）/">
+            
+                    
+                    Apache Druid任意文件读取漏洞（CVE-2021-36749）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="../../安全/burp简单破解后台账号密码/">
+            
+                <a href="../../安全/burp简单破解后台账号密码/">
+            
+                    
+                    burp简单破解后台账号密码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="../../安全/ctf靶场记录/">
+            
+                <a href="../../安全/ctf靶场记录/">
+            
+                    
+                    CTF靶场记录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="../../安全/htb-can-you-encrypt-fast-enough/">
+            
+                <a href="../../安全/htb-can-you-encrypt-fast-enough/">
+            
+                    
+                    HTB Can You Encrypt Fast Enough
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="../../安全/htb-passage教程/">
+            
+                <a href="../../安全/htb-passage教程/">
+            
+                    
+                    HTB Passage教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="../../安全/kali-linux-安装google浏览器之后不能打开的问题/">
+            
+                <a href="../../安全/kali-linux-安装google浏览器之后不能打开的问题/">
+            
+                    
+                    kali linux 安装google浏览器之后不能打开的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="../../安全/kali安装谷歌拼音输入法/">
+            
+                <a href="../../安全/kali安装谷歌拼音输入法/">
+            
+                    
+                    kali安装谷歌拼音输入法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.17" data-path="../../安全/kali更新wpscan过慢/">
+            
+                <a href="../../安全/kali更新wpscan过慢/">
+            
+                    
+                    kali更新wpscan过慢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.18" data-path="../../安全/kalilinux/">
+            
+                <a href="../../安全/kalilinux/">
+            
+                    
+                    Kali Linux
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.19" data-path="../../安全/log4j2漏洞复现/">
+            
+                <a href="../../安全/log4j2漏洞复现/">
+            
+                    
+                    log4j2漏洞复现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.20" data-path="../../安全/rdp漏洞复现/">
+            
+                <a href="../../安全/rdp漏洞复现/">
+            
+                    
+                    rdp漏洞复现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.21" data-path="../../安全/rdp漏洞复现详细版/">
+            
+                <a href="../../安全/rdp漏洞复现详细版/">
+            
+                    
+                    rdp漏洞复现详细版
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.22" data-path="../../安全/sqlmap-命令详解/">
+            
+                <a href="../../安全/sqlmap-命令详解/">
+            
+                    
+                    SQLMAP 命令详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.23" data-path="../../安全/thinkphp6-x任意文件写入漏洞/">
+            
+                <a href="../../安全/thinkphp6-x任意文件写入漏洞/">
+            
+                    
+                    thinkphp6.x任意文件写入漏洞
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.24" data-path="../../安全/xctf-小宁写了个ping功能但没有写wafx老师告诉她这是非常/">
+            
+                <a href="../../安全/xctf-小宁写了个ping功能但没有写wafx老师告诉她这是非常/">
+            
+                    
+                    xctf 小宁写了个ping功能,但没有写WAF,X老师告诉她这是非常危险的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../程序的耦合/">
+            
+                <a href="../../程序的耦合/">
+            
+                    
+                    程序的耦合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../防止表单重复提交/">
+            
+                <a href="../../防止表单重复提交/">
+            
+                    
+                    防止表单重复提交
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../仿黑客帝国/">
+            
+                <a href="../../仿黑客帝国/">
+            
+                    
+                    仿黑客帝国
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    环境搭建
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../环境搭建/安装hexo后报错：bash-hexo-command-not-found/">
+            
+                <a href="../../环境搭建/安装hexo后报错：bash-hexo-command-not-found/">
+            
+                    
+                    安装HEXO后报错：bash: hexo: command not found
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../环境搭建/安装sql时无法连接到local/">
+            
+                <a href="../../环境搭建/安装sql时无法连接到local/">
+            
+                    
+                    安装sql时无法连接到local
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../环境搭建/安装ubuntu踩坑/">
+            
+                <a href="../../环境搭建/安装ubuntu踩坑/">
+            
+                    
+                    安装Ubuntu踩坑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../../环境搭建/使用idea搭建一个简单的springboot项目/">
+            
+                <a href="../../环境搭建/使用idea搭建一个简单的springboot项目/">
+            
+                    
+                    使用IDEA搭建一个简单的SpringBoot项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../../环境搭建/使用vps安装宝塔wordpress搭建个人博客遇到的一系列问题/">
+            
+                <a href="../../环境搭建/使用vps安装宝塔wordpress搭建个人博客遇到的一系列问题/">
+            
+                    
+                    使用vps安装宝塔+wordpress搭建个人博客遇到的一系列问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../../环境搭建/ambiguous-mapping-cannot-map-xxxcontroller-method/">
+            
+                <a href="../../环境搭建/ambiguous-mapping-cannot-map-xxxcontroller-method/">
+            
+                    
+                    Ambiguous mapping. Cannot map 'xxxController' method
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../../环境搭建/cant-connect-to-mysql-server-on-localhost-10061（一个蠢到爆的问题）/">
+            
+                <a href="../../环境搭建/cant-connect-to-mysql-server-on-localhost-10061（一个蠢到爆的问题）/">
+            
+                    
+                    Can't connect to MySQL server on 'localhost' (10061)（一个蠢到爆的问题）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../../环境搭建/docker启动失败job-for-docker-service-failed-because-the-control-process-exited-with-error-code-see-syste-mctl-status-docker-service-and-journalctl-xe-for-details/">
+            
+                <a href="../../环境搭建/docker启动失败job-for-docker-service-failed-because-the-control-process-exited-with-error-code-see-syste-mctl-status-docker-service-and-journalctl-xe-for-details/">
+            
+                    
+                    DOCKER启动失败Job for docker.service failed because the control process exited with error code. See "syste mctl status docker.service" and "journalctl -xe" for details.
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../../环境搭建/error-starting-applicationcontext-to-display-the-conditions-report-re-run-your-application-with-debug-enabled/">
+            
+                <a href="../../环境搭建/error-starting-applicationcontext-to-display-the-conditions-report-re-run-your-application-with-debug-enabled/">
+            
+                    
+                    Error starting ApplicationContext. To display the conditions report re-run your application with ‘debug’ enabled
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="../../环境搭建/failed-to-configure-a-datasource-url-attribute-is-not-specified-and-no-embedded-datasource-could-be-configured/">
+            
+                <a href="../../环境搭建/failed-to-configure-a-datasource-url-attribute-is-not-specified-and-no-embedded-datasource-could-be-configured/">
+            
+                    
+                    Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../../环境搭建/git报错/">
+            
+                <a href="../../环境搭建/git报错/">
+            
+                    
+                    git报错
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="../../环境搭建/git笔记/">
+            
+                <a href="../../环境搭建/git笔记/">
+            
+                    
+                    git笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="../../环境搭建/git使用/">
+            
+                <a href="../../环境搭建/git使用/">
+            
+                    
+                    git使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="../../环境搭建/github搭建个人博客的一系列问题/">
+            
+                <a href="../../环境搭建/github搭建个人博客的一系列问题/">
+            
+                    
+                    GitHub搭建个人博客的一系列问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="../../环境搭建/hexo引用本地图片无法显示/">
+            
+                <a href="../../环境搭建/hexo引用本地图片无法显示/">
+            
+                    
+                    hexo引用本地图片无法显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="../../环境搭建/idea2019-1自动补全/">
+            
+                <a href="../../环境搭建/idea2019-1自动补全/">
+            
+                    
+                    idea2019.1自动补全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="../../环境搭建/idea创建springboot项目报错artifact-contains-illegal-characters/">
+            
+                <a href="../../环境搭建/idea创建springboot项目报错artifact-contains-illegal-characters/">
+            
+                    
+                    IDEA创建SpringBoot项目报错artifact contains illegal characters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="../../环境搭建/idea字体模糊/">
+            
+                <a href="../../环境搭建/idea字体模糊/">
+            
+                    
+                    idea字体模糊
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="../../环境搭建/iis-http-错误-403-14/">
+            
+                <a href="../../环境搭建/iis-http-错误-403-14/">
+            
+                    
+                    IIS  HTTP 错误 403（来自一个被沙雕回答支配一个多小时的可怜孩子的总结）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="../../环境搭建/iis搭建/">
+            
+                <a href="../../环境搭建/iis搭建/">
+            
+                    
+                    IIS搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.21" data-path="../../环境搭建/iis配置教程/">
+            
+                <a href="../../环境搭建/iis配置教程/">
+            
+                    
+                    IIS配置教程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.22" data-path="../../环境搭建/no-suitable-driver-found-for-jdbcmysql-localhost3306-问题/">
+            
+                <a href="../../环境搭建/no-suitable-driver-found-for-jdbcmysql-localhost3306-问题/">
+            
+                    
+                    No suitable driver found for jdbc:mysql://localhost:3306/ 问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.23" data-path="../../环境搭建/npm太慢，更换淘宝镜像/">
+            
+                <a href="../../环境搭建/npm太慢，更换淘宝镜像/">
+            
+                    
+                    npm太慢，更换淘宝镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.24" data-path="../../环境搭建/org-springframework-web-multipart-maxuploadsizeexceededexception-maximum-upload-size-exceeded-nested-exception-is-java-lang-illegalstateexception-org-apache-tomcat-util-http-fileupload-impl-filesiz/">
+            
+                <a href="../../环境搭建/org-springframework-web-multipart-maxuploadsizeexceededexception-maximum-upload-size-exceeded-nested-exception-is-java-lang-illegalstateexception-org-apache-tomcat-util-http-fileupload-impl-filesiz/">
+            
+                    
+                    org.springframework.web.multipart.MaxUploadSizeExceededException: Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.25" data-path="../../环境搭建/sitesever（-net-cms）安装/">
+            
+                <a href="../../环境搭建/sitesever（-net-cms）安装/">
+            
+                    
+                    SiteSever（.NET CMS）安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.26" data-path="../../环境搭建/there-is-already-xxxcontroller-bean-method解决办法/">
+            
+                <a href="../../环境搭建/there-is-already-xxxcontroller-bean-method解决办法/">
+            
+                    
+                    There is already 'xxxController' bean method解决办法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.27" data-path="../../环境搭建/vim编辑器命令/">
+            
+                <a href="../../环境搭建/vim编辑器命令/">
+            
+                    
+                    vim编辑器命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.28" data-path="../../环境搭建/vs各图标含义/">
+            
+                <a href="../../环境搭建/vs各图标含义/">
+            
+                    
+                    vs各图标含义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.29" data-path="../../环境搭建/vs各种图标含义/">
+            
+                <a href="../../环境搭建/vs各种图标含义/">
+            
+                    
+                    vs各种图标含义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.30" data-path="../../环境搭建/windows环境npm无法生效/">
+            
+                <a href="../../环境搭建/windows环境npm无法生效/">
+            
+                    
+                    Windows环境npm无法生效
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    开发
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../开发/编码命名规范/">
+            
+                <a href="../../开发/编码命名规范/">
+            
+                    
+                    编码命名规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../开发/反射/">
+            
+                <a href="../../开发/反射/">
+            
+                    
+                    反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../开发/反射-2/">
+            
+                <a href="../../开发/反射-2/">
+            
+                    
+                    反射-2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../开发/海康摄像头相关/">
+            
+                <a href="../../开发/海康摄像头相关/">
+            
+                    
+                    海康摄像头相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../开发/简单的jdbc工程代码/">
+            
+                <a href="../../开发/简单的jdbc工程代码/">
+            
+                    
+                    简单的jdbc工程代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../开发/简述comparable和comparator两个接口的区别。/">
+            
+                <a href="../../开发/简述comparable和comparator两个接口的区别。/">
+            
+                    
+                    简述Comparable和Comparator两个接口的区别。
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../../开发/解决idea下maven项目创建缓慢下载速度过慢/">
+            
+                <a href="../../开发/解决idea下maven项目创建缓慢下载速度过慢/">
+            
+                    
+                    解决idea下maven项目创建缓慢,下载速度过慢
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../开发/数据库基础/">
+            
+                <a href="../../开发/数据库基础/">
+            
+                    
+                    数据库基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../开发/数据库连接池c3p0/">
+            
+                <a href="../../开发/数据库连接池c3p0/">
+            
+                    
+                    数据库连接池c3p0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../../开发/数据库连接池c3p0-2/">
+            
+                <a href="../../开发/数据库连接池c3p0-2/">
+            
+                    
+                    数据库连接池C3P0-2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="../../开发/数据库三范式/">
+            
+                <a href="../../开发/数据库三范式/">
+            
+                    
+                    数据库三范式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12" data-path="../../开发/数组和集合的区别/">
+            
+                <a href="../../开发/数组和集合的区别/">
+            
+                    
+                    数组和集合的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13" data-path="../../开发/委托简单使用/">
+            
+                <a href="../../开发/委托简单使用/">
+            
+                    
+                    委托简单使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.14" data-path="../../开发/注解/">
+            
+                <a href="../../开发/注解/">
+            
+                    
+                    注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.15" data-path="../../开发/注解-2/">
+            
+                <a href="../../开发/注解-2/">
+            
+                    
+                    注解-2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.16" data-path="../../开发/a-jni-error-has-occurredplease-check-your-installation-and-try-again/">
+            
+                <a href="../../开发/a-jni-error-has-occurredplease-check-your-installation-and-try-again/">
+            
+                    
+                    A JNI Error Has Occurred Please Check Your Installation And Try Again
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.17" data-path="../../开发/abstract与接口的区别/">
+            
+                <a href="../../开发/abstract与接口的区别/">
+            
+                    
+                    abstract与接口的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.18" data-path="../../开发/druid：数据库连接池/">
+            
+                <a href="../../开发/druid：数据库连接池/">
+            
+                    
+                    Druid：数据库连接池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.19" data-path="../../开发/java包及访问控制权限/">
+            
+                <a href="../../开发/java包及访问控制权限/">
+            
+                    
+                    Java包及访问控制权限
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.20" data-path="../../开发/java包装类/">
+            
+                <a href="../../开发/java包装类/">
+            
+                    
+                    java包装类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.21" data-path="../../开发/java多线程/">
+            
+                <a href="../../开发/java多线程/">
+            
+                    
+                    Java多线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.22" data-path="../../开发/java复习笔记/">
+            
+                <a href="../../开发/java复习笔记/">
+            
+                    
+                    Java复习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.23" data-path="../../开发/jdbc/">
+            
+                <a href="../../开发/jdbc/">
+            
+                    
+                    JDBC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.24" data-path="../../开发/junit单元测试/">
+            
+                <a href="../../开发/junit单元测试/">
+            
+                    
+                    JUnit单元测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.25" data-path="../../开发/maven依赖传递性/">
+            
+                <a href="../../开发/maven依赖传递性/">
+            
+                    
+                    maven依赖传递性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.26" data-path="../../开发/maven中的groupid和artifact-id/">
+            
+                <a href="../../开发/maven中的groupid和artifact-id/">
+            
+                    
+                    Maven中的GroupId和Artifact Id
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.27" data-path="../../开发/mybatis环境搭建/">
+            
+                <a href="../../开发/mybatis环境搭建/">
+            
+                    
+                    MyBatis环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.28" data-path="../../开发/myeclipse自动补全/">
+            
+                <a href="../../开发/myeclipse自动补全/">
+            
+                    
+                    MyEclipse自动补全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.29" data-path="../../开发/net实现调用cmd命令/">
+            
+                <a href="../../开发/net实现调用cmd命令/">
+            
+                    
+                    .net实现调用cmd命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.30" data-path="../../开发/singleton单例/">
+            
+                <a href="../../开发/singleton单例/">
+            
+                    
+                    singleton单例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.31" data-path="../../开发/spring笔记/">
+            
+                <a href="../../开发/spring笔记/">
+            
+                    
+                    Spring笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.32" data-path="../../开发/springboot/">
+            
+                <a href="../../开发/springboot/">
+            
+                    
+                    Spring Boot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.33" data-path="../../开发/springboot学习-01springboot简介及核心功能/">
+            
+                <a href="../../开发/springboot学习-01springboot简介及核心功能/">
+            
+                    
+                    springboot学习-01springboot简介及核心功能
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.34" data-path="../../开发/sql给字段循环赋随机值/">
+            
+                <a href="../../开发/sql给字段循环赋随机值/">
+            
+                    
+                    sql给字段循环赋随机值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.35" data-path="../../开发/sql自定义函数传参去掉一个最高分一个最低分/">
+            
+                <a href="../../开发/sql自定义函数传参去掉一个最高分一个最低分/">
+            
+                    
+                    sql自定义函数传参去掉一个最高分一个最低分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.36" data-path="../../开发/volatile/">
+            
+                <a href="../../开发/volatile/">
+            
+                    
+                    Volatile
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    前端
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../30类css选择器/">
+            
+                <a href="../30类css选择器/">
+            
+                    
+                    30类css选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../定位/">
+            
+                <a href="../定位/">
+            
+                    
+                    定位
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../浏览器存储（cookie、localstorage、sessionstorage）/">
+            
+                <a href="../浏览器存储（cookie、localstorage、sessionstorage）/">
+            
+                    
+                    浏览器存储（cookie、localStorage、sessionStorage）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../轮播图（使用jq插件）/">
+            
+                <a href="../轮播图（使用jq插件）/">
+            
+                    
+                    轮播图（使用jq插件）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../前端编解码js/">
+            
+                <a href="../前端编解码js/">
+            
+                    
+                    前端编解码js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../前端复习笔记/">
+            
+                <a href="../前端复习笔记/">
+            
+                    
+                    前端复习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../网站全灰色的办法/">
+            
+                <a href="../网站全灰色的办法/">
+            
+                    
+                    网站全灰色的办法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../一个自己写的网页计算器/">
+            
+                <a href="../一个自己写的网页计算器/">
+            
+                    
+                    一个自己写的网页计算器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../css实现，一颗剧烈跳动的心/">
+            
+                <a href="../css实现，一颗剧烈跳动的心/">
+            
+                    
+                    CSS实现，一颗剧烈跳动的心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/">
+            
+                <a href="../easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/">
+            
+                    
+                    EasyExcel 导入数据出错The index of 'xx' and 'xx' must be inconsistent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.11" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="../echart-graph动态添加数据/">
+            
+                <a href="../echart-graph动态添加数据/">
+            
+                    
+                    echart graph动态添加数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="../echart的简单使用/">
+            
+                <a href="../echart的简单使用/">
+            
+                    
+                    echart的简单使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="../jquery-事件/">
+            
+                <a href="../jquery-事件/">
+            
+                    
+                    jQuery 事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.15" data-path="../jquery-效果-淡入/">
+            
+                <a href="../jquery-效果-淡入/">
+            
+                    
+                    jQuery 效果 - 淡入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.16" data-path="../jquery-效果-滑动/">
+            
+                <a href="../jquery-效果-滑动/">
+            
+                    
+                    jQuery 效果 - 滑动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.17" data-path="../jquery-效果-隐藏和显示/">
+            
+                <a href="../jquery-效果-隐藏和显示/">
+            
+                    
+                    jQuery 效果- 隐藏和显示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.18" data-path="../jQuery定义及引用方案/">
+            
+                <a href="../jQuery定义及引用方案/">
+            
+                    
+                    jQuery定义及引用方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.19" data-path="../jquery选择器/">
+            
+                <a href="../jquery选择器/">
+            
+                    
+                    jQuery选择器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.20" data-path="../jquery语法/">
+            
+                <a href="../jquery语法/">
+            
+                    
+                    jQuery语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.21" data-path="../js-数组去空值死值/">
+            
+                <a href="../js-数组去空值死值/">
+            
+                    
+                    js 数组去空值死值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.22" data-path="../js控制网站皮肤/">
+            
+                <a href="../js控制网站皮肤/">
+            
+                    
+                    js控制网站皮肤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.23" data-path="../js原生代码实现漂浮广告/">
+            
+                <a href="../js原生代码实现漂浮广告/">
+            
+                    
+                    js原生代码实现漂浮广告
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.24" data-path="../json-ajax与jsonp/">
+            
+                <a href="../json-ajax与jsonp/">
+            
+                    
+                    json ajax与jsonp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.25" data-path="../laydate-日期插件弹出闪退和多次闪退问题解决/">
+            
+                <a href="../laydate-日期插件弹出闪退和多次闪退问题解决/">
+            
+                    
+                    laydate 日期插件弹出闪退和多次闪退问题解决
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.26" data-path="../layui-laydate时间控件/">
+            
+                <a href="../layui-laydate时间控件/">
+            
+                    
+                    layui.laydate时间控件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.27" data-path="../layui非模块化用法/">
+            
+                <a href="../layui非模块化用法/">
+            
+                    
+                    LayUI非模块化用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.28" data-path="../layui模块化的用法/">
+            
+                <a href="../layui模块化的用法/">
+            
+                    
+                    LayUI模块化的用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.29" data-path="../layui全局配置及定义模块/">
+            
+                <a href="../layui全局配置及定义模块/">
+            
+                    
+                    layUI全局配置及定义模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.30" data-path="../videojs实现web播放器播放hls/">
+            
+                <a href="../videojs实现web播放器播放hls/">
+            
+                    
+                    videojs实现web播放器播放hls
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.31" data-path="../vue-warn-error-in-created-hook-typeerror-handler-call-is-not-a-function/">
+            
+                <a href="../vue-warn-error-in-created-hook-typeerror-handler-call-is-not-a-function/">
+            
+                    
+                    [Vue warn]: Error in created hook: "TypeError: handler.call is not a function"
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.32" data-path="../vue-warn-invalid-prop-type-check-failed-for-prop-min-expected-number-with-value-0-got-string/">
+            
+                <a href="../vue-warn-invalid-prop-type-check-failed-for-prop-min-expected-number-with-value-0-got-string/">
+            
+                    
+                    vue-warn-invalid-prop-type-check-failed-for-prop-min-expected-number-with-value-0-got-string
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    杂七杂八
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../杂七杂八/表白网页/">
+            
+                <a href="../../杂七杂八/表白网页/">
+            
+                    
+                    表白网页
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../杂七杂八/关于/">
+            
+                <a href="../../杂七杂八/关于/">
+            
+                    
+                    关于
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../杂七杂八/三行情书/">
+            
+                <a href="../../杂七杂八/三行情书/">
+            
+                    
+                    三行情书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../杂七杂八/未来一段时间的计划/">
+            
+                <a href="../../杂七杂八/未来一段时间的计划/">
+            
+                    
+                    未来一段时间的计划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../../杂七杂八/qt的第一篇博客/">
+            
+                <a href="../../杂七杂八/qt的第一篇博客/">
+            
+                    
+                    QT的第一篇博客
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    C
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../c/1-线性表/">
+            
+                <a href="../../c/1-线性表/">
+            
+                    
+                    1.线性表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../c/1-c的基本语法/">
+            
+                <a href="../../c/1-c的基本语法/">
+            
+                    
+                    1.C#的基本语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../../c/2-树和二叉树/">
+            
+                <a href="../../c/2-树和二叉树/">
+            
+                    
+                    2.树和二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../../c/2-c变量/">
+            
+                <a href="../../c/2-c变量/">
+            
+                    
+                    2.C#变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../../c/3-c运算符/">
+            
+                <a href="../../c/3-c运算符/">
+            
+                    
+                    3.C#运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../../c/4-名称空间/">
+            
+                <a href="../../c/4-名称空间/">
+            
+                    
+                    4.名称空间
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../../c/c流程控制/">
+            
+                <a href="../../c/c流程控制/">
+            
+                    
+                    C#流程控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    linux运维
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../linux运维/马哥运维笔记/">
+            
+                <a href="../../linux运维/马哥运维笔记/">
+            
+                    
+                    马哥运维笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../linux运维/docker源/">
+            
+                <a href="../../linux运维/docker源/">
+            
+                    
+                    docker源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../linux运维/linux-运维常用命令/">
+            
+                <a href="../../linux运维/linux-运维常用命令/">
+            
+                    
+                    Linux 运维常用命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../linux运维/linux笔记/">
+            
+                <a href="../../linux运维/linux笔记/">
+            
+                    
+                    Linux笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">VueEcharts</span> <span class="hljs-attr">:options</span>=<span class="hljs-string">&quot;options&quot;</span> <span class="hljs-attr">auto-resize</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  data () {
+    <span class="hljs-keyword">const</span> title = {
+      <span class="hljs-comment">// show: true,                                 //是否显示</span>
+      <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;画布关系图&quot;</span>,                             <span class="hljs-comment">//大标题</span>
+      <span class="hljs-attr">subtext</span>: <span class="hljs-string">&quot;图形可拖动、缩放&quot;</span>,                          <span class="hljs-comment">//小标题</span>
+      <span class="hljs-comment">// sublink: &quot;http://www.baidu.com&quot;,          //小标题链接</span>
+      <span class="hljs-comment">// target: &quot;blank&quot;,                            //&apos;self&apos; 当前窗口打开，&apos;blank&apos; 新窗口打开</span>
+      <span class="hljs-comment">// subtarget: &quot;blank&quot;,                        //小标题打开链接的窗口</span>
+      <span class="hljs-comment">// textAlign: &quot;center&quot;,                       //文本水平对齐</span>
+      <span class="hljs-comment">// textBaseline: &quot;top&quot;,                       //文本垂直对齐</span>
+      <span class="hljs-comment">// textStyle: mytextStyle,                     //标题样式</span>
+      <span class="hljs-comment">// subtextStyle: mytextStyle,                 //小标题样式</span>
+      <span class="hljs-comment">// padding: 5,                                  //标题内边距 5  [5, 10]  [5,10,5,10]</span>
+      <span class="hljs-comment">// itemGap: 10,                                 //大小标题间距</span>
+      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span>
+      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span>
+      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+      <span class="hljs-comment">// right: &quot;auto&quot;,                               //组件离容器右侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span>
+      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                         //边框颜色</span>
+      <span class="hljs-comment">// borderWidth: 0,                               //边框线宽</span>
+      <span class="hljs-comment">// shadowColor: &quot;red&quot;,                          //阴影颜色</span>
+      <span class="hljs-comment">// shadowOffsetX: 0,                            //阴影水平方向上的偏移距离</span>
+      <span class="hljs-comment">// shadowOffsetY: 0,                            //阴影垂直方向上的偏移距离</span>
+      <span class="hljs-comment">// shadowBlur: 10,                               //阴影的模糊大小</span>
+    };
+    <span class="hljs-keyword">const</span> tooltip = {                             <span class="hljs-comment">//提示框组件</span>
+      <span class="hljs-attr">trigger</span>: <span class="hljs-string">&apos;item&apos;</span>,                            <span class="hljs-comment">//触发类型,&apos;item&apos;数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。 &apos;axis&apos;坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。</span>
+      <span class="hljs-comment">// triggerOn: &quot;mousemove&quot;,                      //提示框触发的条件,&apos;mousemove&apos;鼠标移动时触发。&apos;click&apos;鼠标点击时触发。&apos;mousemove|click&apos;同时鼠标移动和点击时触发。&apos;none&apos;不在 &apos;mousemove&apos; 或 &apos;click&apos; 时触发</span>
+      <span class="hljs-comment">// showContent: true,                           //是否显示提示框浮层</span>
+      <span class="hljs-comment">// alwaysShowContent: true,                     //是否永远显示提示框内容</span>
+      <span class="hljs-comment">// showDelay: 0,                                  //浮层显示的延迟，单位为 ms</span>
+      <span class="hljs-comment">// hideDelay: 100,                                //浮层隐藏的延迟，单位为 ms</span>
+      <span class="hljs-comment">// enterable: false,                             //鼠标是否可进入提示框浮层中</span>
+      <span class="hljs-comment">// confine: false,                               //是否将 tooltip 框限制在图表的区域内</span>
+      <span class="hljs-comment">// transitionDuration: 0.4,                      //提示框浮层的移动动画过渡时间，单位是 s,设置为 0 的时候会紧跟着鼠标移动</span>
+      <span class="hljs-comment">// position: [&apos;50%&apos;, &apos;50%&apos;],                    //提示框浮层的位置，默认不设置时位置会跟随鼠标的位置,[10, 10],回掉函数，inside鼠标所在图形的内部中心位置，top、left、bottom、right鼠标所在图形上侧，左侧，下侧，右侧，</span>
+      <span class="hljs-attr">formatter</span>: <span class="hljs-string">&quot;{b}&quot;</span>,                          <span class="hljs-comment">//提示框浮层内容格式器，支持字符串模板和回调函数两种形式,模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等&lt;br /&gt;{b1}: {c1}</span>
+      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span>
+      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                        //边框颜色</span>
+      <span class="hljs-comment">// borderWidth: 0,                              //边框线宽</span>
+      <span class="hljs-comment">// padding: 5,                                  //图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span>
+      <span class="hljs-comment">// textStyle: mytextStyle,                     //文本样式</span>
+    };
+    <span class="hljs-keyword">const</span> toolbox = {
+      <span class="hljs-comment">// show: true,                                 //是否显示工具栏组件</span>
+      <span class="hljs-attr">orient</span>: <span class="hljs-string">&quot;horizontal&quot;</span>,                        <span class="hljs-comment">//工具栏 icon 的布局朝向&apos;horizontal&apos; &apos;vertical&apos;</span>
+      <span class="hljs-comment">// itemSize: 15,                                 //工具栏 icon 的大小</span>
+      <span class="hljs-comment">// itemGap: 10,                                  //工具栏 icon 每项之间的间隔</span>
+      <span class="hljs-comment">// showTitle: true,                             //是否在鼠标 hover 的时候显示每个工具 icon 的标题</span>
+      <span class="hljs-attr">feature</span>: {
+        <span class="hljs-attr">mark</span>: {                                 <span class="hljs-comment">// &apos;辅助线开关&apos;</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>
+        },
+        <span class="hljs-attr">dataView</span>: {                            <span class="hljs-comment">//数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span>
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;数据视图&quot;</span>,
+          <span class="hljs-attr">readOnly</span>: <span class="hljs-literal">false</span>,                    <span class="hljs-comment">//是否不可编辑（只读）</span>
+          <span class="hljs-attr">lang</span>: [<span class="hljs-string">&apos;数据视图&apos;</span>, <span class="hljs-string">&apos;关闭&apos;</span>, <span class="hljs-string">&apos;刷新&apos;</span>],  <span class="hljs-comment">//数据视图上有三个话术，默认是[&apos;数据视图&apos;, &apos;关闭&apos;, &apos;刷新&apos;]</span>
+          <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;#fff&quot;</span>,             <span class="hljs-comment">//数据视图浮层背景色。</span>
+          <span class="hljs-attr">textareaColor</span>: <span class="hljs-string">&quot;#fff&quot;</span>,               <span class="hljs-comment">//数据视图浮层文本输入区背景色</span>
+          <span class="hljs-attr">textareaBorderColor</span>: <span class="hljs-string">&quot;#333&quot;</span>,         <span class="hljs-comment">//数据视图浮层文本输入区边框颜色</span>
+          <span class="hljs-attr">textColor</span>: <span class="hljs-string">&quot;#000&quot;</span>,                    <span class="hljs-comment">//文本颜色。</span>
+          <span class="hljs-attr">buttonColor</span>: <span class="hljs-string">&quot;#c23531&quot;</span>,              <span class="hljs-comment">//按钮颜色。</span>
+          <span class="hljs-attr">buttonTextColor</span>: <span class="hljs-string">&quot;#fff&quot;</span>,             <span class="hljs-comment">//按钮文本颜色。</span>
+        },
+        <span class="hljs-attr">magicType</span>: {                            <span class="hljs-comment">//动态类型切换</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;切换&quot;</span>,                       <span class="hljs-comment">//各个类型的标题文本，可以分别配置。</span>
+          <span class="hljs-attr">type</span>: [<span class="hljs-string">&apos;line&apos;</span>, <span class="hljs-string">&apos;bar&apos;</span>],              <span class="hljs-comment">//启用的动态类型，包括&apos;line&apos;（切换为折线图）, &apos;bar&apos;（切换为柱状图）, &apos;stack&apos;（切换为堆叠模式）, &apos;tiled&apos;（切换为平铺模式）</span>
+        },
+        <span class="hljs-attr">restore</span>: {                             <span class="hljs-comment">//配置项还原。</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span>
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;还原&quot;</span>,
+        },
+        <span class="hljs-attr">saveAsImage</span>: {                         <span class="hljs-comment">//保存为图片。</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span>
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;png&quot;</span>,                         <span class="hljs-comment">//保存的图片格式。支持 &apos;png&apos; 和 &apos;jpeg&apos;。</span>
+          <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;pic1&quot;</span>,                        <span class="hljs-comment">//保存的文件名称，默认使用 title.text 作为名称</span>
+          <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;#ffffff&quot;</span>,        <span class="hljs-comment">//保存的图片背景色，默认使用 backgroundColor，如果backgroundColor不存在的话会取白色</span>
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;保存为图片&quot;</span>,
+          <span class="hljs-attr">pixelRatio</span>: <span class="hljs-number">1</span>                        <span class="hljs-comment">//保存图片的分辨率比例，默认跟容器相同大小，如果需要保存更高分辨率的，可以设置为大于 1 的值，例如 2</span>
+        },
+        <span class="hljs-attr">dataZoom</span>: {                             <span class="hljs-comment">//数据区域缩放。目前只支持直角坐标系的缩放</span>
+          <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//是否显示该工具。</span>
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;缩放&quot;</span>,                       <span class="hljs-comment">//缩放和还原的标题文本</span>
+          <span class="hljs-attr">xAxisIndex</span>: <span class="hljs-number">0</span>,                       <span class="hljs-comment">//指定哪些 xAxis 被控制。如果缺省则控制所有的x轴。如果设置为 false 则不控制任何x轴。如果设置成 3 则控制 axisIndex 为 3 的x轴。如果设置为 [0, 3] 则控制 axisIndex 为 0 和 3 的x轴</span>
+          <span class="hljs-attr">yAxisIndex</span>: <span class="hljs-literal">false</span>,                   <span class="hljs-comment">//指定哪些 yAxis 被控制。如果缺省则控制所有的y轴。如果设置为 false 则不控制任何y轴。如果设置成 3 则控制 axisIndex 为 3 的y轴。如果设置为 [0, 3] 则控制 axisIndex 为 0 和 3 的y轴</span>
+        },
+      },
+      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span>
+      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span>
+      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+      <span class="hljs-attr">right</span>: <span class="hljs-string">&quot;2%&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// width: &quot;auto&quot;,                               //图例宽度</span>
+      <span class="hljs-comment">// height: &quot;auto&quot;,                              //图例高度</span>
+    };
+    <span class="hljs-keyword">const</span> legend = {
+      <span class="hljs-comment">// show: true,                                  //是否显示</span>
+      <span class="hljs-comment">// zlevel: 0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span>
+      <span class="hljs-comment">// z: 2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖</span>
+      <span class="hljs-comment">// left: &quot;center&quot;,                              //组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+      <span class="hljs-comment">// top: &quot;top&quot;,                                   //组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+      <span class="hljs-comment">// right: &quot;auto&quot;,                               //组件离容器右侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// bottom: &quot;auto&quot;,                              //组件离容器下侧的距离,&apos;20%&apos;</span>
+      <span class="hljs-comment">// width: &quot;auto&quot;,                               //图例宽度</span>
+      <span class="hljs-comment">// height: &quot;auto&quot;,                              //图例高度</span>
+      <span class="hljs-comment">// orient: &quot;horizontal&quot;,                        //图例排列方向</span>
+      <span class="hljs-comment">// align: &quot;auto&quot;,                               //图例标记和文本的对齐,left,right</span>
+      <span class="hljs-comment">// padding: 5,                                   //图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span>
+      <span class="hljs-comment">// itemGap: 10,                                  //图例每项之间的间隔</span>
+      <span class="hljs-comment">// itemWidth: 25,                               //图例标记的图形宽度</span>
+      <span class="hljs-comment">// itemHeight: 14,                              //图例标记的图形高度</span>
+      <span class="hljs-comment">// formatter: function (name) {                 //用来格式化图例文本，支持字符串模板和回调函数两种形式。模板变量为图例名称 {name}</span>
+      <span class="hljs-comment">//   return &apos;Legend &apos; + name;</span>
+      <span class="hljs-comment">// },</span>
+      <span class="hljs-comment">// selectedMode: &quot;single&quot;,                    //图例选择的模式,true开启,false关闭,single单选,multiple多选</span>
+      <span class="hljs-comment">// inactiveColor: &quot;#ccc&quot;,                     //图例关闭时的颜色</span>
+      <span class="hljs-comment">// textStyle: mytextStyle,                    //文本样式</span>
+      <span class="hljs-attr">data</span>: [<span class="hljs-string">&apos;当前特征&apos;</span>, <span class="hljs-string">&apos;个人特征&apos;</span>, <span class="hljs-string">&apos;公共特征&apos;</span>, <span class="hljs-string">&apos;特征画布&apos;</span>],          <span class="hljs-comment">//series中根据名称区分</span>
+      <span class="hljs-comment">// backgroundColor: &quot;transparent&quot;,            //标题背景色</span>
+      <span class="hljs-comment">// borderColor: &quot;#ccc&quot;,                         //边框颜色</span>
+      <span class="hljs-comment">// borderWidth: 0,                               //边框线宽</span>
+      <span class="hljs-comment">// shadowColor: &quot;red&quot;,                          //阴影颜色</span>
+      <span class="hljs-comment">// shadowOffsetX: 0,                            //阴影水平方向上的偏移距离</span>
+      <span class="hljs-comment">// shadowOffsetY: 0,                            //阴影垂直方向上的偏移距离</span>
+      <span class="hljs-comment">// shadowBlur: 10,                               //阴影的模糊大小</span>
+    };
+    <span class="hljs-keyword">const</span> dataZoom = [                                      <span class="hljs-comment">//区域缩放</span>
+      {
+        <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;dataZoomX&apos;</span>,
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                              <span class="hljs-comment">//是否显示 组件。如果设置为 false，不会显示，但是数据过滤的功能还存在。</span>
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;rgba(47,69,84,0)&quot;</span>,  <span class="hljs-comment">//组件的背景颜色</span>
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;slider&apos;</span>,                         <span class="hljs-comment">//slider表示有滑动块的，inside表示内置的</span>
+        <span class="hljs-attr">dataBackground</span>: {                        <span class="hljs-comment">//数据阴影的样式。</span>
+          <span class="hljs-attr">lineStyle</span>: mylineStyle,              <span class="hljs-comment">//阴影的线条样式</span>
+          <span class="hljs-attr">areaStyle</span>: myareaStyle,              <span class="hljs-comment">//阴影的填充样式</span>
+        },
+        <span class="hljs-attr">fillerColor</span>: <span class="hljs-string">&quot;rgba(167,183,204,0.4)&quot;</span>,  <span class="hljs-comment">//选中范围的填充颜色。</span>
+        <span class="hljs-attr">borderColor</span>: <span class="hljs-string">&quot;#ddd&quot;</span>,                     <span class="hljs-comment">//边框颜色。</span>
+        <span class="hljs-attr">filterMode</span>: <span class="hljs-string">&apos;filter&apos;</span>,                   <span class="hljs-comment">//&apos;filter&apos;：当前数据窗口外的数据，被 过滤掉。即 会 影响其他轴的数据范围。每个数据项，只要有一个维度在数据窗口外，整个数据项就会被过滤掉。</span>
+        <span class="hljs-comment">//&apos;weakFilter&apos;：当前数据窗口外的数据，被 过滤掉。即 会 影响其他轴的数据范围。每个数据项，只有当全部维度都在数据窗口同侧外部，整个数据项才会被过滤掉。</span>
+        <span class="hljs-comment">//&apos;empty&apos;：当前数据窗口外的数据，被 设置为空。即 不会 影响其他轴的数据范围。</span>
+        <span class="hljs-comment">//&apos;none&apos;: 不过滤数据，只改变数轴范围。</span>
+        <span class="hljs-attr">xAxisIndex</span>: <span class="hljs-number">0</span>,                            <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 x轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">yAxisIndex</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                        <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 y轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">radiusAxisIndex</span>: <span class="hljs-number">3</span>,                       <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 radius 轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">angleAxisIndex</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                    <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 angle 轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">start</span>: <span class="hljs-number">30</span>,                                <span class="hljs-comment">//数据窗口范围的起始百分比,表示30%</span>
+        <span class="hljs-attr">end</span>: <span class="hljs-number">70</span>,                                  <span class="hljs-comment">//数据窗口范围的结束百分比,表示70%</span>
+        <span class="hljs-attr">startValue</span>: <span class="hljs-number">10</span>,                           <span class="hljs-comment">//数据窗口范围的起始数值</span>
+        <span class="hljs-attr">endValue</span>: <span class="hljs-number">100</span>,                            <span class="hljs-comment">//数据窗口范围的结束数值。</span>
+        <span class="hljs-attr">orient</span>: <span class="hljs-string">&quot;horizontal&quot;</span>,                    <span class="hljs-comment">//布局方式是横还是竖。不仅是布局方式，对于直角坐标系而言，也决定了，缺省情况控制横向数轴还是纵向数轴。&apos;horizontal&apos;：水平。&apos;vertical&apos;：竖直。</span>
+        <span class="hljs-attr">zoomLock</span>: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否锁定选择区域（或叫做数据窗口）的大小。如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。</span>
+        <span class="hljs-attr">throttle</span>: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//设置触发视图刷新的频率。单位为毫秒（ms）。</span>
+        <span class="hljs-attr">zoomOnMouseWheel</span>: <span class="hljs-literal">true</span>,                  <span class="hljs-comment">//如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。&apos;shift&apos;：表示按住 shift 和鼠标滚轮能触发缩放。&apos;ctrl&apos;：表示按住 ctrl 和鼠标滚轮能触发缩放。&apos;alt&apos;：表示按住 alt 和鼠标滚轮能触发缩放。</span>
+        <span class="hljs-attr">moveOnMouseMove</span>: <span class="hljs-literal">true</span>,                   <span class="hljs-comment">//如何触发数据窗口平移。true：表示不按任何功能键，鼠标移动能触发数据窗口平移。false：表示鼠标滚轮不能触发缩放。&apos;shift&apos;：表示按住 shift 和鼠标移动能触发数据窗口平移。&apos;ctrl&apos;：表示按住 ctrl 和鼠标移动能触发数据窗口平移。&apos;alt&apos;：表示按住 alt 和鼠标移动能触发数据窗口平移。</span>
+        <span class="hljs-attr">left</span>: <span class="hljs-string">&quot;center&quot;</span>,                           <span class="hljs-comment">//组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">top</span>: <span class="hljs-string">&quot;top&quot;</span>,                                <span class="hljs-comment">//组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">right</span>: <span class="hljs-string">&quot;auto&quot;</span>,                             <span class="hljs-comment">//组件离容器右侧的距离,&apos;20%&apos;</span>
+        <span class="hljs-attr">bottom</span>: <span class="hljs-string">&quot;auto&quot;</span>,                            <span class="hljs-comment">//组件离容器下侧的距离,&apos;20%&apos;</span>
+      },
+      {
+        <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;dataZoomY&apos;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;inside&apos;</span>,
+        <span class="hljs-attr">filterMode</span>: <span class="hljs-string">&apos;empty&apos;</span>,
+        <span class="hljs-attr">disabled</span>: <span class="hljs-literal">false</span>,                         <span class="hljs-comment">//是否停止组件的功能。</span>
+        <span class="hljs-attr">xAxisIndex</span>: <span class="hljs-number">0</span>,                           <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 x轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">yAxisIndex</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                       <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 y轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">radiusAxisIndex</span>: <span class="hljs-number">3</span>,                      <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 radius 轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">angleAxisIndex</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>],                   <span class="hljs-comment">//设置 dataZoom-inside 组件控制的 angle 轴,可以用数组表示多个轴</span>
+        <span class="hljs-attr">start</span>: <span class="hljs-number">30</span>,                               <span class="hljs-comment">//数据窗口范围的起始百分比,表示30%</span>
+        <span class="hljs-attr">end</span>: <span class="hljs-number">70</span>,                                  <span class="hljs-comment">//数据窗口范围的结束百分比,表示70%</span>
+        <span class="hljs-attr">startValue</span>: <span class="hljs-number">10</span>,                           <span class="hljs-comment">//数据窗口范围的起始数值</span>
+        <span class="hljs-attr">endValue</span>: <span class="hljs-number">100</span>,                            <span class="hljs-comment">//数据窗口范围的结束数值。</span>
+        <span class="hljs-attr">orient</span>: <span class="hljs-string">&quot;horizontal&quot;</span>,                    <span class="hljs-comment">//布局方式是横还是竖。不仅是布局方式，对于直角坐标系而言，也决定了，缺省情况控制横向数轴还是纵向数轴。&apos;horizontal&apos;：水平。&apos;vertical&apos;：竖直。</span>
+        <span class="hljs-attr">zoomLock</span>: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否锁定选择区域（或叫做数据窗口）的大小。如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。</span>
+        <span class="hljs-attr">throttle</span>: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//设置触发视图刷新的频率。单位为毫秒（ms）。</span>
+        <span class="hljs-attr">zoomOnMouseWheel</span>: <span class="hljs-literal">true</span>,                   <span class="hljs-comment">//如何触发缩放。可选值为：true：表示不按任何功能键，鼠标滚轮能触发缩放。false：表示鼠标滚轮不能触发缩放。&apos;shift&apos;：表示按住 shift 和鼠标滚轮能触发缩放。&apos;ctrl&apos;：表示按住 ctrl 和鼠标滚轮能触发缩放。&apos;alt&apos;：表示按住 alt 和鼠标滚轮能触发缩放。</span>
+        <span class="hljs-attr">moveOnMouseMove</span>: <span class="hljs-literal">true</span>,                    <span class="hljs-comment">//如何触发数据窗口平移。true：表示不按任何功能键，鼠标移动能触发数据窗口平移。false：表示鼠标滚轮不能触发缩放。&apos;shift&apos;：表示按住 shift 和鼠标移动能触发数据窗口平移。&apos;ctrl&apos;：表示按住 ctrl 和鼠标移动能触发数据窗口平移。&apos;alt&apos;：表示按住 alt 和鼠标移动能触发数据窗口平移。</span>
+      }
+    ];
+    <span class="hljs-keyword">const</span> visualMap = [                                     <span class="hljs-comment">//视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素。视觉元素可以是：symbol: 图元的图形类别。symbolSize: 图元的大小。color: 图元的颜色。</span>
+      <span class="hljs-comment">// colorAlpha: 图元的颜色的透明度。opacity: 图元以及其附属物（如文字标签）的透明度。colorLightness: 颜色的明暗度。colorSaturation: 颜色的饱和度。colorHue: 颜色的色调。</span>
+      {
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                              <span class="hljs-comment">//是否显示 visualMap-continuous 组件。如果设置为 false，不会显示，但是数据映射的功能还存在</span>
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;continuous&apos;</span>,                     <span class="hljs-comment">// 定义为连续型 viusalMap</span>
+        <span class="hljs-attr">min</span>: <span class="hljs-number">10</span>,                                  <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最小值</span>
+        <span class="hljs-attr">max</span>: <span class="hljs-number">100</span>,                                 <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最大值</span>
+        <span class="hljs-attr">range</span>: [<span class="hljs-number">15</span>, <span class="hljs-number">40</span>],                          <span class="hljs-comment">//指定手柄对应数值的位置。range 应在 min max 范围内</span>
+        <span class="hljs-attr">calculable</span>: <span class="hljs-literal">true</span>,                        <span class="hljs-comment">//是否显示拖拽用的手柄（手柄能拖拽调整选中范围）</span>
+        <span class="hljs-attr">realtime</span>: <span class="hljs-literal">true</span>,                          <span class="hljs-comment">//拖拽时，是否实时更新</span>
+        <span class="hljs-attr">inverse</span>: <span class="hljs-literal">false</span>,                          <span class="hljs-comment">//是否反转 visualMap 组件</span>
+        <span class="hljs-attr">precision</span>: <span class="hljs-number">0</span>,                            <span class="hljs-comment">//数据展示的小数精度，默认为0，无小数点</span>
+        <span class="hljs-attr">itemWidth</span>: <span class="hljs-number">20</span>,                           <span class="hljs-comment">//图形的宽度，即长条的宽度。</span>
+        <span class="hljs-attr">itemHeight</span>: <span class="hljs-number">140</span>,                         <span class="hljs-comment">//图形的高度，即长条的高度。</span>
+        <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;auto&quot;</span>,                           <span class="hljs-comment">//指定组件中手柄和文字的摆放位置.可选值为：&apos;auto&apos; 自动决定。&apos;left&apos; 手柄和label在右。&apos;right&apos; 手柄和label在左。&apos;top&apos; 手柄和label在下。&apos;bottom&apos; 手柄和label在上。</span>
+        <span class="hljs-attr">text</span>: [<span class="hljs-string">&apos;High&apos;</span>, <span class="hljs-string">&apos;Low&apos;</span>],                   <span class="hljs-comment">//两端的文本</span>
+        <span class="hljs-attr">textGap</span>: <span class="hljs-number">10</span>,                              <span class="hljs-comment">//两端文字主体之间的距离，单位为px</span>
+        <span class="hljs-attr">dimension</span>: <span class="hljs-number">2</span>,                            <span class="hljs-comment">//指定用数据的『哪个维度』，映射到视觉元素上。『数据』即 series.data。 可以把 series.data 理解成一个二维数组,其中每个列是一个维度,默认取 data 中最后一个维度</span>
+        <span class="hljs-attr">seriesIndex</span>: <span class="hljs-number">1</span>,                          <span class="hljs-comment">//指定取哪个系列的数据，即哪个系列的 series.data,默认取所有系列</span>
+        <span class="hljs-attr">hoverLink</span>: <span class="hljs-literal">true</span>,                         <span class="hljs-comment">//鼠标悬浮到 visualMap 组件上时，鼠标位置对应的数值 在 图表中对应的图形元素，会高亮</span>
+        <span class="hljs-attr">inRange</span>: {                               <span class="hljs-comment">//定义 在选中范围中 的视觉元素</span>
+          <span class="hljs-attr">color</span>: [<span class="hljs-string">&apos;#121122&apos;</span>, <span class="hljs-string">&apos;rgba(3,4,5,0.4)&apos;</span>, <span class="hljs-string">&apos;red&apos;</span>],
+          <span class="hljs-attr">symbolSize</span>: [<span class="hljs-number">30</span>, <span class="hljs-number">100</span>]
+        },
+        <span class="hljs-attr">outOfRange</span>: {  <span class="hljs-comment">//定义 在选中范围外 的视觉元素。</span>
+          <span class="hljs-attr">color</span>: [<span class="hljs-string">&apos;#121122&apos;</span>, <span class="hljs-string">&apos;rgba(3,4,5,0.4)&apos;</span>, <span class="hljs-string">&apos;red&apos;</span>],
+          <span class="hljs-attr">symbolSize</span>: [<span class="hljs-number">30</span>, <span class="hljs-number">100</span>]
+        },
+        <span class="hljs-attr">zlevel</span>: <span class="hljs-number">0</span>,                                   <span class="hljs-comment">//所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span>
+        <span class="hljs-attr">z</span>: <span class="hljs-number">2</span>,                                         <span class="hljs-comment">//所属组件的z分层，z值小的图形会被z值大的图形覆盖</span>
+        <span class="hljs-attr">left</span>: <span class="hljs-string">&quot;center&quot;</span>,                              <span class="hljs-comment">//组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">top</span>: <span class="hljs-string">&quot;top&quot;</span>,                                   <span class="hljs-comment">//组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">right</span>: <span class="hljs-string">&quot;auto&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&apos;20%&apos;</span>
+        <span class="hljs-attr">bottom</span>: <span class="hljs-string">&quot;auto&quot;</span>,                              <span class="hljs-comment">//组件离容器下侧的距离,&apos;20%&apos;</span>
+        <span class="hljs-attr">orient</span>: <span class="hljs-string">&quot;vertical&quot;</span>,                         <span class="hljs-comment">//图例排列方向</span>
+        <span class="hljs-attr">padding</span>: <span class="hljs-number">5</span>,                                   <span class="hljs-comment">//图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span>
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;transparent&quot;</span>,            <span class="hljs-comment">//标题背景色</span>
+        <span class="hljs-attr">borderColor</span>: <span class="hljs-string">&quot;#ccc&quot;</span>,                         <span class="hljs-comment">//边框颜色</span>
+        <span class="hljs-attr">borderWidth</span>: <span class="hljs-number">0</span>,                               <span class="hljs-comment">//边框线宽</span>
+        <span class="hljs-attr">textStyle</span>: mytextStyle,                      <span class="hljs-comment">//文本样式</span>
+        <span class="hljs-attr">formatter</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{                 <span class="hljs-comment">//标签的格式化工具。</span>
+          <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;aaaa&apos;</span> + value;                    <span class="hljs-comment">// 范围标签显示内容。</span>
+        }
+      },
+      {
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,                          <span class="hljs-comment">//是否显示 visualMap-continuous 组件。如果设置为 false，不会显示，但是数据映射的功能还存在</span>
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;piecewise&apos;</span>,                  <span class="hljs-comment">// 定义为分段型 visualMap</span>
+        <span class="hljs-attr">splitNumber</span>: <span class="hljs-number">5</span>,                      <span class="hljs-comment">//对于连续型数据，自动平均切分成几段。默认为5段</span>
+        <span class="hljs-attr">pieces</span>: [                           <span class="hljs-comment">//自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式</span>
+          { <span class="hljs-attr">min</span>: <span class="hljs-number">1500</span> },                     <span class="hljs-comment">// 不指定 max，表示 max 为无限大（Infinity）。</span>
+          { <span class="hljs-attr">min</span>: <span class="hljs-number">900</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1500</span> },
+          { <span class="hljs-attr">min</span>: <span class="hljs-number">310</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1000</span> },
+          { <span class="hljs-attr">min</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">300</span> },
+          { <span class="hljs-attr">min</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;10 到 200（自定义label）&apos;</span> },
+          { <span class="hljs-attr">value</span>: <span class="hljs-number">123</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;123（自定义特殊颜色）&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;grey&apos;</span> }, <span class="hljs-comment">// 表示 value 等于 123 的情况。</span>
+          { <span class="hljs-attr">max</span>: <span class="hljs-number">5</span> }                        <span class="hljs-comment">// 不指定 min，表示 min 为无限大（-Infinity）。</span>
+        ],
+        <span class="hljs-attr">categories</span>: [<span class="hljs-string">&apos;严重污染&apos;</span>, <span class="hljs-string">&apos;重度污染&apos;</span>, <span class="hljs-string">&apos;中度污染&apos;</span>, <span class="hljs-string">&apos;轻度污染&apos;</span>, <span class="hljs-string">&apos;良&apos;</span>, <span class="hljs-string">&apos;优&apos;</span>],  <span class="hljs-comment">//用于表示离散型数据（或可以称为类别型数据、枚举型数据）的全集</span>
+        <span class="hljs-attr">min</span>: <span class="hljs-number">10</span>,                             <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最小值</span>
+        <span class="hljs-attr">max</span>: <span class="hljs-number">100</span>,                             <span class="hljs-comment">//指定 visualMapContinuous 组件的允许的最大值</span>
+        <span class="hljs-attr">minOpen</span>: <span class="hljs-literal">true</span>,                       <span class="hljs-comment">//界面上会额外多出一个『&lt; min』的选块</span>
+        <span class="hljs-attr">maxOpen</span>: <span class="hljs-literal">true</span>,                       <span class="hljs-comment">//界面上会额外多出一个『&gt; max』的选块。</span>
+        <span class="hljs-attr">selectedMode</span>: <span class="hljs-string">&quot;multiple&quot;</span>,           <span class="hljs-comment">//选择模式，可以是：&apos;multiple&apos;（多选）。&apos;single&apos;（单选）。</span>
+        <span class="hljs-attr">inverse</span>: <span class="hljs-literal">false</span>,                      <span class="hljs-comment">//是否反转 visualMap 组件</span>
+        <span class="hljs-attr">precision</span>: <span class="hljs-number">0</span>,                        <span class="hljs-comment">//数据展示的小数精度，默认为0，无小数点</span>
+        <span class="hljs-attr">itemWidth</span>: <span class="hljs-number">20</span>,                       <span class="hljs-comment">//图形的宽度，即长条的宽度。</span>
+        <span class="hljs-attr">itemHeight</span>: <span class="hljs-number">140</span>,                     <span class="hljs-comment">//图形的高度，即长条的高度。</span>
+        <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;auto&quot;</span>,                       <span class="hljs-comment">//指定组件中手柄和文字的摆放位置.可选值为：&apos;auto&apos; 自动决定。&apos;left&apos; 手柄和label在右。&apos;right&apos; 手柄和label在左。&apos;top&apos; 手柄和label在下。&apos;bottom&apos; 手柄和label在上。</span>
+        <span class="hljs-attr">text</span>: [<span class="hljs-string">&apos;High&apos;</span>, <span class="hljs-string">&apos;Low&apos;</span>],               <span class="hljs-comment">//两端的文本</span>
+        <span class="hljs-attr">textGap</span>: <span class="hljs-number">10</span>,                          <span class="hljs-comment">//两端文字主体之间的距离，单位为px</span>
+        <span class="hljs-attr">showLabel</span>: <span class="hljs-literal">true</span>,                     <span class="hljs-comment">//是否显示每项的文本标签</span>
+        <span class="hljs-attr">itemGap</span>: <span class="hljs-number">10</span>,                          <span class="hljs-comment">//每两个图元之间的间隔距离，单位为px</span>
+        <span class="hljs-attr">itemSymbol</span>: <span class="hljs-string">&quot;roundRect&quot;</span>,             <span class="hljs-comment">//默认的图形。可选值为： &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+        <span class="hljs-attr">dimension</span>: <span class="hljs-number">2</span>,                          <span class="hljs-comment">//指定用数据的『哪个维度』，映射到视觉元素上。『数据』即 series.data。 可以把 series.data 理解成一个二维数组,其中每个列是一个维度,默认取 data 中最后一个维度</span>
+        <span class="hljs-attr">seriesIndex</span>: <span class="hljs-number">1</span>,                        <span class="hljs-comment">//指定取哪个系列的数据，即哪个系列的 series.data,默认取所有系列</span>
+        <span class="hljs-attr">hoverLink</span>: <span class="hljs-literal">true</span>,                      <span class="hljs-comment">//鼠标悬浮到 visualMap 组件上时，鼠标位置对应的数值 在 图表中对应的图形元素，会高亮</span>
+        <span class="hljs-attr">inRange</span>: {                             <span class="hljs-comment">//定义 在选中范围中 的视觉元素</span>
+          <span class="hljs-attr">color</span>: [<span class="hljs-string">&apos;#121122&apos;</span>, <span class="hljs-string">&apos;rgba(3,4,5,0.4)&apos;</span>, <span class="hljs-string">&apos;red&apos;</span>],
+          <span class="hljs-attr">symbolSize</span>: [<span class="hljs-number">30</span>, <span class="hljs-number">100</span>]
+        },
+        <span class="hljs-attr">outOfRange</span>: {                            <span class="hljs-comment">//定义 在选中范围外 的视觉元素。</span>
+          <span class="hljs-attr">color</span>: [<span class="hljs-string">&apos;#121122&apos;</span>, <span class="hljs-string">&apos;rgba(3,4,5,0.4)&apos;</span>, <span class="hljs-string">&apos;red&apos;</span>],
+          <span class="hljs-attr">symbolSize</span>: [<span class="hljs-number">30</span>, <span class="hljs-number">100</span>]
+        },
+        <span class="hljs-attr">zlevel</span>: <span class="hljs-number">0</span>,                                   <span class="hljs-comment">//所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span>
+        <span class="hljs-attr">z</span>: <span class="hljs-number">2</span>,                                         <span class="hljs-comment">//所属组件的z分层，z值小的图形会被z值大的图形覆盖</span>
+        <span class="hljs-attr">left</span>: <span class="hljs-string">&quot;center&quot;</span>,                              <span class="hljs-comment">//组件离容器左侧的距离,&apos;left&apos;, &apos;center&apos;, &apos;right&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">top</span>: <span class="hljs-string">&quot;top&quot;</span>,                                   <span class="hljs-comment">//组件离容器上侧的距离,&apos;top&apos;, &apos;middle&apos;, &apos;bottom&apos;,&apos;20%&apos;</span>
+        <span class="hljs-attr">right</span>: <span class="hljs-string">&quot;auto&quot;</span>,                               <span class="hljs-comment">//组件离容器右侧的距离,&apos;20%&apos;</span>
+        <span class="hljs-attr">bottom</span>: <span class="hljs-string">&quot;auto&quot;</span>,                              <span class="hljs-comment">//组件离容器下侧的距离,&apos;20%&apos;</span>
+        <span class="hljs-attr">orient</span>: <span class="hljs-string">&quot;vertical&quot;</span>,                        <span class="hljs-comment">//图例排列方向</span>
+        <span class="hljs-attr">padding</span>: <span class="hljs-number">5</span>,                                   <span class="hljs-comment">//图例内边距，单位px  5  [5, 10]  [5,10,5,10]</span>
+        <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;transparent&quot;</span>,            <span class="hljs-comment">//标题背景色</span>
+        <span class="hljs-attr">borderColor</span>: <span class="hljs-string">&quot;#ccc&quot;</span>,                         <span class="hljs-comment">//边框颜色</span>
+        <span class="hljs-attr">borderWidth</span>: <span class="hljs-number">0</span>,                               <span class="hljs-comment">//边框线宽</span>
+        <span class="hljs-attr">textStyle</span>: mytextStyle,                      <span class="hljs-comment">//文本样式</span>
+        <span class="hljs-attr">formatter</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{                <span class="hljs-comment">//标签的格式化工具。</span>
+          <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;aaaa&apos;</span> + value;                   <span class="hljs-comment">// 范围标签显示内容。</span>
+        }
+      }
+    ];
+    <span class="hljs-keyword">const</span> mytextStyle = {
+      <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;#333&quot;</span>,               <span class="hljs-comment">//文字颜色</span>
+      <span class="hljs-attr">fontStyle</span>: <span class="hljs-string">&quot;normal&quot;</span>,         <span class="hljs-comment">//italic斜体  oblique倾斜</span>
+      <span class="hljs-attr">fontWeight</span>: <span class="hljs-string">&quot;normal&quot;</span>,        <span class="hljs-comment">//文字粗细bold   bolder   lighter  100 | 200 | 300 | 400...</span>
+      <span class="hljs-attr">fontFamily</span>: <span class="hljs-string">&quot;sans-serif&quot;</span>,    <span class="hljs-comment">//字体系列</span>
+      <span class="hljs-attr">fontSize</span>: <span class="hljs-number">18</span>,                  <span class="hljs-comment">//字体大小</span>
+    };
+    <span class="hljs-keyword">const</span> mylineStyle = {
+      <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;#333&quot;</span>,               <span class="hljs-comment">//颜色，&apos;rgb(128, 128, 128)&apos;，&apos;rgba(128, 128, 128, 0.5)&apos;，支持线性渐变，径向渐变，纹理填充</span>
+      <span class="hljs-attr">shadowColor</span>: <span class="hljs-string">&quot;red&quot;</span>,          <span class="hljs-comment">//阴影颜色</span>
+      <span class="hljs-attr">shadowOffsetX</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span>
+      <span class="hljs-attr">shadowOffsetY</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离</span>
+      <span class="hljs-attr">shadowBlur</span>: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span>
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;solid&quot;</span>,               <span class="hljs-comment">//坐标轴线线的类型，solid，dashed，dotted</span>
+      <span class="hljs-attr">width</span>: <span class="hljs-number">1</span>,                    <span class="hljs-comment">//坐标轴线线宽</span>
+      <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形</span>
+    };
+    <span class="hljs-keyword">const</span> myareaStyle = {
+      <span class="hljs-attr">color</span>: [<span class="hljs-string">&apos;rgba(250,250,250,0.3)&apos;</span>, <span class="hljs-string">&apos;rgba(200,200,200,0.3)&apos;</span>],<span class="hljs-comment">//分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。</span>
+      <span class="hljs-attr">shadowColor</span>: <span class="hljs-string">&quot;red&quot;</span>,          <span class="hljs-comment">//阴影颜色</span>
+      <span class="hljs-attr">shadowOffsetX</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span>
+      <span class="hljs-attr">shadowOffsetY</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离</span>
+      <span class="hljs-attr">shadowBlur</span>: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span>
+      <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形</span>
+    };
+    <span class="hljs-keyword">const</span> myitemStyle = {
+      <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;blue&quot;</span>,                 <span class="hljs-comment">//颜色</span>
+      <span class="hljs-attr">borderColor</span>: <span class="hljs-string">&quot;#000&quot;</span>,         <span class="hljs-comment">//边框颜色</span>
+      <span class="hljs-attr">borderWidth</span>: <span class="hljs-number">0</span>,              <span class="hljs-comment">//柱条的描边宽度，默认不描边。</span>
+      <span class="hljs-attr">borderType</span>: <span class="hljs-string">&quot;solid&quot;</span>,         <span class="hljs-comment">//柱条的描边类型，默认为实线，支持 &apos;dashed&apos;, &apos;dotted&apos;。</span>
+      <span class="hljs-attr">barBorderRadius</span>: <span class="hljs-number">0</span>,          <span class="hljs-comment">//柱形边框圆角半径，单位px，支持传入数组分别指定柱形4个圆角半径。</span>
+      <span class="hljs-attr">shadowBlur</span>: <span class="hljs-number">10</span>,              <span class="hljs-comment">//图形阴影的模糊大小。</span>
+      <span class="hljs-attr">shadowColor</span>: <span class="hljs-string">&quot;#000&quot;</span>,         <span class="hljs-comment">//阴影颜色</span>
+      <span class="hljs-attr">shadowOffsetX</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影水平方向上的偏移距离。</span>
+      <span class="hljs-attr">shadowOffsetY</span>: <span class="hljs-number">0</span>,            <span class="hljs-comment">//阴影垂直方向上的偏移距离。</span>
+      <span class="hljs-attr">opacity</span>: <span class="hljs-number">1</span>,                  <span class="hljs-comment">//图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。</span>
+    };
+    <span class="hljs-keyword">const</span> mylabel = {
+      <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span>,                  <span class="hljs-comment">//是否显示标签。</span>
+      <span class="hljs-attr">position</span>: <span class="hljs-string">&quot;inside&quot;</span>,          <span class="hljs-comment">//标签的位置。// 绝对的像素值[10, 10],// 相对的百分比[&apos;50%&apos;, &apos;50%&apos;].&apos;top&apos;,&apos;left&apos;,&apos;right&apos;,&apos;bottom&apos;,&apos;inside&apos;,&apos;insideLeft&apos;,&apos;insideRight&apos;,&apos;insideTop&apos;,&apos;insideBottom&apos;,&apos;insideTopLeft&apos;,&apos;insideBottomLeft&apos;,&apos;insideTopRight&apos;,&apos;insideBottomRight&apos;</span>
+      <span class="hljs-attr">offset</span>: [<span class="hljs-number">30</span>, <span class="hljs-number">40</span>],             <span class="hljs-comment">//是否对文字进行偏移。默认不偏移。例如：[30, 40] 表示文字在横向上偏移 30，纵向上偏移 40。</span>
+      <span class="hljs-attr">formatter</span>: <span class="hljs-string">&apos;{b}: {c}&apos;</span>,       <span class="hljs-comment">//标签内容格式器。模板变量有 {a}、{b}、{c}，分别表示系列名，数据名，数据值。</span>
+      <span class="hljs-attr">textStyle</span>: mytextStyle
+    };
+    <span class="hljs-keyword">const</span> mypoint = {
+      <span class="hljs-attr">symbol</span>: <span class="hljs-string">&quot;pin&quot;</span>,               <span class="hljs-comment">//图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+      <span class="hljs-attr">symbolSize</span>: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+      <span class="hljs-attr">symbolRotate</span>: <span class="hljs-number">0</span>,             <span class="hljs-comment">//标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+      <span class="hljs-attr">symbolOffset</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],         <span class="hljs-comment">//标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+      <span class="hljs-attr">silent</span>: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span>
+      <span class="hljs-attr">label</span>: {
+        <span class="hljs-attr">normal</span>: mylabel,
+        <span class="hljs-attr">emphasis</span>: mylabel
+      },
+      <span class="hljs-attr">itemStyle</span>: {
+        <span class="hljs-attr">normal</span>: myitemStyle,
+        <span class="hljs-attr">emphasis</span>: myitemStyle
+      }
+    };
+    <span class="hljs-keyword">const</span> myline = {
+      <span class="hljs-attr">symbol</span>: [<span class="hljs-string">&quot;pin&quot;</span>, <span class="hljs-string">&quot;circle&quot;</span>],    <span class="hljs-comment">//图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+      <span class="hljs-attr">symbolSize</span>: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+      <span class="hljs-attr">precision</span>: <span class="hljs-number">2</span>,                <span class="hljs-comment">//标线数值的精度，在显示平均值线的时候有用。</span>
+      <span class="hljs-attr">silent</span>: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span>
+      <span class="hljs-attr">label</span>: {
+        <span class="hljs-attr">normal</span>: mylabel,
+        <span class="hljs-attr">emphasis</span>: mylabel
+      },
+      <span class="hljs-attr">lineStyle</span>: {
+        <span class="hljs-attr">normal</span>: mylineStyle,
+        <span class="hljs-attr">emphasis</span>: mylineStyle
+      }
+    };
+    <span class="hljs-keyword">const</span> myarea = {
+      <span class="hljs-attr">silent</span>: <span class="hljs-literal">false</span>,               <span class="hljs-comment">//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span>
+      <span class="hljs-attr">label</span>: {
+        <span class="hljs-attr">normal</span>: mylabel,
+        <span class="hljs-attr">emphasis</span>: mylabel
+      },
+      <span class="hljs-attr">itemStyle</span>: {
+        <span class="hljs-attr">normal</span>: myitemStyle,
+        <span class="hljs-attr">emphasis</span>: myitemStyle
+      }
+    };
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">options</span>: {
+        <span class="hljs-attr">title</span>: title,<span class="hljs-comment">// 标题设置</span>
+        <span class="hljs-attr">tooltip</span>: tooltip,<span class="hljs-comment">// 节点悬浮提示</span>
+        <span class="hljs-comment">// toolbox: toolbox,// 切换下载</span>
+        <span class="hljs-attr">legend</span>: legend,<span class="hljs-comment">// 分组筛选提示</span>
+        <span class="hljs-comment">// dataZoom: dataZoom,// 可缩放</span>
+        <span class="hljs-comment">// visualMap: visualMap,// 地图映射</span>
+        <span class="hljs-attr">animationDurationUpdate</span>: <span class="hljs-number">1500</span>, <span class="hljs-comment">// 动画的时长。</span>
+        <span class="hljs-attr">animationEasingUpdate</span>: <span class="hljs-string">&apos;quinticInOut&apos;</span>, <span class="hljs-comment">// 动画的加载效果</span>
+        <span class="hljs-comment">// hasChanged: false,</span>
+        <span class="hljs-comment">// flag: false,</span>
+        <span class="hljs-attr">series</span>: [
+          {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;graph&quot;</span>,               <span class="hljs-comment">//关系图</span>
+            <span class="hljs-comment">// zlevel: 0,                   //柱状图所有图形的 zlevel 值。</span>
+            <span class="hljs-comment">// z: 2,                         //柱状图组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。</span>
+            <span class="hljs-comment">// left: &quot;10%&quot;,                 //组件离容器左侧的距离,百分比字符串或整型数字</span>
+            <span class="hljs-attr">top</span>: <span class="hljs-string">&apos;15%&apos;</span>,                      <span class="hljs-comment">//组件离容器上侧的距离，百分比字符串或整型数字</span>
+            <span class="hljs-comment">// right: &quot;auto&quot;,               //组件离容器右侧的距离,百分比字符串或整型数字</span>
+            <span class="hljs-attr">bottom</span>: <span class="hljs-string">&quot;15%&quot;</span>,              <span class="hljs-comment">//组件离容器下侧的距离,百分比字符串或整型数字</span>
+            <span class="hljs-comment">// width: &quot;auto&quot;,               //图例宽度</span>
+            <span class="hljs-comment">// height: &quot;auto&quot;,              //图例高度</span>
+            <span class="hljs-comment">// silent: false,               //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。</span>
+            <span class="hljs-comment">// name: &quot;公共特征&quot;,            //系列名称，用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。</span>
+            <span class="hljs-comment">// legendHoverLink: true,       //是否启用图例 hover 时的联动高亮。</span>
+            <span class="hljs-comment">// hoverAnimation: true,        //是否开启鼠标 hover 节点的提示动画效果。</span>
+            <span class="hljs-comment">// coordinateSystem: null,      //null无坐标系，&apos;cartesia个人特征d&apos;使用二维的直角坐标系。&apos;geo&apos;使用地理坐标系，&apos;polar&apos;使用极坐标系</span>
+            <span class="hljs-comment">// xAxisIndex: 0,                //使用的 x 轴的 index，在单个图表实例中存在多个 x 轴的时候有用。</span>
+            <span class="hljs-comment">// yAxisIndex: 0,                //使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用。</span>
+            <span class="hljs-comment">// polarIndex: 0,                //使用的极坐标系的 index，在单个图表实例中存在多个极坐标系的时候有用。</span>
+            <span class="hljs-comment">// geoIndex: 0,                  //使用的地理坐标系的 index，在单个图表实例中存在多个地理坐标系的时候有用。</span>
+            <span class="hljs-comment">// calendarIndex: 0,            //使用的日历坐标系的 index，在单个图表实例中存在多个日历坐标系的时候有用。</span>
+            <span class="hljs-attr">layout</span>: <span class="hljs-string">&apos;circular&apos;</span>,              <span class="hljs-comment">//&apos;none&apos; 不采用任何布局，使用节点中提供的 x， y 作为节点的位置.&apos;circular&apos; 采用环形布局，&apos;force&apos; 采用力引导布局。</span>
+            <span class="hljs-comment">//circular:{},               //环形布局相关配置</span>
+            <span class="hljs-comment">//force:{},                  //力引导布局相关的配置项</span>
+            <span class="hljs-attr">roam</span>: <span class="hljs-literal">true</span>,                 <span class="hljs-comment">//是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 &apos;scale&apos; 或者 &apos;move&apos;。设置成 true 为都开启</span>
+            <span class="hljs-attr">nodeScaleRatio</span>: <span class="hljs-number">0.6</span>,         <span class="hljs-comment">//鼠标漫游缩放时节点的相应缩放比例，当设为0时节点不随着鼠标的缩放而缩放</span>
+            <span class="hljs-comment">// draggable: true,            //节点是否可拖拽，只在使用力引导布局的时候有用。</span>
+            <span class="hljs-comment">// focusNodeAdjacency: true,   //是否在鼠标移到节点上的时候突出显示节点以及节点的边和邻接节点。放大</span>
+            <span class="hljs-attr">symbol</span>: <span class="hljs-string">&quot;circle&quot;</span>,               <span class="hljs-comment">//图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+            <span class="hljs-attr">symbolSize</span>: <span class="hljs-number">50</span>,              <span class="hljs-comment">//标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+            <span class="hljs-comment">// symbolRotate: 0,             //标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+            <span class="hljs-comment">// symbolOffset: [0, 0],         //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+            <span class="hljs-attr">edgeSymbol</span>: [<span class="hljs-string">&apos;&apos;</span>, <span class="hljs-string">&apos;arrow&apos;</span>],<span class="hljs-comment">//边两端的标记类型，可以是一个数组分别指定两端，也可以是单个统一指定。默认不显示标记，常见的可以设置为箭头</span>
+            <span class="hljs-comment">// edgeSymbolSize: [5, 2],       //边两端的标记大小，可以是一个数组分别指定两端，也可以是单个统一指定。</span>
+            <span class="hljs-attr">cursor</span>: <span class="hljs-string">&quot;pointer&quot;</span>,           <span class="hljs-comment">//鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。</span>
+            <span class="hljs-attr">label</span>: {                      <span class="hljs-comment">//图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span>
+              <span class="hljs-comment">// normal: mylabel,</span>
+              <span class="hljs-comment">// emphasis: mylabel</span>
+            },
+            <span class="hljs-attr">edgeLabel</span>: { <span class="hljs-comment">// 显示线中间的标签</span>
+              <span class="hljs-comment">// show: true,</span>
+              <span class="hljs-comment">// normal: mylabel,</span>
+              <span class="hljs-comment">// emphasis: mylabel</span>
+            },
+            <span class="hljs-attr">emphasis</span>: { <span class="hljs-comment">// 悬浮出现的高亮的图形样式。</span>
+              <span class="hljs-comment">// lineStyle: mylineStyle,</span>
+              <span class="hljs-comment">// itemStyle: myitemStyle,</span>
+              <span class="hljs-comment">// label: mylineStyle,</span>
+              <span class="hljs-comment">// edgeLabel: mylineStyle,</span>
+            },
+            <span class="hljs-attr">itemStyle</span>: {                 <span class="hljs-comment">//图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+              <span class="hljs-comment">// normal: myitemStyle,</span>
+              <span class="hljs-comment">// emphasis: myitemStyle,</span>
+            },
+            <span class="hljs-attr">lineStyle</span>: {                 <span class="hljs-comment">//图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+              <span class="hljs-comment">// normal: mylineStyle,</span>
+              <span class="hljs-comment">// emphasis: mylineStyle,</span>
+            },
+            <span class="hljs-attr">categories</span>: [                <span class="hljs-comment">//节点分类的类目，可选。</span>
+              {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;当前特征&quot;</span>,    <span class="hljs-comment">//类目名称</span>
+                <span class="hljs-comment">// symbol: &quot;circle&quot;,       //图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+                <span class="hljs-comment">// label: {              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span>
+                <span class="hljs-comment">//   normal: mylabel,</span>
+                <span class="hljs-comment">//   emphasis: mylabel</span>
+                <span class="hljs-comment">// },</span>
+                <span class="hljs-comment">// itemStyle: {         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+                <span class="hljs-comment">//   normal: myitemStyle,</span>
+                <span class="hljs-comment">//   emphasis: myitemStyle,</span>
+                <span class="hljs-comment">// },</span>
+              },
+              {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;个人特征&quot;</span>,    <span class="hljs-comment">//类目名称</span>
+                <span class="hljs-comment">// symbol: &quot;rect&quot;,       //图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+                <span class="hljs-comment">// label: {              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span>
+                <span class="hljs-comment">//   normal: mylabel,</span>
+                <span class="hljs-comment">//   emphasis: mylabel</span>
+                <span class="hljs-comment">// },</span>
+                <span class="hljs-comment">// itemStyle: {         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+                <span class="hljs-comment">//   normal: myitemStyle,</span>
+                <span class="hljs-comment">//   emphasis: myitemStyle,</span>
+                <span class="hljs-comment">// },</span>
+              },
+              {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;公共特征&quot;</span>,    <span class="hljs-comment">//类目名称</span>
+                <span class="hljs-comment">// symbol: &quot;roundRect&quot;,       //图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+                <span class="hljs-comment">// label: {              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span>
+                <span class="hljs-comment">//   normal: mylabel,</span>
+                <span class="hljs-comment">//   emphasis: mylabel</span>
+                <span class="hljs-comment">// },</span>
+                <span class="hljs-comment">// itemStyle: {         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+                <span class="hljs-comment">//   normal: myitemStyle,</span>
+                <span class="hljs-comment">//   emphasis: myitemStyle,</span>
+                <span class="hljs-comment">// },</span>
+              },
+              {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;特征画布&quot;</span>,    <span class="hljs-comment">//类目名称</span>
+                <span class="hljs-comment">// symbol: &quot;pin&quot;,       //图形 &apos;circle&apos;, &apos;rect&apos;, &apos;roundRect&apos;, &apos;triangle&apos;, &apos;diamond&apos;, &apos;pin&apos;, &apos;arrow&apos;</span>
+                <span class="hljs-comment">// symbolSize: 50,      //标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。</span>
+                <span class="hljs-comment">// symbolRotate: 0,     //标记的旋转角度。注意在 markLine 中当 symbol 为 &apos;arrow&apos; 时会忽略 symbolRotate 强制设置为切线的角度。</span>
+                <span class="hljs-comment">// symbolOffset: [0, 0], //标记相对于原本位置的偏移。默认情况下，标记会居中置放在数据对应的位置</span>
+                <span class="hljs-comment">// label: {              //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，</span>
+                <span class="hljs-comment">//   normal: mylabel,</span>
+                <span class="hljs-comment">//   emphasis: mylabel</span>
+                <span class="hljs-comment">// },</span>
+                <span class="hljs-comment">// itemStyle: {         //图形样式，normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。</span>
+                <span class="hljs-comment">//   normal: myitemStyle,</span>
+                <span class="hljs-comment">//   emphasis: myitemStyle,</span>
+                <span class="hljs-comment">// },</span>
+              },
+            ],
+            <span class="hljs-attr">data</span>: [                     <span class="hljs-comment">//data就是node</span>
+              {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;当前特征&apos;</span>,
+                <span class="hljs-comment">// x: 100,</span>
+                <span class="hljs-comment">// y: 100,</span>
+                <span class="hljs-comment">// value: 20,</span>
+                <span class="hljs-comment">// symbolSize: 20,</span>
+                <span class="hljs-attr">itemStyle</span>: {
+                  <span class="hljs-attr">normal</span>: {
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;blank&apos;</span>
+                  }
+                }
+              }, {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;个人特征&apos;</span>,
+                <span class="hljs-comment">// x: 100,</span>
+                <span class="hljs-comment">// y: 100,</span>
+                <span class="hljs-comment">// value: 20,</span>
+                <span class="hljs-comment">// symbolSize: 20,</span>
+                <span class="hljs-attr">itemStyle</span>: {
+                  <span class="hljs-attr">normal</span>: {
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#15a4fa&apos;</span>
+                  }
+                }
+              }, {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;公共特征&apos;</span>,
+                <span class="hljs-comment">// x: 100,</span>
+                <span class="hljs-comment">// y: 100,</span>
+                <span class="hljs-comment">// value: 20,</span>
+                <span class="hljs-comment">// symbolSize: 20,</span>
+                <span class="hljs-attr">itemStyle</span>: {
+                  <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;blue&apos;</span>
+                }
+              }, {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;特征画布&apos;</span>,
+                <span class="hljs-comment">// x: 100,</span>
+                <span class="hljs-comment">// y: 100,</span>
+                <span class="hljs-comment">// value: 20,</span>
+                <span class="hljs-comment">// symbolSize: 100,</span>
+                <span class="hljs-attr">itemStyle</span>: {
+                  <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;red&apos;</span>
+                }
+              }
+            ],
+            <span class="hljs-attr">links</span>: [                 <span class="hljs-comment">//links就是edges</span>
+              {
+                <span class="hljs-attr">source</span>: <span class="hljs-string">&apos;当前特征&apos;</span>,
+                <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;个人特征&apos;</span>
+              }, {
+                <span class="hljs-attr">source</span>: <span class="hljs-string">&apos;当前特征&apos;</span>,
+                <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;公共特征&apos;</span>
+              }, {
+                <span class="hljs-attr">source</span>: <span class="hljs-string">&apos;当前特征&apos;</span>,
+                <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;特征画布&apos;</span>
+              }
+            ],
+            <span class="hljs-comment">//markPoint:同bar</span>
+            <span class="hljs-comment">//markLine:同bar</span>
+            <span class="hljs-comment">//markArea:同bar</span>
+            <span class="hljs-comment">// tooltip: tooltip</span>
+          },
+        ]
+      }
+    };
+  },
+  mounted () { }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/" class="navigation navigation-prev " aria-label="Previous page: EasyExcel 导入数据出错The index of 'xx' and 'xx' must be inconsistent">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../echart-graph动态添加数据/" class="navigation navigation-next " aria-label="Next page: echart graph动态添加数据">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"echart——关系图graph详解（转载自https://www.cnblogs.com/wheatCatcher/p/11201721.html）","date":"2019-12-27","categories":["前端"],"level":"1.8.11","depth":2,"next":{"title":"echart graph动态添加数据","level":"1.8.12","depth":2,"path":"src/前端/echart-graph动态添加数据/index.md","ref":"src/前端/echart-graph动态添加数据/index.md","articles":[]},"previous":{"title":"EasyExcel 导入数据出错The index of 'xx' and 'xx' must be inconsistent","level":"1.8.10","depth":2,"path":"src/前端/easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/index.md","ref":"src/前端/easyexcel-导入数据出错the-index-of-xx-and-xx-must-be-inconsistent/index.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hints","page-ref","-lunr","expandable-chapters"],"pluginsConfig":{"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"page-ref":{},"expandable-chapters":{},"highlight":{},"search":{},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"src/前端/echart-关系图graph详解（转载自https-www-cnblogs-com-wheatcatcher-p-11201721-html）/index.md","mtime":"2022-08-21T16:43:09.477Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-05-22T15:07:06.321Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
