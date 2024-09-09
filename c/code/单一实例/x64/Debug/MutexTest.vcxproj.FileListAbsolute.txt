@@ -1,0 +1,2 @@
+D:\reverse\code\MutexTest\x64\Debug\MutexTest.exe
+D:\reverse\code\MutexTest\x64\Debug\MutexTest.pdb

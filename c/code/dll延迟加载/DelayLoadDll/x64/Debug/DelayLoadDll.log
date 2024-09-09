@@ -1,0 +1,3 @@
+﻿  DelayLoadDll.cpp
+LINK : warning LNK4199: 已忽略 /DELAYLOAD:dlltest.dll；未找到来自 dlltest.dll 的导入
+  DelayLoadDll.vcxproj -> C:\Users\test\Desktop\cproject\DelayLoadDll\x64\Debug\DelayLoadDll.exe
